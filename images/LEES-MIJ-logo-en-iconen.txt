@@ -1,0 +1,27 @@
+VIER SVG-BESTANDEN ONTBREKEN NOG IN DEZE MAP
+
+Ze staan nu nog op de oude server. Download ze daar en sla ze hier op
+onder de nieuwe naam. De naam moet exact kloppen.
+
+1. Het logo (de silhouetten met rugzakken)
+   van:  https://mybackpack.nl/images/logobackpack-silhouetten-donkergroen3.svg
+   naar: images/logo-backpack.svg
+
+2. Icoon Explore (landkaart met kompas)
+   van:  https://mybackpack.nl/images/logolandkaartmetkompas-1.svg
+   naar: images/icoon-explore.svg
+
+3. Icoon Discover (vergrootglas)
+   van:  https://mybackpack.nl/images/Icoonvergrootglas.svg
+   naar: images/icoon-discover.svg
+
+4. Icoon Unpack (rugzak)
+   van:  https://mybackpack.nl/images/Icoonrugzak.svg
+   naar: images/icoon-unpack.svg
+
+Downloaden: open het adres in je browser, rechtermuisknop, "Pagina opslaan als"
+of "Afbeelding opslaan als". Let op dat het bestand op .svg eindigt en niet op
+.svg.txt of .html.
+
+Controle achteraf: open het opgeslagen bestand in Kladblok. Begint het met
+"<?xml" of "<svg", dan is het goed.

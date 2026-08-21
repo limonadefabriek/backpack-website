@@ -13,7 +13,7 @@ OUT = os.path.dirname(os.path.abspath(__file__))
 CLEM = "https://backpack.clientomgeving.nl/afspraak-maken?t=gbFxFmGj"
 MAAIKE = ("https://widget.onlineafspraken.nl/consumer/booking/book/key/bcah63qhqt55-zzaz41"
           "/l/31112/ln/nl/t/8080dc/f/110e0011/o/theme:gray,dp:modern/at/0/rs/0/pp/0/output/html")
-LOGO = "https://mybackpack.nl/images/logobackpack-silhouetten-donkergroen3.svg"
+LOGO_BESTAND = "images/logo-backpack.svg"   # zie LEES-MIJ.md
 
 CHECK = ('<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" '
          'stroke-width="2" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>')
@@ -52,7 +52,7 @@ def header(active="", depth=0):
         return ' aria-current="page"' if active == name else ''
     return f"""<header class="header" id="header">
   <div class="wrap header-in">
-    <a href="{r}index.html" class="brand"><img src="{LOGO}" alt="" aria-hidden="true">Backpack</a>
+    <a href="{r}index.html" class="brand"><img src="{r}images/logo-backpack.svg" alt="" aria-hidden="true">Backpack</a>
     <nav aria-label="Hoofdmenu">
       <ul class="nav navlist" id="navlist">
         <li><a href="{r}index.html#verhaal"{cur('verhaal')}>Ons verhaal</a></li>
@@ -114,7 +114,7 @@ def footer(depth=0):
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <span class="brand"><img src="{LOGO}" alt="" aria-hidden="true">Backpack</span>
+        <span class="brand"><img src="{r}images/logo-backpack.svg" alt="" aria-hidden="true">Backpack</span>
         <p class="foot-about">Leefstijlgeneeskunde, integrale geneeskunde, systemisch werk en regressietherapie.</p>
       </div>
       <div>
@@ -271,6 +271,104 @@ def reviews_section(filter_by=None):
 # ============================================================
 #  HOMEPAGE
 # ============================================================
+# ============================================================
+#  ARTIKELEN INLEZEN
+#  De artikelen staan als losse tekstbestanden in content/inspiratie/.
+#  Die bestanden schrijft het CMS wanneer Clementine iets publiceert.
+#  Hieronder worden ze ingelezen en omgezet naar HTML-pagina's.
+# ============================================================
+
+def lees_front_matter(tekst):
+    """Haalt de gegevens boven aan het bestand (tussen de --- regels) eruit."""
+    if not tekst.startswith("---"):
+        return {}, tekst
+    eind = tekst.index("\n---", 3)
+    kop, body = tekst[3:eind], tekst[eind + 4:]
+    data = {}
+    for regel in kop.strip().splitlines():
+        if ":" not in regel:
+            continue
+        k, v = regel.split(":", 1)
+        v = v.strip()
+        if len(v) > 1 and v[0] == v[-1] and v[0] in "\"'":
+            v = v[1:-1]
+        data[k.strip()] = v
+    return data, body.strip()
+
+
+def inline(t):
+    """Vet, cursief en links binnen een regel."""
+    t = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", t)
+    t = re.sub(r"(?<!\*)\*([^*]+?)\*(?!\*)", r"<em>\1</em>", t)
+    t = re.sub(r"\[([^\]]+)\]\((https?://[^)]+)\)",
+               r'<a class="sublink" href="\2" target="_blank" rel="noopener">\1</a>', t)
+    return t
+
+
+def naar_html(body, gedicht=False):
+    """Zet de tekst van het CMS om naar HTML. Bewust eenvoudig gehouden:
+    tussenkoppen, alinea's, opsommingen, vet, cursief en links."""
+    if gedicht:
+        strofen = [b.strip() for b in body.split("\n\n") if b.strip()]
+        return "\n".join(
+            '    <p class="vers">%s</p>' % "<br>\n      ".join(inline(r) for r in st.splitlines())
+            for st in strofen)
+    uit, lijst = [], []
+    def sluit_lijst():
+        if lijst:
+            uit.append("    <ul>" + "".join(f"<li>{inline(x)}</li>" for x in lijst) + "</ul>")
+            lijst.clear()
+    for blok in body.split("\n\n"):
+        blok = blok.strip()
+        if not blok:
+            continue
+        if blok.startswith("- "):
+            for r in blok.splitlines():
+                lijst.append(r[2:].strip())
+            sluit_lijst()
+        elif blok.startswith("### "):
+            sluit_lijst(); uit.append(f"    <h3>{inline(blok[4:])}</h3>")
+        elif blok.startswith("## "):
+            sluit_lijst(); uit.append(f"    <h2>{inline(blok[3:])}</h2>")
+        else:
+            sluit_lijst()
+            uit.append("    <p>%s</p>" % inline(" ".join(blok.splitlines())))
+    sluit_lijst()
+    return "\n".join(uit)
+
+
+MAANDEN = ["januari","februari","maart","april","mei","juni",
+           "juli","augustus","september","oktober","november","december"]
+
+
+def nl_datum(d):
+    try:
+        j, m, dag = d.split("-")[:3]
+        return f"{int(dag)} {MAANDEN[int(m)-1]} {j}"
+    except Exception:
+        return d
+
+
+ARTIKELEN = []
+_map = os.path.join(OUT, "content", "inspiratie")
+for _naam in sorted(os.listdir(_map)) if os.path.isdir(_map) else []:
+    if not _naam.endswith(".md"):
+        continue
+    _fm, _body = lees_front_matter(open(os.path.join(_map, _naam), encoding="utf-8").read())
+    _fm["slug"] = _naam[:-3] + ".html"
+    _fm["body"] = _body
+    ARTIKELEN.append(_fm)
+ARTIKELEN.sort(key=lambda a: a.get("datum", ""), reverse=True)
+
+
+def post_cards(posts, pad=""):
+    return "".join(f"""
+      <a class="post" href="{pad}{a['slug']}">
+        <div class="post-img"><img src="{a.get('afbeelding','')}" alt="" loading="lazy"></div>
+        <p class="post-meta">{a.get('categorie','')}{' &middot; ' + a['leestijd'] if a.get('leestijd') else ''}</p>
+        <h3>{a['titel']}</h3><p>{a.get('samenvatting','')}</p></a>""" for a in posts)
+
+
 LD_JSON = """
 <script type="application/ld+json">
 {
@@ -382,7 +480,7 @@ HOME = f"""<main id="top">
 
       <article class="card">
         <div class="card-head">
-          <div class="card-icon"><img src="https://mybackpack.nl/images/logolandkaartmetkompas-1.svg" alt=""></div>
+          <div class="card-icon"><img src="images/icoon-explore.svg" alt=""></div>
           <p class="card-name">Explore</p>
           <h3>Zelf aan de slag</h3>
         </div>
@@ -405,7 +503,7 @@ HOME = f"""<main id="top">
 
       <article class="card">
         <div class="card-head">
-          <div class="card-icon"><img src="https://mybackpack.nl/images/Icoonvergrootglas.svg" alt=""></div>
+          <div class="card-icon"><img src="images/icoon-discover.svg" alt=""></div>
           <p class="card-name">Discover</p>
           <h3>Leefstijl,<br>integrale geneeskunde &amp;<br>systemisch werk</h3>
         </div>
@@ -428,7 +526,7 @@ HOME = f"""<main id="top">
 
       <article class="card">
         <div class="card-head">
-          <div class="card-icon"><img src="https://mybackpack.nl/images/Icoonrugzak.svg" alt=""></div>
+          <div class="card-icon"><img src="images/icoon-unpack.svg" alt=""></div>
           <p class="card-name">Unpack</p>
           <h3>Regressietherapie</h3>
         </div>
@@ -566,19 +664,7 @@ HOME = f"""<main id="top">
       <div><p class="eyebrow">Inspiratie</p><h2>uit onze rugzak</h2></div>
       <a class="tlink" href="inspiratie/index.html">Alles bekijken <span class="arw">&rarr;</span></a>
     </div>
-    <div class="blog-grid reveal">
-      <a class="post" href="inspiratie/gedicht-wat-als.html">
-        <div class="post-img"><img src="https://mybackpack.nl/images/shifaaz-shamoon-sLAk1guBG90-unsplash-1.jpg" alt="" loading="lazy"></div>
-        <p class="post-meta">Gedicht</p><h3>Wat als</h3>
-        <p>Een gedicht over wat ons drijft.</p></a>
-      <a class="post" href="inspiratie/wat-volgt-staat-in-verband-met-wat-eraan-voorafging.html">
-        <div class="post-img"><img src="https://mybackpack.nl/images/biel-morro-ZpKxweXHqkc-unsplash.jpg" alt="" loading="lazy"></div>
-        <p class="post-meta">Blog</p><h3>"Wat volgt, staat altijd in verband met wat eraan voorafging"</h3>
-        <p>Een blog over hoe het verleden doorwerkt in het hier en nu.</p></a>
-      <a class="post" href="inspiratie/interview-galit-atlas.html">
-        <div class="post-img"><img src="https://mybackpack.nl/images/Emotioneleerfenis-GalitAtlas.jpg" alt="" loading="lazy"></div>
-        <p class="post-meta">Gelezen &middot; NRC</p><h3>Galit Atlas over intergenerationeel trauma</h3>
-        <p>Interview met psychoanalyticus Galit Atlas in de NRC over intergenerationeel trauma en de verwerking daarvan.</p></a>
+    <div class="blog-grid reveal">{post_cards(ARTIKELEN[:3], "inspiratie/")}
     </div>
   </div>
 </section>
@@ -1153,19 +1239,7 @@ EXPLORE = f"""<main>
       <div><p class="eyebrow">Inspiratie</p><h2>recent gedeeld</h2></div>
       <a class="tlink" href="inspiratie/index.html">Alles bekijken <span class="arw">&rarr;</span></a>
     </div>
-    <div class="blog-grid reveal">
-      <a class="post" href="inspiratie/gedicht-wat-als.html">
-        <div class="post-img"><img src="https://mybackpack.nl/images/shifaaz-shamoon-sLAk1guBG90-unsplash-1.jpg" alt="" loading="lazy"></div>
-        <p class="post-meta">Gedicht</p><h3>wat als</h3>
-        <p>Een gedicht dat ons de laatste tijd bijblijft.</p></a>
-      <a class="post" href="inspiratie/wat-volgt-staat-in-verband-met-wat-eraan-voorafging.html">
-        <div class="post-img"><img src="https://mybackpack.nl/images/biel-morro-ZpKxweXHqkc-unsplash.jpg" alt="" loading="lazy"></div>
-        <p class="post-meta">Blog</p><h3>"wat volgt, staat altijd in verband met wat eraan voorafging"</h3>
-        <p>Over hoe eerdere generaties doorwerken in wat jij vandaag meemaakt.</p></a>
-      <a class="post" href="inspiratie/interview-galit-atlas.html">
-        <div class="post-img"><img src="https://mybackpack.nl/images/Emotioneleerfenis-GalitAtlas.jpg" alt="" loading="lazy"></div>
-        <p class="post-meta">Gelezen &middot; NRC</p><h3>Galit Atlas over intergenerationeel trauma</h3>
-        <p>Interview met de psychoanalyticus over emotionele erfenissen.</p></a>
+    <div class="blog-grid reveal">{post_cards(ARTIKELEN[:3], "inspiratie/")}
     </div>
   </div>
 </section>
@@ -1593,104 +1667,6 @@ page("contact.html",
 # ============================================================
 #  INSPIRATIE — overzichtspagina
 # ============================================================
-# ============================================================
-#  ARTIKELEN INLEZEN
-#  De artikelen staan als losse tekstbestanden in content/inspiratie/.
-#  Die bestanden schrijft het CMS wanneer Clementine iets publiceert.
-#  Hieronder worden ze ingelezen en omgezet naar HTML-pagina's.
-# ============================================================
-
-def lees_front_matter(tekst):
-    """Haalt de gegevens boven aan het bestand (tussen de --- regels) eruit."""
-    if not tekst.startswith("---"):
-        return {}, tekst
-    eind = tekst.index("\n---", 3)
-    kop, body = tekst[3:eind], tekst[eind + 4:]
-    data = {}
-    for regel in kop.strip().splitlines():
-        if ":" not in regel:
-            continue
-        k, v = regel.split(":", 1)
-        v = v.strip()
-        if len(v) > 1 and v[0] == v[-1] and v[0] in "\"'":
-            v = v[1:-1]
-        data[k.strip()] = v
-    return data, body.strip()
-
-
-def inline(t):
-    """Vet, cursief en links binnen een regel."""
-    t = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", t)
-    t = re.sub(r"(?<!\*)\*([^*]+?)\*(?!\*)", r"<em>\1</em>", t)
-    t = re.sub(r"\[([^\]]+)\]\((https?://[^)]+)\)",
-               r'<a class="sublink" href="\2" target="_blank" rel="noopener">\1</a>', t)
-    return t
-
-
-def naar_html(body, gedicht=False):
-    """Zet de tekst van het CMS om naar HTML. Bewust eenvoudig gehouden:
-    tussenkoppen, alinea's, opsommingen, vet, cursief en links."""
-    if gedicht:
-        strofen = [b.strip() for b in body.split("\n\n") if b.strip()]
-        return "\n".join(
-            '    <p class="vers">%s</p>' % "<br>\n      ".join(inline(r) for r in st.splitlines())
-            for st in strofen)
-    uit, lijst = [], []
-    def sluit_lijst():
-        if lijst:
-            uit.append("    <ul>" + "".join(f"<li>{inline(x)}</li>" for x in lijst) + "</ul>")
-            lijst.clear()
-    for blok in body.split("\n\n"):
-        blok = blok.strip()
-        if not blok:
-            continue
-        if blok.startswith("- "):
-            for r in blok.splitlines():
-                lijst.append(r[2:].strip())
-            sluit_lijst()
-        elif blok.startswith("### "):
-            sluit_lijst(); uit.append(f"    <h3>{inline(blok[4:])}</h3>")
-        elif blok.startswith("## "):
-            sluit_lijst(); uit.append(f"    <h2>{inline(blok[3:])}</h2>")
-        else:
-            sluit_lijst()
-            uit.append("    <p>%s</p>" % inline(" ".join(blok.splitlines())))
-    sluit_lijst()
-    return "\n".join(uit)
-
-
-MAANDEN = ["januari","februari","maart","april","mei","juni",
-           "juli","augustus","september","oktober","november","december"]
-
-
-def nl_datum(d):
-    try:
-        j, m, dag = d.split("-")[:3]
-        return f"{int(dag)} {MAANDEN[int(m)-1]} {j}"
-    except Exception:
-        return d
-
-
-ARTIKELEN = []
-_map = os.path.join(OUT, "content", "inspiratie")
-for _naam in sorted(os.listdir(_map)) if os.path.isdir(_map) else []:
-    if not _naam.endswith(".md"):
-        continue
-    _fm, _body = lees_front_matter(open(os.path.join(_map, _naam), encoding="utf-8").read())
-    _fm["slug"] = _naam[:-3] + ".html"
-    _fm["body"] = _body
-    ARTIKELEN.append(_fm)
-ARTIKELEN.sort(key=lambda a: a.get("datum", ""), reverse=True)
-
-
-def post_cards(posts, pad=""):
-    return "".join(f"""
-      <a class="post" href="{pad}{a['slug']}">
-        <div class="post-img"><img src="{a.get('afbeelding','')}" alt="" loading="lazy"></div>
-        <p class="post-meta">{a.get('categorie','')}{' &middot; ' + a['leestijd'] if a.get('leestijd') else ''}</p>
-        <h3>{a['titel']}</h3><p>{a.get('samenvatting','')}</p></a>""" for a in posts)
-
-
 INSPIRATIE = f"""<main>
 <section class="pagehead">
   <div class="wrap">
@@ -1766,17 +1742,17 @@ legal("algemene-voorwaarden.html", "Algemene voorwaarden",
       "Algemene voorwaarden | Backpack",
       "Beide praktijken hanteren hun eigen algemene voorwaarden. Je kunt ze hieronder downloaden.",
       [("Algemene voorwaarden praktijk Clementine Mol (pdf)",
-        "https://mybackpack.nl/files/Algemenevoorwaarden-PraktijkClementineMol.pdf"),
+        "files/Algemenevoorwaarden-PraktijkClementineMol.pdf"),
        ("Algemene voorwaarden praktijk Maaike Oosterveer (pdf)",
-        "https://mybackpack.nl/files/Algemenevoorwaarden-PraktijkMaaikeOosterveer.docx.pdf")])
+        "files/Algemenevoorwaarden-PraktijkMaaikeOosterveer.pdf")])
 
 legal("privacyverklaring.html", "Privacyverklaring",
       "Privacyverklaring | Backpack",
       "Beide praktijken hebben een eigen privacyverklaring. Je kunt ze hieronder downloaden.",
       [("Privacyverklaring praktijk Clementine Mol (pdf)",
-        "https://mybackpack.nl/files/PrivacyverklaringPraktijkClementineMol.pdf"),
+        "files/PrivacyverklaringPraktijkClementineMol.pdf"),
        ("Privacyverklaring praktijk Maaike Oosterveer (pdf)",
-        "https://mybackpack.nl/files/KopievanPrivacyverklaringPraktijkMaaikeOosterveer.docx.pdf")])
+        "files/PrivacyverklaringPraktijkMaaikeOosterveer.pdf")])
 
 
 # ============================================================
