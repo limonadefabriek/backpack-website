@@ -1,7 +1,11 @@
 # Instellingen voor het CMS. Dit bepaalt welke velden Clementine ziet
 # als ze een artikel schrijft. Aanpassen mag — let op de inspringing.
 backend:
-  name: git-gateway
+  # Inloggen gaat rechtstreeks via GitHub. Netlify tekent de aanvraag,
+  # maar er is geen Netlify Identity of Git Gateway meer nodig.
+  # Verandert de repository van naam of eigenaar? Pas dan 'repo' hieronder aan.
+  name: github
+  repo: limonadefabriek/backpack-website
   branch: main
 
 # Waar geuploade afbeeldingen terechtkomen
