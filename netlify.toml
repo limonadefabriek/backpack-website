@@ -1,0 +1,111 @@
+# Instellingen voor Netlify. Dit bestand hoort in de hoofdmap van de repository.
+
+[build]
+  # Netlify draait dit commando bij elke wijziging en bouwt de pagina's opnieuw.
+  command = "python3 build.py"
+  publish = "."
+
+[build.environment]
+  PYTHON_VERSION = "3.11"
+
+# ------------------------------------------------------------
+#  DOORVERWIJZINGEN VAN DE OUDE NAAR DE NIEUWE ADRESSEN
+#  Zonder deze regels verliest de site de posities die er nu al zijn,
+#  en komen bezoekers via oude links op een foutmelding.
+# ------------------------------------------------------------
+
+[[redirects]]
+  from = "/Zelf-aan-de-slag.html"
+  to = "/zelf-aan-de-slag.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/explore.html"
+  to = "/zelf-aan-de-slag.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/Leefstijl-en-meer.html"
+  to = "/leefstijl-en-systemisch-werk.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/Regressietherapie.html"
+  to = "/regressietherapie.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/Unpack.html"
+  to = "/regressietherapie.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/Clementine.html"
+  to = "/clementine.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/Maaike.html"
+  to = "/maaike.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/Over-Maaike.html"
+  to = "/maaike.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/Veelgestelde-vragen.html"
+  to = "/veelgestelde-vragen.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/Contact.html"
+  to = "/contact.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/Algemene-voorwaarden.html"
+  to = "/algemene-voorwaarden.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/Privacyverklaring.html"
+  to = "/privacyverklaring.html"
+  status = 301
+  force = true
+
+# Oude blogadressen
+[[redirects]]
+  from = "/blog/gedicht-wat-als-1.html"
+  to = "/inspiratie/gedicht-wat-als.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/blog-wat-volgt-staat-altijd-in-verband-met-wat-eraan-voorafging.html"
+  to = "/inspiratie/wat-volgt-staat-in-verband-met-wat-eraan-voorafging.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/*"
+  to = "/inspiratie/"
+  status = 301
+
+# Alles wat verder niet bestaat, netjes naar de homepage
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 404

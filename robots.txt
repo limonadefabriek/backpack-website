@@ -1,0 +1,5 @@
+# Deze versie draait nog niet op het echte domein.
+# Zoekmachines wordt gevraagd hem te negeren. Dit gaat vanzelf open
+# zodra de site op mybackpack.nl draait — zie build.py.
+User-agent: *
+Disallow: /
