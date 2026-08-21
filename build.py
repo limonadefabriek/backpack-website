@@ -356,7 +356,7 @@ HOME = f"""<main id="top">
 ============================================= -->
 <section class="section" id="check-up" style="padding-top:0">
   <div class="wrap">
-    <div class="panel-light reveal" style="display:grid;grid-template-columns:1.3fr auto;gap:34px;align-items:center">
+    <div class="panel-light panel-split reveal">
       <div>
         <p class="eyebrow" style="color:var(--forest);opacity:.6">Gratis &middot; 5 minuten &middot; geen account nodig</p>
         <h2 style="font-size:clamp(1.5rem,2.6vw,2.1rem)">doe de digitale check-up</h2>
@@ -585,7 +585,7 @@ HOME = f"""<main id="top">
 
 <section class="section" style="padding-top:0">
   <div class="wrap">
-    <div class="panel-light reveal" style="display:grid;grid-template-columns:1.4fr auto;gap:32px;align-items:center">
+    <div class="panel-light panel-split reveal">
       <div>
         <p class="eyebrow" style="color:var(--forest);opacity:.6">Voor organisaties</p>
         <h3 style="font-size:clamp(1.35rem,2.3vw,1.8rem)">lezingen en workshops</h3>
@@ -1711,7 +1711,7 @@ INSPIRATIE = f"""<main>
 
 <section class="section" style="padding-top:0">
   <div class="wrap">
-    <div class="panel-light reveal" style="display:grid;grid-template-columns:1.3fr auto;gap:32px;align-items:center">
+    <div class="panel-light panel-split reveal">
       <div>
         <p class="eyebrow" style="color:var(--forest);opacity:.6">Liever zelf ontdekken?</p>
         <h3 style="font-size:clamp(1.3rem,2.2vw,1.7rem)">doe de digitale check-up</h3>
@@ -1872,7 +1872,7 @@ else:
 _paginas = sorted(
     [f for f in os.listdir(OUT) if f.endswith(".html")] +
     ["inspiratie/" + f for f in sorted(os.listdir(os.path.join(OUT, "inspiratie")))
-     if f.endswith(".html")])
+     if f.endswith(".html")] if os.path.isdir(os.path.join(OUT, "inspiratie")) else [])
 _items = "".join(
     f"  <url><loc>https://{LIVE_DOMEIN}/{'' if p == 'index.html' else p}</loc></url>\n"
     for p in _paginas)

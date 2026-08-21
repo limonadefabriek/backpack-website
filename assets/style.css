@@ -431,3 +431,21 @@ picture{display:contents}
 .cta-direct a{border-bottom:1px solid rgba(250,247,242,.35);padding-bottom:1px;transition:.2s}
 .cta-direct a:hover{color:var(--cream);border-color:var(--cream)}
 .vers{font-size:1.05rem;line-height:2;color:var(--ink);margin-bottom:1.8em}
+
+/* ---------- Mobiel: blokken met tekst plus knop ----------
+   Deze blokken stonden vast op twee kolommen, waardoor de knop op een
+   telefoon werd platgedrukt. Nu stapelen ze netjes onder elkaar. */
+.panel-split{display:grid;grid-template-columns:1fr auto;gap:clamp(24px,3.5vw,36px);align-items:center}
+@media (max-width:760px){
+  .panel-split{grid-template-columns:1fr;gap:22px}
+  .panel-split .btn{width:100%;justify-content:center}
+  .btn-row .btn{flex:1 1 auto;justify-content:center}
+  .rev{flex-basis:min(320px,86vw)}
+  .head-row{align-items:flex-start}
+  .quote blockquote{max-width:none}
+}
+@media (max-width:420px){
+  .btn{padding:.9em 1.35em;font-size:.88rem}
+  .card-icon{width:72px;height:72px}
+  .card-icon img,.card-icon svg{width:34px;height:34px}
+}

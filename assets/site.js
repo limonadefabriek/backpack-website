@@ -2,6 +2,36 @@
 (function () {
   'use strict';
 
+
+  // ------------------------------------------------------------
+  //  Uitnodiging voor het CMS afvangen
+  //  Netlify stuurt uitnodigings- en herstelmails naar de homepage,
+  //  met een code achter het hekje in het adres. Zonder dit stukje
+  //  gebeurt daar niets en land je gewoon op de site. Hieronder
+  //  wordt die code herkend, het inlogvenster geopend, en na het
+  //  kiezen van een wachtwoord ga je door naar /admin/.
+  //  Het script van Netlify wordt alleen geladen als dat nodig is,
+  //  zodat gewone bezoekers er niets van merken.
+  // ------------------------------------------------------------
+  var hash = window.location.hash || '';
+  var heeftToken = /(invite_token|recovery_token|confirmation_token|email_change_token)=/.test(hash);
+  if (heeftToken && window.location.pathname.indexOf('/admin') !== 0) {
+    var el = document.createElement('script');
+    el.src = 'https://identity.netlify.com/v1/netlify-identity-widget.js';
+    el.onload = function () {
+      if (!window.netlifyIdentity) return;
+      window.netlifyIdentity.on('init', function (user) {
+        if (!user) {
+          window.netlifyIdentity.on('login', function () {
+            window.location.href = '/admin/';
+          });
+        }
+      });
+      window.netlifyIdentity.init();
+    };
+    document.head.appendChild(el);
+  }
+
   // Header krijgt achtergrond zodra je scrollt
   var header = document.getElementById('header');
   if (header) {
