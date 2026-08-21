@@ -278,7 +278,10 @@ def reviews_section(filter_by=None):
 #  Hieronder worden ze ingelezen en omgezet naar HTML-pagina's.
 # ============================================================
 
-def lees_front_matter(tekst):
+WAARSCHUWINGEN = []
+
+
+def lees_front_matter(tekst, bestand=""):
     """Haalt de gegevens boven aan het bestand (tussen de --- regels) eruit."""
     if not tekst.startswith("---"):
         return {}, tekst
@@ -291,6 +294,15 @@ def lees_front_matter(tekst):
         k, v = regel.split(":", 1)
         v = v.strip()
         if len(v) > 1 and v[0] == v[-1] and v[0] in "\"'":
+            # Aanhalingstekens binnen dezelfde soort aanhalingstekens maken het
+            # bestand onleesbaar voor het CMS. Dit script leest het nog wel, dus
+            # zonder waarschuwing zou zo'n artikel stilletjes uit het CMS
+            # verdwijnen terwijl het op de site gewoon zichtbaar blijft.
+            if v[0] in v[1:-1]:
+                WAARSCHUWINGEN.append(
+                    f"  {bestand} \u2014 veld '{k.strip()}': aanhalingstekens binnen aanhalingstekens. "
+                    f"Het CMS kan dit artikel niet lezen. Gebruik enkele aanhalingstekens "
+                    f"om de hele regel, of haal ze binnenin weg.")
             v = v[1:-1]
         data[k.strip()] = v
     return data, body.strip()
@@ -354,7 +366,7 @@ _map = os.path.join(OUT, "content", "inspiratie")
 for _naam in sorted(os.listdir(_map)) if os.path.isdir(_map) else []:
     if not _naam.endswith(".md"):
         continue
-    _fm, _body = lees_front_matter(open(os.path.join(_map, _naam), encoding="utf-8").read())
+    _fm, _body = lees_front_matter(open(os.path.join(_map, _naam), encoding="utf-8").read(), _naam)
     _fm["slug"] = _naam[:-3] + ".html"
     _fm["body"] = _body
     ARTIKELEN.append(_fm)
@@ -1856,6 +1868,11 @@ write("sitemap.xml",
       '<?xml version="1.0" encoding="UTF-8"?>\n'
       '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + _items + "</urlset>\n",
       raw=True)
+
+if WAARSCHUWINGEN:
+    print("\nLET OP:")
+    for w in WAARSCHUWINGEN:
+        print(w)
 
 print("\nKlaar." + ("" if IS_LIVE else
       "  (robots.txt houdt zoekmachines nog buiten \u2014 dat klopt zolang dit niet mybackpack.nl is)"))
