@@ -1,0 +1,42 @@
+# Instellingen voor het CMS. Dit bepaalt welke velden Clementine ziet
+# als ze een artikel schrijft. Aanpassen mag — let op de inspringing.
+backend:
+  name: git-gateway
+  branch: main
+
+# Waar geuploade afbeeldingen terechtkomen
+media_folder: "images/blog"
+public_folder: "/images/blog"
+
+locale: nl
+publish_mode: simple
+
+collections:
+  - name: "inspiratie"
+    label: "Inspiratie"
+    label_singular: "Artikel"
+    folder: "content/inspiratie"
+    create: true
+    slug: "{{slug}}"
+    summary: "{{titel}}"
+    sortable_fields: ["datum", "titel"]
+    fields:
+      - { name: "titel", label: "Titel", widget: "string" }
+      - { name: "categorie", label: "Soort", widget: "select",
+          options: ["Blog", "Gedicht", "Gelezen", "Gezien", "Film", "Gelezen · NRC", "Gezien · NPO"],
+          default: "Blog" }
+      - { name: "datum", label: "Datum", widget: "datetime",
+          date_format: "DD-MM-YYYY", time_format: false, format: "YYYY-MM-DD" }
+      - { name: "samenvatting", label: "Korte samenvatting",
+          hint: "Twee regels. Dit staat op de overzichtspagina en in Google.",
+          widget: "text" }
+      - { name: "afbeelding", label: "Afbeelding", widget: "image", required: false }
+      - { name: "leestijd", label: "Leestijd", widget: "string", required: false,
+          hint: "Bijvoorbeeld: 6 min. Leeg laten mag." }
+      - { name: "auteur", label: "Auteur", widget: "string", default: "Clementine Mol" }
+      - { name: "bronlink", label: "Link naar de bron", widget: "string", required: false,
+          hint: "Alleen invullen bij een verwijzing naar een artikel of uitzending elders." }
+      - { name: "gedicht", label: "Weergeven als gedicht", widget: "boolean",
+          default: false, required: false,
+          hint: "Aanzetten houdt de regelafbrekingen intact." }
+      - { name: "body", label: "Tekst", widget: "markdown" }

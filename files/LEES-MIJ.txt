@@ -1,0 +1,7 @@
+Hier horen de vier pdf-bestanden te staan:
+- Algemenevoorwaarden-PraktijkClementineMol.pdf
+- Algemenevoorwaarden-PraktijkMaaikeOosterveer.pdf
+- PrivacyverklaringPraktijkClementineMol.pdf
+- PrivacyverklaringPraktijkMaaikeOosterveer.pdf
+
+Zodra ze hier staan: zoek in build.py op "mybackpack.nl/files" en maak die links relatief.
