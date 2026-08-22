@@ -28,7 +28,7 @@
   --radius-lg:28px;
 
   /* Hoogte van het logo in de balk. Hier bijstellen als het groter of kleiner moet. */
-  --logo-h:30px;
+  --logo-h:50px;
 }
 
 *,*::before,*::after{box-sizing:border-box}
