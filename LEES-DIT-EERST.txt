@@ -1,0 +1,25 @@
+WAT JE MOET UPLOADEN
+
+Deze map bevat alleen de bestanden die zijn gewijzigd. Sleep de mappen
+en bestanden hieruit naar je repository; bestaande bestanden worden
+overschreven.
+
+  build.py              contactformulier + bedankpagina
+  assets/style.css      logo 100/60px, gat in de aanbodkaarten weg
+  images/video-still.*  opnieuw bijgesneden (gezichten in beeld)
+  tools/fotos.py        nieuw: alle uitsnedes vastgelegd
+  LEES-MIJ.md           uitleg over tools/fotos.py
+
+DE HTML-BESTANDEN HOEF JE NIET TE UPLOADEN.
+Netlify draait build.py bij elke publicatie en maakt index.html,
+contact.html, bedankt.html, sitemap.xml en robots.txt dan zelf opnieuw.
+Alleen de bronbestanden hierboven doen ertoe.
+
+OPTIONEEL: bron/fotos/
+De originele foto's (16 MB) heb je alleen nodig als je tools/fotos.py
+wilt kunnen draaien om foto's opnieuw bij te snijden. Ze zitten in
+backpack-repository.zip.
+
+VERGEET NIET IN NETLIFY
+Forms -> Enable form detection, daarna opnieuw publiceren.
+Anders blijft het contactformulier een 404 geven.

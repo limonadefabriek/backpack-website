@@ -14,6 +14,8 @@ assets/site.js        menu, tabbladen, meetcode
 images/               foto's (webp met jpg als terugval)
 files/                pdf's: algemene voorwaarden en privacyverklaring
 netlify.toml          bouwopdracht en doorverwijzingen van oude adressen
+tools/fotos.py        snijdt alle foto's bij vanuit de originelen
+bron/fotos/           de originele foto's van de fotograaf
 bron/                 het originele check-up-bestand van Clementine
 *.html                de gegenereerde pagina's — niet met de hand aanpassen
 ```
@@ -21,6 +23,22 @@ bron/                 het originele check-up-bestand van Clementine
 **Belangrijk:** de HTML-bestanden in de hoofdmap worden gegenereerd. Wijzig ze
 niet met de hand, want bij de volgende build worden ze overschreven. Wil je iets
 aan een pagina veranderen, doe dat in `build.py`.
+
+## Foto's bijsnijden
+
+Alle uitsnedes staan vastgelegd in `tools/fotos.py` — per foto een kadervak.
+Moet een foto anders gesneden, pas dat vak aan en draai:
+
+```
+python3 tools/fotos.py
+```
+
+Het script maakt van elke foto een webp en een jpg, en zet daarna alle
+resultaten naast elkaar in `tools/CONTROLE.jpg`. **Kijk daar altijd even
+naar.** Zo is een keer een foto met afgesneden gezichten online gekomen,
+en dat is precies wat dit controleblad voorkomt.
+
+Vereist Pillow: `pip install pillow`
 
 ## Zelf bouwen
 

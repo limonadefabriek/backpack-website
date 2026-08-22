@@ -28,7 +28,7 @@
   --radius-lg:28px;
 
   /* Hoogte van het logo in de balk. Hier bijstellen als het groter of kleiner moet. */
-  --logo-h:100px;
+  --logo-h:100px;   /* door Jan aangepast van 30px naar 100px */
 }
 
 *,*::before,*::after{box-sizing:border-box}
@@ -450,4 +450,9 @@ picture{display:contents}
   .btn{padding:.9em 1.35em;font-size:.88rem}
   .card-icon{width:72px;height:72px}
   .card-icon img,.card-icon svg{width:34px;height:34px}
+}
+
+/* Logo kleiner op smalle schermen — 100px is te dominant op een telefoon */
+@media (max-width:760px){
+  :root{--logo-h:60px}
 }

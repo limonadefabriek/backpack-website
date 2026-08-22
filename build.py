@@ -1583,8 +1583,10 @@ CONTACT = f"""<main>
       <h2 style="font-size:clamp(1.4rem,2.4vw,1.85rem)">stel je vraag</h2>
       <!-- Het attribuut data-netlify zorgt dat Netlify de verzending gratis afhandelt.
            Bij een andere hostingpartij vervang je dit door hun formulier-adres. -->
-      <form class="form" name="contact" method="POST" data-netlify="true" style="margin-top:1.6rem">
+      <form class="form" name="contact" method="POST" action="/bedankt.html"
+            data-netlify="true" data-netlify-honeypot="bot-field" style="margin-top:1.6rem">
         <input type="hidden" name="form-name" value="contact">
+        <p hidden><label>Niet invullen: <input name="bot-field"></label></p>
         <div class="field">
           <label for="naam">Naam</label>
           <input id="naam" name="naam" type="text" autocomplete="name" required>
@@ -1675,6 +1677,45 @@ page("contact.html",
      "Praktijk in Amsterdam en Voorschoten.",
      CONTACT, active="contact")
 
+
+
+# ============================================================
+#  BEDANKPAGINA NA HET CONTACTFORMULIER
+# ============================================================
+BEDANKT = f"""<main>
+<section class="pagehead">
+  <div class="wrap-narrow">
+    <p class="eyebrow">Bericht verstuurd</p>
+    <h1>Dank je wel</h1>
+    <p class="lead">We hebben je bericht ontvangen en reageren meestal binnen een werkdag.
+      Heb je haast? Plan gerust alvast een gratis kennismaking.</p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="{CLEM}" target="_blank" rel="noopener" data-book="clementine">
+        Plan gratis kennismaking <span class="arw">&rarr;</span></a>
+      <a class="btn btn-ghost" href="index.html">Terug naar de homepage</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:clamp(24px,3vw,44px)">
+  <div class="wrap-narrow">
+    <div class="panel-light panel-split reveal">
+      <div>
+        <p class="eyebrow" style="color:var(--forest);opacity:.6">In de tussentijd</p>
+        <h3 style="font-size:clamp(1.25rem,2.1vw,1.6rem)">Doe de digitale check-up</h3>
+        <p style="margin:.8rem 0 0;font-size:.96rem;color:var(--muted);max-width:52ch">Gratis, vijf
+          minuten, geen account nodig. Zicht op welke lagen je kunt werken en wat jij nu nodig hebt.</p>
+      </div>
+      <a class="btn btn-primary" href="check-up.html">Start de check-up <span class="arw">&rarr;</span></a>
+    </div>
+  </div>
+</section>
+</main>
+"""
+
+page("bedankt.html", "Bericht verstuurd | Backpack",
+     "Je bericht is verstuurd. We reageren meestal binnen een werkdag.",
+     BEDANKT, extra='\n<meta name="robots" content="noindex">')
 
 # ============================================================
 #  INSPIRATIE — overzichtspagina
