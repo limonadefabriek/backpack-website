@@ -26,6 +26,9 @@
   --section:clamp(68px,9vw,124px);
   --radius:18px;
   --radius-lg:28px;
+
+  /* Hoogte van het logo in de balk. Hier bijstellen als het groter of kleiner moet. */
+  --logo-h:30px;
 }
 
 *,*::before,*::after{box-sizing:border-box}
@@ -79,8 +82,9 @@ strong,b{font-weight:500}
   box-shadow:0 1px 0 var(--line);padding-block:12px}
 .header-in{display:flex;align-items:center;justify-content:space-between;gap:24px}
 .brand{display:flex;align-items:center;gap:11px;font-size:1.32rem;font-weight:400;
+  white-space:nowrap;flex:0 0 auto;
   letter-spacing:-.02em;color:var(--forest)}
-.brand img{height:30px;width:auto}
+.brand img{height:var(--logo-h);width:auto;flex:0 0 auto}
 .nav{display:flex;align-items:center;gap:4px}
 .nav > li{position:relative;list-style:none}
 .nav a,.nav .navbtn{display:block;font-size:.9rem;font-weight:400;color:var(--ink);
@@ -400,7 +404,8 @@ picture{display:contents}
   letter-spacing:.01em;color:var(--sage);margin:0}
 
 /* Bovenbalk: logo links, menu gecentreerd, knop rechts */
-.header-in{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:24px}
+.header-in{display:grid;grid-template-columns:max-content minmax(0,1fr) max-content;
+  align-items:center;gap:24px}
 .header-in nav{justify-self:center}
 .nav{justify-content:center}
 
