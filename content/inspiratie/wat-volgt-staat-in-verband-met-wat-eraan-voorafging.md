@@ -2,9 +2,9 @@
 titel: '"Wat volgt, staat altijd in verband met wat eraan voorafging"'
 categorie: Blog
 datum: 2025-06-01
-samenvatting: "Over de uitspraak van Marcus Aurelius, en hoe het verleden — ook dat van eerdere generaties — doorwerkt in het hier en nu."
+samenvatting: Over de uitspraak van Marcus Aurelius, en hoe het verleden — ook dat van eerdere generaties — doorwerkt in het hier en nu.
 afbeelding: https://mybackpack.nl/images/biel-morro-ZpKxweXHqkc-unsplash.jpg
-leestijd: "8 min"
+leestijd: 8 min
 auteur: Clementine Mol
 ---
 

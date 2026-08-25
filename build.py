@@ -90,7 +90,12 @@ def header(active="", depth=0):
 """
 
 
-def cta(depth=0):
+def cta(depth=0, direct=True):
+    regel = ("""
+      <p class="cta-direct">Weet je al bij wie je wilt zijn?
+        <a href="{CLEM}" target="_blank" rel="noopener" data-book="clementine">Boek direct bij Clementine</a>
+        of <a href="{MAAIKE}" target="_blank" rel="noopener" data-book="maaike">bij Maaike</a>.</p>""".format(CLEM=CLEM, MAAIKE=MAAIKE)
+             if direct else "")
     return f"""<section style="padding-bottom:0">
   <div class="wrap">
     <div class="cta reveal">
@@ -99,9 +104,7 @@ def cta(depth=0):
       en wij of we je verder kunnen helpen.</p>
       <a class="btn btn-light" href="{CLEM}" target="_blank" rel="noopener" data-book="clementine">
         Plan gratis kennismaking <span class="arw">&rarr;</span></a>
-      <p class="cta-direct">Weet je al bij wie je wilt zijn?
-        <a href="{CLEM}" target="_blank" rel="noopener" data-book="clementine">Boek direct bij Clementine</a>
-        of <a href="{MAAIKE}" target="_blank" rel="noopener" data-book="maaike">bij Maaike</a>.</p>
+{regel}
     </div>
   </div>
 </section>
@@ -245,7 +248,10 @@ REVIEWS = [
 ]
 
 
-def reviews_section(filter_by=None):
+def reviews_section(filter_by=None, google=False):
+    google_link = """    <p style="margin:1.6rem 0 0">
+      <a class="social" href="https://www.google.com/search?q=Maaike+Oosterveer+Reviews&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxI2MTQ2MrI0MDIxNDIyNDAzNzc13sDI-IpR0jcxMTM7VcE_v7gktagsNbVIISi1LDO1vHgRK245AAIuKUxSAAAA&rldimm=4132290241221067753&tbm=lcl&hl=nl-NL#lkt=LocalPoiReviews" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.6 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.94a5.08 5.08 0 0 1-2.2 3.33v2.77h3.57c2.08-1.92 3.29-4.74 3.29-8.11z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.1a6.6 6.6 0 0 1 0-4.2V7.06H2.18a11 11 0 0 0 0 9.88l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06L5.84 9.9c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
+        <span>Beoordelingen van Maaike op Google</span></a></p>""" if google else ""
     items = [r for r in REVIEWS if filter_by is None or filter_by in r[2]]
     cards = "".join(f"""
       <article class="rev"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
@@ -260,10 +266,7 @@ def reviews_section(filter_by=None):
   </div>
   <div class="wrap reveal"><div class="rev-rail" id="rev-rail">{cards}
     </div>
-    <p style="margin:1.6rem 0 0">
-      <a class="social" href="https://www.google.com/search?q=Maaike+Oosterveer+Reviews&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxI2MTQ2MrI0MDIxNDIyNDAzNzc13sDI-IpR0jcxMTM7VcE_v7gktagsNbVIISi1LDO1vHgRK245AAIuKUxSAAAA&rldimm=4132290241221067753&tbm=lcl&hl=nl-NL#lkt=LocalPoiReviews" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.6 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.94a5.08 5.08 0 0 1-2.2 3.33v2.77h3.57c2.08-1.92 3.29-4.74 3.29-8.11z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.1a6.6 6.6 0 0 1 0-4.2V7.06H2.18a11 11 0 0 0 0 9.88l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06L5.84 9.9c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
-        <span>Beoordelingen van Maaike op Google</span></a></p>
-  </div>
+{google_link}  </div>
 </section>
 """
 
@@ -370,7 +373,12 @@ for _naam in sorted(os.listdir(_map)) if os.path.isdir(_map) else []:
     _fm["slug"] = _naam[:-3] + ".html"
     _fm["body"] = _body
     ARTIKELEN.append(_fm)
+# Vastgepinde artikelen (veld "vastgepind") staan altijd bovenaan,
+# daarna op datum van nieuw naar oud.
+ARTIKELEN.sort(key=lambda a: (a.get("vastgepind") != "true", a.get("datum", "")),
+               reverse=False)
 ARTIKELEN.sort(key=lambda a: a.get("datum", ""), reverse=True)
+ARTIKELEN.sort(key=lambda a: a.get("vastgepind") != "true")
 
 
 def post_cards(posts, pad=""):
@@ -455,8 +463,10 @@ HOME = f"""<main id="top">
 </section>
 
 <section style="padding-bottom:clamp(56px,7vw,90px)">
-  <div class="wrap reveal">
-    <p class="tagline">Unpack your story</p>
+  <div class="wrap">
+    <figure class="quote quote-kort reveal">
+      <blockquote>Unpack your story</blockquote>
+    </figure>
   </div>
 </section>
 
@@ -521,7 +531,7 @@ HOME = f"""<main id="top">
         </div>
         <p>Onderzoek onder professionele begeleiding wat je meedraagt. Je krijgt inzicht in hoe
           leefstijl je gezondheid beïnvloedt, plus praktische tools en adviezen voor voeding,
-          beweging, slaap, energie, stressmanagement en zingeving. Verdiepend kijken we naar je
+          beweging, slaap, energie, stressmanagement en zingeving. Verdiepend kunnen we kijken naar je
           familiesysteem en wat je (onbewust) met je meedraagt.</p>
         <div class="card-foot">
           <div class="who">
@@ -575,7 +585,7 @@ HOME = f"""<main id="top">
           kunnen betekenen. Daarna beslis je rustig.</p></div>
         <div class="step"><span class="step-no">02</span><h3>intake</h3>
           <p>Je vult vooraf een intakeformulier in. In de eerste sessie brengen we samen in kaart
-          wat er speelt en waar we zouden kunnen beginnen. Bij Maaike heb je daarna direct na het
+          wat er speelt en waar we zouden kunnen beginnen. Bij Maaike heb je direct na het
           intakegesprek een regressiesessie.</p></div>
         <div class="step"><span class="step-no">03</span><h3>jouw traject</h3>
           <p>Sessies op jouw tempo, met een plan op maat. Geen vast aantal, geen abonnement — we
@@ -639,22 +649,45 @@ HOME = f"""<main id="top">
         <p>Onverwerkte ervaringen die zich hebben vastgezet in je denken (overtuigingen), voelen
         (lichaam en emoties) en doen (gedrag) krijgen ruimte om verwerkt te worden. Je Backpack
         wordt lichter en er ontstaat ruimte voor heling en groei.</p></article>
+
+      <div class="ijsberg reveal">
+        <div class="ijs-laag">
+          <span class="ijs-num">1</span>
+          <div><strong>Symptoomverlichting &amp; behandeling</strong>
+            <span>Klachten verlichten via medicijnen, therapie of andere behandelingen.</span></div>
+        </div>
+        <div class="ijs-laag">
+          <span class="ijs-num">2</span>
+          <div><strong>Leefstijl &amp; zelfzorg</strong>
+            <span>Een gezonde basis bouwen met aandacht voor voeding, beweging, slaap,
+            ontspanning, verbinding en zingeving.</span></div>
+        </div>
+        <div class="ijs-water"><span>Onder de waterlijn</span></div>
+        <div class="ijs-laag onderwater">
+          <span class="ijs-num">3</span>
+          <div><strong>Jouw Backpack: bewustwording en verwerking</strong>
+            <span>Inzicht krijgen in jouw familiesysteem, de thema's en patronen. Indien gewenst,
+            de onverwerkte ervaringen verwerken die je — vaak onbewust — met je meedraagt.</span></div>
+        </div>
+      </div>
+      <p class="muted" style="font-size:.9rem;margin-top:1.2rem">Zoals bij een ijsberg zie je meestal
+        alleen de bovenste laag. Wij kijken ook naar wat eronder zit.</p>
     </div>
   </div>
 </section>
 
 <section class="section" style="padding-top:0">
   <div class="wrap reveal">
-    <div style="max-width:34ch;margin-bottom:clamp(28px,3.6vw,42px)">
+    <div style="margin-bottom:clamp(28px,3.6vw,42px)">
       <p class="eyebrow">Wat het je kan brengen</p>
       <h2 style="font-size:clamp(1.5rem,2.5vw,2.05rem)">Naar meer gezondheid, welzijn en levensenergie</h2>
     </div>
     <div class="results-grid">
       <div class="result"><span class="result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20c0-5 3-9 8-10-1 6-4 9-8 10Z"/><path d="M12 20c0-4-2.5-7.5-7-8.5.8 5 3.4 7.9 7 8.5Z"/><path d="M12 20v2"/></svg></span><strong>Betere zelfzorg</strong><p>Concrete handvatten voor een gezondere leefstijl.</p></div>
-      <div class="result"><span class="result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l2.5-6 4 12L16 12h5"/></svg></span><strong>Minder klachten</strong><p>Klachten en patronen kunnen verminderen of verdwijnen.</p></div>
+      <div class="result"><span class="result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5v17.5M7.5 21h9M4.5 7.5h15M12 5.6 4.7 7.4M12 5.6l7.3 1.8M4.7 7.4 1.9 14a3.2 3.2 0 0 0 5.6 0Z M19.3 7.4 16.5 14a3.2 3.2 0 0 0 5.6 0Z"/></svg></span><strong>Minder klachten</strong><p>Klachten en patronen kunnen verminderen of verdwijnen.</p></div>
       <div class="result"><span class="result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="2.2"/><path d="M12 5.5a6.5 6.5 0 0 1 6.5 6.5"/><path d="M12 2a10 10 0 0 1 10 10"/><path d="M12 18.5A6.5 6.5 0 0 1 5.5 12"/><path d="M12 22A10 10 0 0 1 2 12"/></svg></span><strong>Innerlijke rust &amp; helderheid</strong><p>Meer rust in je hoofd, meer richting.</p></div>
       <div class="result"><span class="result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2.5 5.5 13.5H11l-1 8 8-11h-5.5l.5-8Z"/></svg></span><strong>Energie &amp; veerkracht</strong><p>Hernieuwde levensenergie en meer veerkracht.</p></div>
-      <div class="result"><span class="result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4.6" r="2.1"/><circle cx="5" cy="18" r="2.1"/><circle cx="19" cy="18" r="2.1"/><path d="M12 6.7v4.6M10.4 12.6 6.5 16.3M13.6 12.6l3.9 3.7"/></svg></span><strong>Systemisch inzicht</strong><p>Inzicht in je familiesysteem en bewustwording van je Backpack — wat je meedraagt en wat je onbewust meedroeg.</p></div>
+      <div class="result"><span class="result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="19.4" r="2.1"/><circle cx="5" cy="6" r="2.1"/><circle cx="19" cy="6" r="2.1"/><path d="M12 17.3v-4.6M10.4 11.4 6.5 7.7M13.6 11.4l3.9-3.7"/></svg></span><strong>Systemisch inzicht</strong><p>Inzicht in je familiesysteem en bewustwording van je Backpack — wat je meedraagt en wat je onbewust meedroeg.</p></div>
     </div>
   </div>
 </section>
@@ -807,7 +840,7 @@ DISCOVER = f"""<main>
 </section>
 
 {reviews_section("Leefstijl")}
-{cta()}
+{cta(direct=False)}
 </main>
 """
 
@@ -924,7 +957,7 @@ UNPACK = f"""<main>
   </div>
 </section>
 
-{reviews_section("Regressie")}
+{reviews_section("Regressie", google=True)}
 {cta()}
 </main>
 """
@@ -1230,8 +1263,8 @@ EXPLORE = f"""<main>
       <article class="card">
         <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--forest)" stroke-width="1.6"><path d="M4 19.5V5a2 2 0 012-2h13v18H6a2 2 0 01-2-1.5z"/><path d="M8 7h7M8 11h7"/></svg></div>
         <h3>artikelen en gedichten</h3>
-        <p>Blogs, gedichten, films en interviews over leefstijl, bewustzijn, familiesystemen en
-          transgenerationeel trauma.</p>
+        <p>Blogs, gedichten, films, boeken en interviews over o.a. leefstijl, bewustzijn,
+          familiesysteem en transgenerationeel trauma.</p>
         <div class="card-foot"><a class="tlink" href="inspiratie/index.html">Naar de inspiratie <span class="arw">&rarr;</span></a></div>
       </article>
       <article class="card">
@@ -1275,7 +1308,7 @@ LEZINGEN = f"""<main>
   <div class="wrap">
     {crumb("Lezingen &amp; workshops")}
     <p class="eyebrow">Voor teams en organisaties</p>
-    <h1>lezingen &amp;<br>workshops</h1>
+    <h1>lezingen &amp; workshops</h1>
     <p class="lead">Met een persoonlijke insteek verzorgen wij lezingen en workshops voor teams,
       organisaties, congressen en events. Lezingen die inspireren, verbinden en aanzetten tot
       bewustwording en beweging.</p>
@@ -1537,7 +1570,7 @@ FAQ_BODY = f"""<main>
   <div class="wrap-narrow">
     {crumb("Veelgestelde vragen")}
     <p class="eyebrow">Veelgestelde vragen</p>
-    <h1>vragen die vaak<br>gesteld worden</h1>
+    <h1>vragen die vaak gesteld worden</h1>
     <p class="lead">Staat je vraag er niet bij? <a class="tlink" href="contact.html">Neem gerust
       contact op</a> — we antwoorden meestal binnen een werkdag.</p>
   </div>

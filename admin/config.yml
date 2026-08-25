@@ -27,7 +27,7 @@ collections:
     fields:
       - { name: "titel", label: "Titel", widget: "string" }
       - { name: "categorie", label: "Soort", widget: "select",
-          options: ["Blog", "Gedicht", "Gelezen", "Gezien", "Film", "Gelezen · NRC", "Gezien · NPO"],
+          options: ["Gedicht", "Interview", "Podcast", "Film", "Blog", "Artikel", "Boek"],
           default: "Blog" }
       - { name: "datum", label: "Datum", widget: "datetime",
           date_format: "DD-MM-YYYY", time_format: false, format: "YYYY-MM-DD" }
@@ -40,6 +40,9 @@ collections:
       - { name: "auteur", label: "Auteur", widget: "string", default: "Clementine Mol" }
       - { name: "bronlink", label: "Link naar de bron", widget: "string", required: false,
           hint: "Alleen invullen bij een verwijzing naar een artikel of uitzending elders." }
+      - { name: "vastgepind", label: "Bovenaan vastzetten", widget: "boolean",
+          default: false, required: false,
+          hint: "Dit artikel staat altijd als eerste in het overzicht." }
       - { name: "gedicht", label: "Weergeven als gedicht", widget: "boolean",
           default: false, required: false,
           hint: "Aanzetten houdt de regelafbrekingen intact." }

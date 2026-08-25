@@ -1,12 +1,12 @@
 ---
-titel: "Dan Brown over wetenschap en spiritualiteit"
-categorie: "Gelezen"
-datum: 2026-01-01
-samenvatting: "Interview met Dan Brown over zijn boek Het ultieme geheim: "Hoe meer ik in de wetenschap duik, hoe meer spiritualiteit ik zie.""
+titel: Dan Brown over wetenschap en spiritualiteit
+categorie: Interview
+datum: '2026-01-01'
+samenvatting: 'Interview met Dan Brown over zijn boek Het ultieme geheim: "Hoe meer ik in de wetenschap duik, hoe meer spiritualiteit ik zie."'
 afbeelding: https://mybackpack.nl/images/danbrownhetultiemegeheim.jpg
-leestijd: ""
+leestijd: ''
 auteur: Backpack
-bronlink: ""
+bronlink: ''
 ---
 
 Interview met Dan Brown over zijn boek Het ultieme geheim: "Hoe meer ik in de wetenschap duik, hoe meer spiritualiteit ik zie."

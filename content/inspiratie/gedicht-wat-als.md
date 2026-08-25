@@ -1,12 +1,13 @@
 ---
-titel: "Wat als"
+titel: Wat als
 categorie: Gedicht
 datum: 2025-01-01
-samenvatting: "Een gedicht over wat ons drijft — over verbondenheid, balans en luisteren naar wat je lichaam te zeggen heeft."
+samenvatting: Een gedicht over wat ons drijft — over verbondenheid, balans en luisteren naar wat je lichaam te zeggen heeft.
 afbeelding: https://mybackpack.nl/images/shifaaz-shamoon-sLAk1guBG90-unsplash-1.jpg
-leestijd: ""
+leestijd: ''
 auteur: Clementine Mol
 gedicht: true
+vastgepind: true
 ---
 
 Wat als

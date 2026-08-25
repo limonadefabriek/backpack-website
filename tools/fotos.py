@@ -32,7 +32,7 @@ UITSNEDES = [
     # Even voorstellen: begint hoog genoeg, anders vallen de gezichten eruit
     ("AM2A5296(1).jpg",     "video-still",                1600, 1000, (.06, .16, .80, .86)),
     ("AM2A5095.jpg",        "contact-duo",                1000, 1250, (0, .06, 1, 1)),
-    ("pAM2A4857_pp(1).jpg", "portret-clementine",          900, 1125, (.02, .06, .90, 1)),
+    ("pAM2A4857_pp(1).jpg", "portret-clementine",          900, 1125, (0, 0, 1, .88)),
     ("AM2A4528.jpg",        "portret-clementine-alt",      900, 1125, (.12, .16, .98, 1)),
     ("AM2A4449.jpg",        "portret-maaike",              900, 1125, (.18, .22, .96, 1)),
     ("AM2A4684.jpg",        "portret-maaike-alt",          900, 1125, (.22, .22, 1, 1)),
