@@ -34,7 +34,7 @@ UITSNEDES = [
     ("AM2A5095.jpg",        "contact-duo",                1000, 1250, (0, .06, 1, 1)),
     ("pAM2A4857_pp(1).jpg", "portret-clementine",          900, 1125, (0, 0, 1, .88)),
     ("AM2A4528.jpg",        "portret-clementine-alt",      900, 1125, (.12, .16, .98, 1)),
-    ("AM2A4449.jpg",        "portret-maaike",              900, 1125, (.18, .22, .96, 1)),
+    ("AM2A4449.jpg",        "portret-maaike",              900, 1125, (.20, .10, .92, .86)),
     ("AM2A4684.jpg",        "portret-maaike-alt",          900, 1125, (.22, .22, 1, 1)),
     ("pAM2A4857_pp(1).jpg", "avatar-clementine",           280,  280, (.10, .05, .86, .74)),
     ("AM2A4449.jpg",        "avatar-maaike",               280,  280, (.365, .295, .655, .58)),

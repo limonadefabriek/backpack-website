@@ -11,6 +11,21 @@ import os, re
 OUT = os.path.dirname(os.path.abspath(__file__))
 
 CLEM = "https://backpack.clientomgeving.nl/afspraak-maken?t=gbFxFmGj"
+
+# Waar de knop "Plan gratis kennismaking" naartoe gaat.
+# Nu tijdelijk het contactformulier. Wil je later weer rechtstreeks naar
+# het afspraaksysteem van Clementine? Zet dan KENNISMAKING = CLEM en
+# EXTERN_KENNISMAKING = True, en draai build.py opnieuw.
+KENNISMAKING = "contact.html"
+EXTERN_KENNISMAKING = False
+
+
+def kennismaking_attrs(depth=0):
+    """Levert href plus de bijbehorende attributen voor de kennismakingsknop."""
+    if EXTERN_KENNISMAKING:
+        return f'href="{KENNISMAKING}" target="_blank" rel="noopener" data-book="clementine"'
+    return f'href="{"../" * depth}{KENNISMAKING}" data-cta="kennismaking"'
+
 MAAIKE = ("https://widget.onlineafspraken.nl/consumer/booking/book/key/bcah63qhqt55-zzaz41"
           "/l/31112/ln/nl/t/8080dc/f/110e0011/o/theme:gray,dp:modern/at/0/rs/0/pp/0/output/html")
 LOGO_BESTAND = "images/logo-backpack.svg"   # zie LEES-MIJ.md
@@ -80,7 +95,7 @@ def header(active="", depth=0):
       </ul>
     </nav>
     <div style="display:flex;align-items:center;gap:8px">
-      <a class="btn btn-primary" href="{CLEM}" target="_blank" rel="noopener" data-book="clementine">
+      <a class="btn btn-primary" {kennismaking_attrs(depth)}>
         Plan gratis kennismaking <span class="arw">&rarr;</span></a>
       <button class="burger" id="burger" aria-label="Menu openen" aria-expanded="false" aria-controls="navlist">
         <span></span><span></span><span></span></button>
@@ -102,7 +117,7 @@ def cta(depth=0, direct=True):
       <h2>zullen we kennismaken?</h2>
       <p>Twintig minuten, vrijblijvend en gratis. Je ontdekt of onze aanpak bij je past —
       en wij of we je verder kunnen helpen.</p>
-      <a class="btn btn-light" href="{CLEM}" target="_blank" rel="noopener" data-book="clementine">
+      <a class="btn btn-light" {kennismaking_attrs(depth)}>
         Plan gratis kennismaking <span class="arw">&rarr;</span></a>
 {regel}
     </div>
@@ -143,7 +158,7 @@ def footer(depth=0):
         <h4>praktisch</h4>
         <ul>
           <li><a href="{r}contact.html">Contact</a></li>
-          <li><a href="{CLEM}" target="_blank" rel="noopener" data-book="clementine">Plan kennismaking</a></li>
+          <li><a {kennismaking_attrs(depth)}>Plan kennismaking</a></li>
           <li><a href="{r}tarieven.html">Tarieven</a></li>
           <li><a href="{r}algemene-voorwaarden.html">Algemene voorwaarden</a></li>
           <li><a href="{r}privacyverklaring.html">Privacyverklaring</a></li>
@@ -418,10 +433,9 @@ HOME = f"""<main id="top">
       <p class="eyebrow">Backpack &middot; Amsterdam &middot; Voorschoten &middot; Online</p>
       <h1>je klachten hebben<br>een <em>verhaal</em></h1>
       <p class="lead">Vastgelopen in patronen, aanhoudende klachten of stress die niet weggaat?
-        Wij zoeken samen naar de oorzaak — niet naar symptoombestrijding. Om van daaruit te
-        bewegen naar meer balans.</p>
+        Wij zoeken samen naar de oorzaak. Om van daaruit te bewegen naar meer balans.</p>
       <div class="btn-row">
-        <a class="btn btn-primary" href="{CLEM}" target="_blank" rel="noopener" data-book="clementine">
+        <a class="btn btn-primary" {kennismaking_attrs()}>
           Plan gratis kennismaking <span class="arw">&rarr;</span></a>
         <a class="btn btn-ghost" href="#aanbod">Bekijk ons aanbod</a>
       </div>
@@ -651,6 +665,12 @@ HOME = f"""<main id="top">
         wordt lichter en er ontstaat ruimte voor heling en groei.</p></article>
 
       <div class="ijsberg reveal">
+        <div class="ijs-top">
+          <span class="ijs-tip"></span>
+          <div><strong>Je klacht of thema</strong>
+            <span>Datgene waar je verandering in wilt. Wat je ziet en voelt.</span></div>
+        </div>
+        <div class="ijs-water"><span>Wat eronder ligt</span></div>
         <div class="ijs-laag">
           <span class="ijs-num">1</span>
           <div><strong>Symptoomverlichting &amp; behandeling</strong>
@@ -662,7 +682,6 @@ HOME = f"""<main id="top">
             <span>Een gezonde basis bouwen met aandacht voor voeding, beweging, slaap,
             ontspanning, verbinding en zingeving.</span></div>
         </div>
-        <div class="ijs-water"><span>Onder de waterlijn</span></div>
         <div class="ijs-laag onderwater">
           <span class="ijs-num">3</span>
           <div><strong>Jouw Backpack: bewustwording en verwerking</strong>
@@ -670,8 +689,10 @@ HOME = f"""<main id="top">
             de onverwerkte ervaringen verwerken die je — vaak onbewust — met je meedraagt.</span></div>
         </div>
       </div>
-      <p class="muted" style="font-size:.9rem;margin-top:1.2rem">Zoals bij een ijsberg zie je meestal
-        alleen de bovenste laag. Wij kijken ook naar wat eronder zit.</p>
+      <p class="muted" style="font-size:.9rem;margin-top:1.2rem">Ieder mens draagt een rugzak met
+        talenten, kwaliteiten en ervaringen. Soms voel je hem nauwelijks, soms voelt hij zwaar. Wij
+        geloven dat chronische klachten zelden op zichzelf staan: onder wat je ziet en voelt, liggen
+        vaak diepere lagen. Dit zijn de drie lagen waarop je kunt werken.</p>
     </div>
   </div>
 </section>
@@ -684,8 +705,8 @@ HOME = f"""<main id="top">
     </div>
     <div class="results-grid">
       <div class="result"><span class="result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20c0-5 3-9 8-10-1 6-4 9-8 10Z"/><path d="M12 20c0-4-2.5-7.5-7-8.5.8 5 3.4 7.9 7 8.5Z"/><path d="M12 20v2"/></svg></span><strong>Betere zelfzorg</strong><p>Concrete handvatten voor een gezondere leefstijl.</p></div>
-      <div class="result"><span class="result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5v17.5M7.5 21h9M4.5 7.5h15M12 5.6 4.7 7.4M12 5.6l7.3 1.8M4.7 7.4 1.9 14a3.2 3.2 0 0 0 5.6 0Z M19.3 7.4 16.5 14a3.2 3.2 0 0 0 5.6 0Z"/></svg></span><strong>Minder klachten</strong><p>Klachten en patronen kunnen verminderen of verdwijnen.</p></div>
-      <div class="result"><span class="result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="2.2"/><path d="M12 5.5a6.5 6.5 0 0 1 6.5 6.5"/><path d="M12 2a10 10 0 0 1 10 10"/><path d="M12 18.5A6.5 6.5 0 0 1 5.5 12"/><path d="M12 22A10 10 0 0 1 2 12"/></svg></span><strong>Innerlijke rust &amp; helderheid</strong><p>Meer rust in je hoofd, meer richting.</p></div>
+      <div class="result"><span class="result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 8c2 0 2 5 4 5s2-9 4-9 2 12 4 12 2-6 4-6 2 2 4 2"/></svg></span><strong>Minder klachten</strong><p>Klachten en patronen kunnen verminderen of verdwijnen.</p></div>
+      <div class="result"><span class="result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="11" r="1.4"/><ellipse cx="12" cy="11" rx="5" ry="1.9"/><ellipse cx="12" cy="11" rx="9.2" ry="3.6"/><path d="M3 17.5c2.4 1.2 5.5 1.9 9 1.9s6.6-.7 9-1.9"/></svg></span><strong>Innerlijke rust &amp; helderheid</strong><p>Meer rust in je hoofd, meer richting.</p></div>
       <div class="result"><span class="result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2.5 5.5 13.5H11l-1 8 8-11h-5.5l.5-8Z"/></svg></span><strong>Energie &amp; veerkracht</strong><p>Hernieuwde levensenergie en meer veerkracht.</p></div>
       <div class="result"><span class="result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="19.4" r="2.1"/><circle cx="5" cy="6" r="2.1"/><circle cx="19" cy="6" r="2.1"/><path d="M12 17.3v-4.6M10.4 11.4 6.5 7.7M13.6 11.4l3.9-3.7"/></svg></span><strong>Systemisch inzicht</strong><p>Inzicht in je familiesysteem en bewustwording van je Backpack — wat je meedraagt en wat je onbewust meedroeg.</p></div>
     </div>
@@ -1193,6 +1214,16 @@ def bouw_checkup():
     s = s.replace("'Inter', sans-serif", "'Work Sans', sans-serif")
     s = s.replace("'Inter',sans-serif", "'Work Sans',sans-serif")
 
+    # 1b. tekstwijzigingen van Clementine
+    s = s.replace("Bij Backpack geloven we dat klachten zelden op zichzelf staan.",
+                  "Bij Backpack geloven we dat chronische klachten zelden op zichzelf staan.")
+    s = s.replace("De drie lagen waarop je kunt werken", "Drie lagen waarop je kunt werken")
+
+    # 1c. de kennismakingsknop volgt de instelling van de site
+    if not EXTERN_KENNISMAKING:
+        s = s.replace('href="https://backpack.clientomgeving.nl/afspraak-maken?t=gbFxFmGj"',
+                      'href="contact.html"')
+
     # 2. verouderde link herstellen
     s = s.replace("https://mybackpack.nl/Clementine.html", "clementine.html")
     s = s.replace('<a href="clementine.html" class="btn-secondary" target="_blank">',
@@ -1616,7 +1647,7 @@ CONTACT = f"""<main>
       <h2 style="font-size:clamp(1.4rem,2.4vw,1.85rem)">stel je vraag</h2>
       <!-- Het attribuut data-netlify zorgt dat Netlify de verzending gratis afhandelt.
            Bij een andere hostingpartij vervang je dit door hun formulier-adres. -->
-      <form class="form" name="contact" method="POST" action="/bedankt.html"
+      <form class="form" id="contactformulier" name="contact" method="POST" action="/bedankt.html"
             data-netlify="true" data-netlify-honeypot="bot-field" style="margin-top:1.6rem">
         <input type="hidden" name="form-name" value="contact">
         <p hidden><label>Niet invullen: <input name="bot-field"></label></p>
@@ -1656,8 +1687,8 @@ CONTACT = f"""<main>
         <p style="margin:.9rem 0 0;color:var(--muted);font-size:.95rem">Twintig minuten,
           vrijblijvend en gratis.</p>
         <div class="btn-row" style="margin-top:1.4rem">
-          <a class="btn btn-primary" href="{CLEM}" target="_blank" rel="noopener" data-book="clementine">
-            Plan kennismaking <span class="arw">&rarr;</span></a>
+          <a class="btn btn-primary" href="#contactformulier">
+            Naar het formulier <span class="arw">&rarr;</span></a>
         </div>
       </div>
 
@@ -1723,7 +1754,7 @@ BEDANKT = f"""<main>
     <p class="lead">We hebben je bericht ontvangen en reageren meestal binnen een werkdag.
       Heb je haast? Plan gerust alvast een gratis kennismaking.</p>
     <div class="btn-row">
-      <a class="btn btn-primary" href="{CLEM}" target="_blank" rel="noopener" data-book="clementine">
+      <a class="btn btn-primary" {kennismaking_attrs()}>
         Plan gratis kennismaking <span class="arw">&rarr;</span></a>
       <a class="btn btn-ghost" href="index.html">Terug naar de homepage</a>
     </div>
@@ -1860,7 +1891,7 @@ def article(bestand, categorie, titel, samenvatting, afbeelding, leestijd, datum
 
 <section style="padding-bottom:clamp(36px,4.5vw,60px)">
   <div class="wrap-narrow">
-    <div class="split-img wide reveal" style="aspect-ratio:16/9">
+    <div class="split-img wide artikel-beeld reveal" style="aspect-ratio:16/9">
       <img src="{afbeelding}" alt="" loading="lazy">
     </div>
   </div>

@@ -1,16 +1,28 @@
-WAT JE MOET UPLOADEN — feedbackronde 3
+WAT JE MOET UPLOADEN — feedbackronde 4
 
-  build.py                    alle tekst- en opmaakwijzigingen
-  assets/style.css            iconen, cijfers, terracotta, menu, quote
-  admin/config.yml            nieuwe soorten artikel + vastpin-optie
-  content/inspiratie/*.md     nieuwe soorten, gedicht vastgezet
-  tools/fotos.py              uitsnede Clementine vastgelegd
-  images/portret-clementine.* opnieuw bijgesneden
+  build.py                     hero-tekst, ijsberg met topje, nieuwe iconen,
+                               check-up-teksten, kennismakingsknop
+  assets/style.css             logo gestapeld, terracotta, iconen 130px,
+                               bovenbalk compacter, quote zonder groen vlak
+  assets/site.js               meting van de kennismakingsknop
+  tools/fotos.py               nieuwe uitsnedes vastgelegd
+  images/portret-maaike.*      gezicht volledig in beeld
+  images/portret-clementine.*  bovenkant haar zichtbaar
 
-De HTML-bestanden hoef je niet te uploaden — Netlify maakt die zelf
-opnieuw met build.py.
+De HTML wordt door Netlify zelf opnieuw gemaakt uit build.py.
 
-LET OP
-Dan Brown ontbrak in het CMS omdat de map content/inspiratie/ nog niet
-in de repository stond, of nog de oude versie bevatte. De acht bestanden
-zitten hierbij; upload ze en het probleem is weg.
+DE KENNISMAKINGSKNOP TERUGZETTEN NAAR HET EPD
+Over een paar maanden wil je "Plan gratis kennismaking" weer rechtstreeks
+naar het afspraaksysteem van Clementine laten wijzen. Open build.py, zoek
+bovenin op KENNISMAKING en zet:
+
+    KENNISMAKING = CLEM
+    EXTERN_KENNISMAKING = True
+
+Dat is alles. De knoppen "Direct sessie boeken" en "Boek direct bij
+Clementine of Maaike" wijzen nu al naar de afspraaksystemen; die blijven
+ongewijzigd.
+
+HOOGTE VAN HET LOGO
+Nu 70px, omdat de naam eronder staat en de balk anders erg hoog wordt.
+Bijstellen kan bovenin style.css bij --logo-h.
