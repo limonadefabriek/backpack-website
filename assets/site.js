@@ -2,7 +2,6 @@
 (function () {
   'use strict';
 
-
   // Header krijgt achtergrond zodra je scrollt
   var header = document.getElementById('header');
   if (header) {
@@ -80,9 +79,10 @@
   // Conversiemeting: elke klik naar een afspraaksysteem wordt geregistreerd.
   // Werkt zodra Google Analytics 4 of Tag Manager is geplaatst.
   window.dataLayer = window.dataLayer || [];
-  document.querySelectorAll('a[href*="clientomgeving.nl"], a[href*="onlineafspraken.nl"]').forEach(function (a) {
+  document.querySelectorAll('a[href*="clientomgeving.nl"], a[href*="onlineafspraken.nl"], a[data-cta="kennismaking"]').forEach(function (a) {
     a.addEventListener('click', function () {
-      var wie = a.dataset.book || (a.href.indexOf('onlineafspraken') > -1 ? 'maaike' : 'clementine');
+      var wie = a.dataset.cta === 'kennismaking' ? 'kennismaking-formulier'
+              : (a.dataset.book || (a.href.indexOf('onlineafspraken') > -1 ? 'maaike' : 'clementine'));
       var blok = a.closest('section, header, footer');
       window.dataLayer.push({ event: 'afspraak_klik', behandelaar: wie, plek: (blok && blok.id) || 'overig' });
       if (typeof gtag === 'function') gtag('event', 'afspraak_klik', { behandelaar: wie });
