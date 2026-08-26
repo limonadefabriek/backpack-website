@@ -1662,8 +1662,8 @@ CONTACT = f"""<main>
         <div class="field">
           <label for="onderwerp">Waar gaat je vraag over?</label>
           <select id="onderwerp" name="onderwerp">
-            <option>Leefstijl, integrale geneeskunde en systemisch werk (Clementine)</option>
-            <option>Regressietherapie (Maaike)</option>
+            <option>Leefstijl, integrale geneeskunde en systemisch werk</option>
+            <option>Regressietherapie</option>
             <option>Lezing of workshop voor een organisatie</option>
             <option>Iets anders</option>
           </select>
