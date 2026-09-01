@@ -2,7 +2,7 @@
 titel: '"Wat volgt, staat altijd in verband met wat eraan voorafging"'
 categorie: Blog
 datum: 2025-06-01
-samenvatting: Over de uitspraak van Marcus Aurelius, en hoe het verleden — ook dat van eerdere generaties — doorwerkt in het hier en nu.
+samenvatting: Over de uitspraak van Marcus Aurelius, en hoe het verleden - ook dat van eerdere generaties - doorwerkt in het hier en nu.
 afbeelding: https://mybackpack.nl/images/biel-morro-ZpKxweXHqkc-unsplash.jpg
 leestijd: 8 min
 auteur: Clementine Mol
@@ -46,7 +46,7 @@ De Stoïcijnen maakten een essentieel onderscheid tussen wat je overkomt en hoe 
 
 Je bent geen toeschouwer van de keten van gebeurtenissen. Je bent een schakel. Wat jij vandaag kiest, wordt onderdeel van wat morgen ontstaat.
 
-Vanuit systemisch werk en regressiewerk wordt dit gezien als een proces waarin, zodra iets bewust wordt en doorvoeld is, oude automatische 'programma's' — zoals onbewuste reacties, overtuigingen en emoties — hun sturing verliezen en er ruimte ontstaat voor een andere, meer vrije keuze in het hier en nu.
+Vanuit systemisch werk en regressiewerk wordt dit gezien als een proces waarin, zodra iets bewust wordt en doorvoeld is, oude automatische 'programma's' - zoals onbewuste reacties, overtuigingen en emoties - hun sturing verliezen en er ruimte ontstaat voor een andere, meer vrije keuze in het hier en nu.
 
 ## Acceptatie is geen passiviteit
 

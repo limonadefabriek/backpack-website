@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Backpack — paginagenerator.
+Backpack - paginagenerator.
 
 Bouwt alle HTML-pagina's met dezelfde kop, navigatie en voettekst.
 Wil je de navigatie of voettekst wijzigen? Doe dat hier, run
@@ -55,6 +55,9 @@ def head(title, desc, slug, depth=0, extra=""):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="icon" href="{r}images/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="{r}images/favicon.png" sizes="any">
+<link rel="apple-touch-icon" href="{r}images/favicon.png">
 <link rel="stylesheet" href="{r}assets/style.css">{extra}
 </head>
 <body>
@@ -107,16 +110,16 @@ def header(active="", depth=0):
 
 def cta(depth=0, direct=True):
     regel = ("""
-      <p class="cta-direct">Weet je al bij wie je wilt zijn?
-        <a href="{CLEM}" target="_blank" rel="noopener" data-book="clementine">Boek direct bij Clementine</a>
-        of <a href="{MAAIKE}" target="_blank" rel="noopener" data-book="maaike">bij Maaike</a>.</p>""".format(CLEM=CLEM, MAAIKE=MAAIKE)
+      <p class="cta-direct">Weet je al wat je zoekt? Boek direct een sessie bij
+        <a href="{CLEM}" target="_blank" rel="noopener" data-book="clementine">Clementine</a>
+        of <a href="{MAAIKE}" target="_blank" rel="noopener" data-book="maaike">Maaike</a>.</p>""".format(CLEM=CLEM, MAAIKE=MAAIKE)
              if direct else "")
     return f"""<section style="padding-bottom:0">
   <div class="wrap">
     <div class="cta reveal">
       <h2>zullen we kennismaken?</h2>
-      <p>Twintig minuten, vrijblijvend en gratis. Je ontdekt of onze aanpak bij je past —
-      en wij of we je verder kunnen helpen.</p>
+      <p>Twintig minuten, vrijblijvend en gratis, met Clementine (arts). Je ontdekt of onze aanpak
+      bij je past, en zij of we je verder kunnen helpen.</p>
       <a class="btn btn-light" {kennismaking_attrs(depth)}>
         Plan gratis kennismaking <span class="arw">&rarr;</span></a>
 {regel}
@@ -164,6 +167,9 @@ def footer(depth=0):
           <li><a href="{r}privacyverklaring.html">Privacyverklaring</a></li>
         </ul>
       </div>
+    </div>
+    <div class="foot-silhouet" aria-hidden="true">
+      <img src="{r}images/logo-backpack.svg" alt="">
     </div>
     <div class="foot-bottom">
       <span>&copy; 2026 Backpack &middot; KvK 99312050</span>
@@ -251,10 +257,10 @@ def page(slug, title, desc, body, active="", depth=0, extra=""):
 
 
 # ============================================================
-#  REVIEWS — hergebruikt op meerdere pagina's
+#  REVIEWS - hergebruikt op meerdere pagina's
 # ============================================================
 REVIEWS = [
-    ("Ik heb een sessie gehad bij Maaike en het heeft me veel nieuwe inzichten gegeven. Supergaaf om dit te mogen ervaren — ik ben enorm dankbaar voor Maaike's talent en begeleiding.", "Helena", "Regressietherapie"),
+    ("Ik heb een sessie gehad bij Maaike en het heeft me veel nieuwe inzichten gegeven. Supergaaf om dit te mogen ervaren - ik ben enorm dankbaar voor Maaike's talent en begeleiding.", "Helena", "Regressietherapie"),
     ("Maaike nam al mijn angsten van tevoren weg en heeft me heel goed begeleid de hele sessie door. Ik voelde me rustig en vertrouwd. Ook de nazorg was fijn, ze denkt echt met je mee.", "Ayla", "Regressietherapie"),
     ("Clementine really wanted to get deep into the root cause of my problems and listened to me really carefully. She gave me really useful, applicable tips to change my lifestyle for the better.", "Sara", "Leefstijl, integrale geneeskunde &amp; systemisch werk"),
     ("Bedankt voor alle waardevolle sessies Clementine. Het heeft me zoveel mooie nieuwe inzichten gegeven en laten voelen.", "Tessa", "Leefstijl, integrale geneeskunde &amp; systemisch werk"),
@@ -454,7 +460,7 @@ HOME = f"""<main id="top">
   <div class="wrap split">
     <div class="reveal">
       <p class="eyebrow">Wat draag jij met je mee?</p>
-      <h2>ieder mens draagt een<br>onzichtbare rugzak</h2>
+      <h2>Ieder mens draagt een<br>onzichtbare rugzak</h2>
       <p class="lead" style="margin-top:1.3rem;font-size:1rem">Daarin zit veel moois: je talenten,
         je kwaliteiten, je essentie en vele ervaringen. Tegelijk kan hij gevuld zijn met onverwerkte
         verhalen van eerdere ervaringen die je, vaak onbewust, meedraagt. Dat kan zich uiten in:</p>
@@ -466,12 +472,12 @@ HOME = f"""<main id="top">
         <li>{CHECK}Levensvragen en zoeken naar richting</li>
       </ul>
       <p style="margin-top:1.6rem;color:var(--muted);font-size:.97rem">Geen quick fix, geen symptomen
-        bestrijden — maar terug naar de kern, daar waar het begon. Je hoeft het niet alleen te doen,
+        bestrijden - maar terug naar de kern, daar waar het begon. Je hoeft het niet alleen te doen,
         en het kan stap voor stap.</p>
     </div>
     <div class="split-img reveal">
       <picture><source srcset="images/verhaal-wandelen.webp" type="image/webp"><img src="images/verhaal-wandelen.jpg" width="1000" height="1200"
-           alt="Maaike en Clementine wandelend over een bospad" loading="lazy"></picture>
+           alt="Clementine Mol en Maaike Oosterveer wandelend over een bospad" loading="lazy"></picture>
     </div>
   </div>
 </section>
@@ -510,7 +516,7 @@ HOME = f"""<main id="top">
       <p class="eyebrow">Ons aanbod</p>
       <h2>waar wil je beginnen?</h2>
       <p class="lead" style="margin-top:1.1rem;font-size:1rem">Weet je niet welke vorm bij je past?
-        Dat hoeft ook niet — in de gratis kennismaking kijken we er samen naar.</p>
+        Dat hoeft ook niet - in de gratis kennismaking kijken we er samen naar.</p>
     </div>
     <div class="offer-grid reveal">
 
@@ -550,7 +556,7 @@ HOME = f"""<main id="top">
         <div class="card-foot">
           <div class="who">
             <i><picture><source srcset="images/avatar-clementine.webp" type="image/webp"><img src="images/avatar-clementine.jpg" alt="" width="240" height="240" loading="lazy"></picture></i>
-            <span><b>Met Clementine Mol</b>Amsterdam &amp; online</span>
+            <span><b>Met Clementine Mol (arts)</b>Amsterdam &amp; online</span>
           </div>
           <p class="price">Intake 60 min <strong>&euro;149</strong> &middot; vervolg vanaf <strong>&euro;99</strong></p>
           <div class="card-links">
@@ -568,13 +574,15 @@ HOME = f"""<main id="top">
         </div>
         <p>Krijg inzicht in je familiesysteem. Verwerk onder professionele begeleiding wat nog
           onverwerkt is. In een veilige setting doorvoel je wat toen niet gevoeld kon worden.
-          Geen hypnose — je blijft tijdens de sessie volledig bij bewustzijn.</p>
+          Geen hypnose - je blijft tijdens de sessie volledig bij bewustzijn.</p>
         <div class="card-foot">
           <div class="who">
             <i><picture><source srcset="images/avatar-maaike.webp" type="image/webp"><img src="images/avatar-maaike.jpg" alt="" width="240" height="240" loading="lazy"></picture></i>
-            <span><b>Met Maaike Oosterveer</b>Voorschoten</span>
+            <span><b>Met Maaike Oosterveer (therapeut)</b>Voorschoten</span>
           </div>
-          <p class="price">Intake 180 min <strong>&euro;299</strong> &middot; vervolg <strong>&euro;249</strong></p>
+          <p class="price">Intake + eerste sessie 180 min <strong>&euro;299</strong> &middot; vervolg <strong>&euro;249</strong></p>
+          <p class="price" style="font-size:.8rem">Maaike werkt op afspraak. Wil je eerst
+            vrijblijvend kennismaken? Dat doe je met Clementine.</p>
           <div class="card-links">
             <a class="tlink" href="regressietherapie.html">Lees meer <span class="arw">&rarr;</span></a>
             <a class="btn btn-primary btn-sm" href="{MAAIKE}" target="_blank" rel="noopener" data-book="maaike">Direct sessie boeken</a>
@@ -595,19 +603,19 @@ HOME = f"""<main id="top">
       </div>
       <div class="steps-grid">
         <div class="step"><span class="step-no">01</span><h3>gratis kennismaking</h3>
-          <p>Twintig minuten, vrijblijvend en online. Je vertelt wat er speelt, wij vertellen wat we
-          kunnen betekenen. Daarna beslis je rustig.</p></div>
+          <p>Twintig minuten, vrijblijvend en online spreek je met Clementine (arts). Je vertelt wat
+          er speelt, Clementine vertelt wat we kunnen betekenen. Daarna beslis je rustig.</p></div>
         <div class="step"><span class="step-no">02</span><h3>intake</h3>
           <p>Je vult vooraf een intakeformulier in. In de eerste sessie brengen we samen in kaart
           wat er speelt en waar we zouden kunnen beginnen. Bij Maaike heb je direct na het
           intakegesprek een regressiesessie.</p></div>
         <div class="step"><span class="step-no">03</span><h3>jouw traject</h3>
-          <p>Sessies op jouw tempo, met een plan op maat. Geen vast aantal, geen abonnement — we
+          <p>Sessies op jouw tempo, met een plan op maat. Geen vast aantal, geen abonnement - we
           kijken steeds samen wat je nodig hebt.</p></div>
       </div>
       <p style="margin:clamp(28px,3.6vw,42px) 0 0;font-size:.88rem;color:var(--muted);max-width:64ch">
         De sessies worden niet vergoed door de zorgverzekeraar. Wél worden ze regelmatig vergoed
-        vanuit een persoonlijk ontwikkelingsbudget — vraag het je werkgever.
+        vanuit een persoonlijk ontwikkelingsbudget - vraag het je werkgever.
         <a class="sublink" href="tarieven.html" style="margin-left:.4em">Bekijk alle tarieven</a></p>
     </div>
   </div>
@@ -629,7 +637,7 @@ HOME = f"""<main id="top">
       <p class="eyebrow">Even voorstellen</p>
       <h2 style="font-size:clamp(1.55rem,2.8vw,2.2rem)">wie je tegenover<br>je krijgt</h2>
       <p class="lead" style="margin-top:1.2rem;font-size:1rem">Voordat je een afspraak maakt wil je
-        waarschijnlijk weten met wie je te maken krijgt. Clementine is arts, Maaike therapeut — en
+        waarschijnlijk weten met wie je te maken krijgt. Clementine is arts, Maaike therapeut - en
         we werken allebei op onze eigen manier naar dezelfde kern toe.</p>
       <div class="btn-row">
         <a class="btn btn-ghost" href="clementine.html">Over Clementine</a>
@@ -652,7 +660,7 @@ HOME = f"""<main id="top">
       <article class="approach">
         <h3>Leefstijlgeneeskunde &amp; integrale geneeskunde <span class="approach-wie">Clementine</span></h3>
         <p>Inzicht in de invloed van leefstijl op je gezondheid. Praktische tools en adviezen rond
-        voeding, beweging, slaap, energiemanagement, stressregulatie en zingeving — met aandacht
+        voeding, beweging, slaap, energiemanagement, stressregulatie en zingeving - met aandacht
         voor alle lagen van gezondheid: fysiek, emotioneel, mentaal en spiritueel.</p></article>
       <article class="approach">
         <h3>Systemisch werk <span class="approach-wie">Clementine</span></h3>
@@ -663,36 +671,6 @@ HOME = f"""<main id="top">
         <p>Onverwerkte ervaringen die zich hebben vastgezet in je denken (overtuigingen), voelen
         (lichaam en emoties) en doen (gedrag) krijgen ruimte om verwerkt te worden. Je Backpack
         wordt lichter en er ontstaat ruimte voor heling en groei.</p></article>
-
-      <div class="ijsberg reveal">
-        <div class="ijs-top">
-          <span class="ijs-tip"></span>
-          <div><strong>Je klacht of thema</strong>
-            <span>Datgene waar je verandering in wilt. Wat je ziet en voelt.</span></div>
-        </div>
-        <div class="ijs-water"><span>Wat eronder ligt</span></div>
-        <div class="ijs-laag">
-          <span class="ijs-num">1</span>
-          <div><strong>Symptoomverlichting &amp; behandeling</strong>
-            <span>Klachten verlichten via medicijnen, therapie of andere behandelingen.</span></div>
-        </div>
-        <div class="ijs-laag">
-          <span class="ijs-num">2</span>
-          <div><strong>Leefstijl &amp; zelfzorg</strong>
-            <span>Een gezonde basis bouwen met aandacht voor voeding, beweging, slaap,
-            ontspanning, verbinding en zingeving.</span></div>
-        </div>
-        <div class="ijs-laag onderwater">
-          <span class="ijs-num">3</span>
-          <div><strong>Jouw Backpack: bewustwording en verwerking</strong>
-            <span>Inzicht krijgen in jouw familiesysteem, de thema's en patronen. Indien gewenst,
-            de onverwerkte ervaringen verwerken die je — vaak onbewust — met je meedraagt.</span></div>
-        </div>
-      </div>
-      <p class="muted" style="font-size:.9rem;margin-top:1.2rem">Ieder mens draagt een rugzak met
-        talenten, kwaliteiten en ervaringen. Soms voel je hem nauwelijks, soms voelt hij zwaar. Wij
-        geloven dat chronische klachten zelden op zichzelf staan: onder wat je ziet en voelt, liggen
-        vaak diepere lagen. Dit zijn de drie lagen waarop je kunt werken.</p>
     </div>
   </div>
 </section>
@@ -705,10 +683,10 @@ HOME = f"""<main id="top">
     </div>
     <div class="results-grid">
       <div class="result"><span class="result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20c0-5 3-9 8-10-1 6-4 9-8 10Z"/><path d="M12 20c0-4-2.5-7.5-7-8.5.8 5 3.4 7.9 7 8.5Z"/><path d="M12 20v2"/></svg></span><strong>Betere zelfzorg</strong><p>Concrete handvatten voor een gezondere leefstijl.</p></div>
-      <div class="result"><span class="result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 8c2 0 2 5 4 5s2-9 4-9 2 12 4 12 2-6 4-6 2 2 4 2"/></svg></span><strong>Minder klachten</strong><p>Klachten en patronen kunnen verminderen of verdwijnen.</p></div>
-      <div class="result"><span class="result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="11" r="1.4"/><ellipse cx="12" cy="11" rx="5" ry="1.9"/><ellipse cx="12" cy="11" rx="9.2" ry="3.6"/><path d="M3 17.5c2.4 1.2 5.5 1.9 9 1.9s6.6-.7 9-1.9"/></svg></span><strong>Innerlijke rust &amp; helderheid</strong><p>Meer rust in je hoofd, meer richting.</p></div>
+      <div class="result"><span class="result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.2v17.6M8 20.8h8M4 7.2h16M12 5.2 4 7.2M12 5.2l8 2M4 7.2 1.6 13.2a2.9 2.9 0 0 0 4.8 0ZM20 7.2l-2.4 6a2.9 2.9 0 0 0 4.8 0Z"/></svg></span><strong>Minder klachten</strong><p>Klachten en patronen kunnen verminderen of verdwijnen.</p></div>
+      <div class="result"><span class="result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4.4" r="2.2"/><path d="M12 8.2c-2 0-3.4 1.5-3.7 3.4l-.5 3.1"/><path d="M12 8.2c2 0 3.4 1.5 3.7 3.4l.5 3.1"/><path d="M4 19.4c1.6-2 4.4-3.2 8-3.2s6.4 1.2 8 3.2c-1.4 1.1-4.4 1.8-8 1.8s-6.6-.7-8-1.8Z"/><path d="M8.3 14.7 4.6 17M15.7 14.7 19.4 17"/></svg></span><strong>Innerlijke rust &amp; helderheid</strong><p>Meer rust in je hoofd, meer richting.</p></div>
       <div class="result"><span class="result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2.5 5.5 13.5H11l-1 8 8-11h-5.5l.5-8Z"/></svg></span><strong>Energie &amp; veerkracht</strong><p>Hernieuwde levensenergie en meer veerkracht.</p></div>
-      <div class="result"><span class="result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="19.4" r="2.1"/><circle cx="5" cy="6" r="2.1"/><circle cx="19" cy="6" r="2.1"/><path d="M12 17.3v-4.6M10.4 11.4 6.5 7.7M13.6 11.4l3.9-3.7"/></svg></span><strong>Systemisch inzicht</strong><p>Inzicht in je familiesysteem en bewustwording van je Backpack — wat je meedraagt en wat je onbewust meedroeg.</p></div>
+      <div class="result"><span class="result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="19.4" r="2.1"/><circle cx="5" cy="6" r="2.1"/><circle cx="19" cy="6" r="2.1"/><path d="M12 17.3v-4.6M10.4 11.4 6.5 7.7M13.6 11.4l3.9-3.7"/></svg></span><strong>Systemisch inzicht</strong><p>Inzicht in je familiesysteem en bewustwording van je Backpack - wat je meedraagt en wat je onbewust meedroeg.</p></div>
     </div>
   </div>
 </section>
@@ -757,23 +735,23 @@ HOME = f"""<main id="top">
 
 print("Bouwen:")
 page("index.html",
-     "Backpack | Leefstijlarts &amp; regressietherapie — Amsterdam, Voorschoten en online",
+     "Backpack | Leefstijlarts &amp; regressietherapie - Amsterdam, Voorschoten en online",
      "Vastgelopen in patronen of aanhoudende klachten? Backpack combineert leefstijlgeneeskunde, "
      "systemisch werk en regressietherapie. Plan een gratis kennismaking van 20 minuten.",
      HOME, extra=LD_JSON)
 
 
 # ============================================================
-#  DISCOVER — leefstijl & systemisch werk
+#  DISCOVER - leefstijl & systemisch werk
 # ============================================================
 DISCOVER = f"""<main>
 <section class="pagehead">
   <div class="wrap">
     {crumb("Leefstijl &amp; systemisch werk")}
-    <p class="eyebrow">Discover &middot; met Clementine Mol</p>
+    <p class="eyebrow">Discover &middot; met Clementine Mol (arts)</p>
     <h1>Leefstijl, integrale geneeskunde<br>&amp; systemisch werk</h1>
     <p class="lead">Ontdek wat er in jouw Backpack zit. In een 1-op-1 sessie staan jouw klacht,
-      vraagstuk en wens centraal — met aandacht voor alle lagen van gezondheid.</p>
+      vraagstuk en wens centraal - met aandacht voor alle lagen van gezondheid.</p>
     <div class="btn-row">
       <a class="btn btn-primary" href="{CLEM}" target="_blank" rel="noopener" data-book="clementine">
         Boek een sessie met Clementine <span class="arw">&rarr;</span></a>
@@ -854,7 +832,7 @@ DISCOVER = f"""<main>
           <tr><td>Zakelijk uurtarief</td><td>&euro;199</td></tr>
         </table>
         <p style="margin-top:1rem;font-size:.86rem">Vrijgesteld van btw. Niet vergoed door de
-          zorgverzekeraar — vraag je werkgever naar het persoonlijk ontwikkelingsbudget.</p>
+          zorgverzekeraar - vraag je werkgever naar het persoonlijk ontwikkelingsbudget.</p>
       </div>
     </div>
   </div>
@@ -866,20 +844,20 @@ DISCOVER = f"""<main>
 """
 
 page("leefstijl-en-systemisch-werk.html",
-     "Leefstijlarts Amsterdam | Leefstijlgeneeskunde &amp; systemisch werk — Backpack",
+     "Leefstijlarts Amsterdam | Leefstijlgeneeskunde &amp; systemisch werk - Backpack",
      "1-op-1 sessies met arts Clementine Mol over leefstijl, gezondheid en wat je onbewust "
      "meedraagt. In Amsterdam en online. Intake vanaf &euro;149.",
      DISCOVER)
 
 
 # ============================================================
-#  UNPACK — regressietherapie
+#  UNPACK - regressietherapie
 # ============================================================
 UNPACK = f"""<main>
 <section class="pagehead">
   <div class="wrap">
     {crumb("Regressietherapie")}
-    <p class="eyebrow">Unpack &middot; met Maaike Oosterveer</p>
+    <p class="eyebrow">Unpack &middot; met Maaike Oosterveer (therapeut)</p>
     <h1>regressietherapie</h1>
     <p class="lead">Voorouderlijk werk, regressie- en reïncarnatietherapie. In een veilige setting
       verwerk je wat toen niet gevoeld kon worden. Praktijk in Voorschoten.</p>
@@ -901,8 +879,8 @@ UNPACK = f"""<main>
       <p>Deze vorm van therapie geeft je de mogelijkheid om in een veilige setting en onder
         begeleiding te doorvoelen wat toen niet gevoeld kon worden of is vastgezet.</p>
       <p>Bij het verwerken van onverwerkte verhalen kunnen er beelden ontstaan of ervaringen worden
-        beleefd die niet altijd letterlijk kloppen. Je eigen perceptie — wat je ziet, voelt en
-        lichamelijk ervaart — mengt zich met herinneringen uit het verleden en vormt het verhaal.</p>
+        beleefd die niet altijd letterlijk kloppen. Je eigen perceptie - wat je ziet, voelt en
+        lichamelijk ervaart - mengt zich met herinneringen uit het verleden en vormt het verhaal.</p>
       <p>Wat klopt, is de emotionele lading: een bevroren emotie die eindelijk ruimte krijgt om
         gevoeld en verwerkt te worden. Daarom is voor de verwerking de emotionele waarheid
         belangrijker dan de feitelijke details. De rode draad is betrouwbaar, ook wanneer de beelden
@@ -959,7 +937,7 @@ UNPACK = f"""<main>
       <div class="fact">
         <h4>Tarieven</h4>
         <table class="rate-table" style="margin-top:0">
-          <tr><td>Intake (180 min)</td><td>&euro;299</td></tr>
+          <tr><td>Intake + eerste sessie (180 min)</td><td>&euro;299</td></tr>
           <tr><td>Vervolgsessie (150 min)</td><td>&euro;249</td></tr>
         </table>
         <p style="margin-top:1rem;font-size:.86rem">Inclusief btw. De sessies worden niet vergoed
@@ -979,12 +957,26 @@ UNPACK = f"""<main>
 </section>
 
 {reviews_section("Regressie", google=True)}
-{cta()}
+
+<section style="padding-bottom:0">
+  <div class="wrap">
+    <div class="cta reveal">
+      <h2>een sessie boeken bij Maaike</h2>
+      <p>Maaike werkt uitsluitend op afspraak en doet geen kennismakingsgesprekken. Je boekt
+      rechtstreeks een intake; daarin is ruim tijd om te kijken wat er speelt.</p>
+      <a class="btn btn-light" href="{MAAIKE}" target="_blank" rel="noopener" data-book="maaike">
+        Boek een sessie met Maaike <span class="arw">&rarr;</span></a>
+      <p class="cta-direct">Liever eerst vrijblijvend overleggen of dit bij je past?
+        <a href="contact.html">Plan een gratis kennismaking met Clementine</a>.</p>
+    </div>
+  </div>
+</section>
+
 </main>
 """
 
 page("regressietherapie.html",
-     "Regressietherapie Voorschoten | Verwerkingstherapie &amp; voorouderlijk werk — Backpack",
+     "Regressietherapie Voorschoten | Verwerkingstherapie &amp; voorouderlijk werk - Backpack",
      "Regressie- en reïncarnatietherapie bij Maaike Oosterveer in Voorschoten. Geen hypnose, "
      "wel diepgaand werk naar de kern. Intake 180 minuten voor &euro;299.",
      UNPACK)
@@ -1054,13 +1046,13 @@ profile(
      "leefstijlgeneeskunde heb ik een brede kijk en combineer ik medische en systemische kennis en ervaring en intuïtie.",
      "In mijn sessies creëer ik een veilige, oordeelloze setting waarin we samen onderzoeken wat "
      "voor jou betekenisvol is. Ik help je bewust te worden van jouw Backpack: alles wat je "
-     "meedraagt. Alle lagen van gezondheid — fysiek, emotioneel, mentaal en spiritueel — kunnen "
+     "meedraagt. Alle lagen van gezondheid - fysiek, emotioneel, mentaal en spiritueel - kunnen "
      "hierbij betrokken worden. Je krijgt uitleg en praktische tips waarmee je direct aan de slag "
      "kunt. Daarnaast ontstaat er inzicht en ruimte om te voelen, waardoor vaak beweging ontstaat."],
-    ["Jaartraining Weg van het Wiel — regressietherapie, Maarten Oversier (heden)",
+    ["Jaartraining Weg van het Wiel - regressietherapie, Maarten Oversier (heden)",
      "Opleiding Systeemdynamieken in families, Bert Hellinger instituut (heden)",
      "From Womb to World, pre- en perinatale psychologie, Anna Verwaal (2025)",
-     "Arts voor Integrative Medicine en leefstijlgeneeskunde (2024 – heden)",
+     "Arts voor Integrative Medicine en leefstijlgeneeskunde (2024 - heden)",
      "Academy for Integrative Medicine en leefstijlgeneeskunde, basis- en verdiepingsjaar (2020–2023)",
      "Bouwkundig arts Cordaan: gezonde woonzorgomgevingen (2021–2025)",
      "Basisarts acute ouderengeneeskunde, de Wijkkliniek, Amsterdam UMC &amp; Cordaan (2021–2022)",
@@ -1072,7 +1064,7 @@ profile(
     "leefstijl-en-systemisch-werk.html", "Lees meer over mijn werkwijze",
     CLEM, "Boek een sessie met Clementine", "clementine",
     extra_regel="BIG-registratie: 89924263801",
-    title="Clementine Mol | Leefstijlarts en arts voor integrale geneeskunde — Amsterdam",
+    title="Clementine Mol | Leefstijlarts en arts voor integrale geneeskunde - Amsterdam",
     desc="Clementine Mol is arts voor integrale geneeskunde en leefstijlgeneeskunde. "
          "Sessies in Amsterdam en online. BIG-geregistreerd.")
 
@@ -1091,7 +1083,7 @@ profile(
     ["Stage bij Maarten Oversier (2024–2025)",
      "Verdiepingsjaar, Maarten Oversier (2023)",
      "Jaartraining Weg van het Wiel, Maarten Oversier (2022)",
-     "Intervisie en supervisie reïncarnatietherapie (2022 – heden)",
+     "Intervisie en supervisie reïncarnatietherapie (2022 - heden)",
      "Ademcoach, Kasper van der Meulen",
      "Wim Hof module 1 &amp; 2",
      "Basistraining familieopstellingen, Het Lichtcentrum Amsterdam",
@@ -1103,7 +1095,7 @@ profile(
      "Politieachtergrond"],
     "regressietherapie.html", "Lees meer over mijn werkwijze",
     MAAIKE, "Boek een sessie met Maaike", "maaike",
-    title="Maaike Oosterveer | Regressietherapeut in Voorschoten — Backpack",
+    title="Maaike Oosterveer | Regressietherapeut in Voorschoten - Backpack",
     desc="Maaike Oosterveer is regressie- en reïncarnatietherapeut met een praktijk in "
          "Voorschoten. Verwerkingstherapie zonder hypnose, terug naar de kern.")
 
@@ -1118,7 +1110,7 @@ CHECKUP = f"""<main>
     <p class="eyebrow">Gratis &middot; 5 minuten &middot; geen account nodig</p>
     <h1>de digitale check-up</h1>
     <p class="lead">Nog niet klaar voor een gesprek? Begin hier. Je krijgt in een paar minuten zicht
-      op welke leefstijlfactoren en thema's bij jou spelen — en waar de eerste winst te halen valt.</p>
+      op welke leefstijlfactoren en thema's bij jou spelen - en waar de eerste winst te halen valt.</p>
   </div>
 </section>
 
@@ -1152,7 +1144,7 @@ CHECKUP = f"""<main>
       <p class="eyebrow" style="justify-content:center">Nog te plaatsen</p>
       <h2 style="font-size:clamp(1.4rem,2.5vw,1.9rem)">de check-up komt hier te staan</h2>
       <p class="muted" style="max-width:48ch;margin:1rem auto 0;font-size:.96rem">
-        Zodra het bestand van Clementine er is, verschijnt de vragenlijst op deze plek —
+        Zodra het bestand van Clementine er is, verschijnt de vragenlijst op deze plek -
         in de stijl van de rest van de site.</p>
     </div>
 
@@ -1176,7 +1168,7 @@ CHECKUP = f"""<main>
 def bouw_checkup():
     """Zet de check-up van Clementine als eigen pagina in de site.
 
-    De check-up blijft een zelfstandig document met een eigen ontwerp — dat is
+    De check-up blijft een zelfstandig document met een eigen ontwerp - dat is
     bewust. Een vragenlijst werkt beter zonder menu en voettekst eromheen: minder
     afleiding, meer mensen die hem afmaken.
 
@@ -1187,12 +1179,12 @@ def bouw_checkup():
     """
     bron = os.path.join(OUT, "bron", "backpack-checkup.html")
     if not os.path.exists(bron):
-        print("  check-up.html  OVERGESLAGEN — bronbestand niet gevonden")
+        print("  check-up.html  OVERGESLAGEN - bronbestand niet gevonden")
         return
     s = open(bron, encoding="utf-8").read()
 
     # 0. huisstijl: kleuren en lettertype gelijktrekken met de rest van de site.
-    #    De rustige opzet van één vraag per scherm blijft ongemoeid — die werkt.
+    #    De rustige opzet van één vraag per scherm blijft ongemoeid - die werkt.
     kleuren = {
         "#FDFBF5": "#FAF7F2",   # wit/room
         "#EDE9DC": "#EDE4D6",   # zand
@@ -1218,6 +1210,7 @@ def bouw_checkup():
     s = s.replace("Bij Backpack geloven we dat klachten zelden op zichzelf staan.",
                   "Bij Backpack geloven we dat chronische klachten zelden op zichzelf staan.")
     s = s.replace("De drie lagen waarop je kunt werken", "Drie lagen waarop je kunt werken")
+    s = s.replace(" \u2014 ", " - ").replace("\u2014", "-")
 
     # 1c. de kennismakingsknop volgt de instelling van de site
     if not EXTERN_KENNISMAKING:
@@ -1235,7 +1228,7 @@ def bouw_checkup():
             'Geen account nodig.">\n'
             '<link rel="canonical" href="https://mybackpack.nl/check-up.html">\n'
             '<meta name="theme-color" content="#24433A">\n'
-            '<meta property="og:title" content="Wat draag jij met je mee? — Backpack">\n'
+            '<meta property="og:title" content="Wat draag jij met je mee? - Backpack">\n'
             '<meta property="og:description" content="Een check-up van een paar minuten. '
             'Gratis, geen account nodig.">\n'
             '<meta property="og:type" content="website">\n'
@@ -1263,7 +1256,7 @@ bouw_checkup()
 
 
 # ============================================================
-#  EXPLORE — zelf aan de slag
+#  EXPLORE - zelf aan de slag
 # ============================================================
 EXPLORE = f"""<main>
 <section class="pagehead">
@@ -1325,7 +1318,7 @@ EXPLORE = f"""<main>
 """
 
 page("zelf-aan-de-slag.html",
-     "Zelf aan de slag | Gratis inspiratie over leefstijl en bewustzijn — Backpack",
+     "Zelf aan de slag | Gratis inspiratie over leefstijl en bewustzijn - Backpack",
      "Artikelen, gedichten, films en interviews over leefstijl, gezondheid, bewustzijn en "
      "familiesystemen. Plus een gratis digitale check-up.",
      EXPLORE)
@@ -1394,7 +1387,7 @@ LEZINGEN = f"""<main>
 """
 
 page("lezingen-en-workshops.html",
-     "Lezingen en workshops over leefstijl en bewustzijn — Backpack",
+     "Lezingen en workshops over leefstijl en bewustzijn - Backpack",
      "Lezingen en workshops voor teams, organisaties en congressen over leefstijl, gezondheid, "
      "patronen doorbreken en transgenerationeel trauma.",
      LEZINGEN)
@@ -1418,7 +1411,7 @@ TARIEVEN = f"""<main>
   <div class="wrap-narrow">
 
     <div class="reveal">
-      <p class="eyebrow">Discover &middot; met Clementine Mol</p>
+      <p class="eyebrow">Discover &middot; met Clementine Mol (arts)</p>
       <h2 style="font-size:clamp(1.4rem,2.4vw,1.85rem)">Leefstijl, integrale geneeskunde &amp; systemisch werk</h2>
       <table class="rate-table">
         <tr><th>Sessie</th><th style="text-align:right">Tarief</th></tr>
@@ -1437,11 +1430,11 @@ TARIEVEN = f"""<main>
     </div>
 
     <div class="reveal" style="margin-top:clamp(48px,6vw,76px)">
-      <p class="eyebrow">Unpack &middot; met Maaike Oosterveer</p>
+      <p class="eyebrow">Unpack &middot; met Maaike Oosterveer (therapeut)</p>
       <h2 style="font-size:clamp(1.4rem,2.4vw,1.85rem)">regressietherapie</h2>
       <table class="rate-table">
         <tr><th>Sessie</th><th style="text-align:right">Tarief</th></tr>
-        <tr><td>Intake (180 min)</td><td>&euro;299</td></tr>
+        <tr><td>Intake + eerste sessie (180 min)</td><td>&euro;299</td></tr>
         <tr><td>Vervolgsessie (150 min)</td><td>&euro;249</td></tr>
       </table>
       <p class="muted" style="font-size:.88rem;margin-top:1rem">Inclusief btw. Sessies vinden fysiek
@@ -1460,7 +1453,7 @@ TARIEVEN = f"""<main>
         beperkingen of protocollen.</p>
       <p style="margin:1rem 0 0;color:var(--muted);font-size:.97rem">Wél zien we regelmatig dat
         werkgevers de sessies vergoeden vanuit een persoonlijk ontwikkelingsbudget of
-        vitaliteitsbudget. Vraag het gerust na — we denken graag mee over de onderbouwing.</p>
+        vitaliteitsbudget. Vraag het gerust na - we denken graag mee over de onderbouwing.</p>
     </div>
 
     <div class="reveal" style="margin-top:clamp(40px,5vw,64px)">
@@ -1525,7 +1518,7 @@ FAQ_ITEMS = [
    voorbereiding al gedaan en volstaat een half uur gesprek vooraf.</p>"""),
  ("Hoe kan ik me voorbereiden?", """
    <p>Zodra je de afspraak gemaakt hebt, krijg je een e-mail met verdere informatie en het
-   intakeformulier. Het invullen kost wat tijd — je kunt merken dat er dan al beweging ontstaat.
+   intakeformulier. Het invullen kost wat tijd - je kunt merken dat er dan al beweging ontstaat.
    Dankzij het formulier kunnen wij ons goed voorbereiden op de sessie.</p>"""),
  ("Wat kan ik na een sessie verwachten?", """
    <h4>Bij Clementine</h4>
@@ -1537,7 +1530,7 @@ FAQ_ITEMS = [
    <p>De sessies zijn vaak intensief. De eerste weken kun je wat meer dromen en kan er vermoeidheid
    loskomen. De ervaring is persoonlijk en meestal niet eenvoudig uit te leggen aan je omgeving.
    Vertrouw op je gevoel en zorg goed voor jezelf. Je gaat een proces in dat vaak een maand tot drie
-   maanden nodig heeft. Daarom maak ik nooit direct een nieuwe afspraak — je voelt vanzelf wanneer
+   maanden nodig heeft. Daarom maak ik nooit direct een nieuwe afspraak - je voelt vanzelf wanneer
    dat nodig is.</p>"""),
  ("Hoeveel sessies heb ik nodig?", """
    <h4>Bij Clementine</h4>
@@ -1554,6 +1547,14 @@ FAQ_ITEMS = [
    <p>Omdat we bewust trauma's doorleven, is deze therapie in eerste instantie niet geschikt voor
    zwangere vrouwen, mensen die door een psychotische episode gaan, of wie tijdens een sessie niet
    nuchter kan zijn. Ik werk momenteel niet met kinderen; je bent welkom vanaf 16 jaar.</p>"""),
+ ("Kan ik ook kennismaken met Maaike?", """
+   <p>De gratis kennismaking van twintig minuten is een gesprek met Clementine, arts voor integrale
+   geneeskunde. Zij kan je in dat gesprek ook vertellen of regressietherapie bij Maaike passend voor
+   je is.</p>
+   <p>Maaike werkt uitsluitend op afspraak en doet zelf geen kennismakingsgesprekken. Haar praktijk
+   is vol en zij besteedt haar tijd aan sessies. Wil je bij haar terecht, dan boek je rechtstreeks
+   een intake. Die duurt 180 minuten en begint met een uitgebreid gesprek, dus er is ruim tijd om
+   te kijken wat er speelt.</p>"""),
  ("Waarom moet ik vooraf betalen?", """
    <p>Om een efficiënte planning en administratie mogelijk te maken hebben wij er bewust voor gekozen
    de betaling vooraf te laten plaatsvinden. Zo kunnen wij onze tijd volledig besteden aan het geven
@@ -1603,7 +1604,7 @@ FAQ_BODY = f"""<main>
     <p class="eyebrow">Veelgestelde vragen</p>
     <h1>vragen die vaak gesteld worden</h1>
     <p class="lead">Staat je vraag er niet bij? <a class="tlink" href="contact.html">Neem gerust
-      contact op</a> — we antwoorden meestal binnen een werkdag.</p>
+      contact op</a> - we antwoorden meestal binnen een werkdag.</p>
   </div>
 </section>
 
@@ -1696,7 +1697,7 @@ CONTACT = f"""<main>
         <div class="fact">
           <h4>Praktijk Amsterdam</h4>
           <p>Clementine Mol &middot; leefstijl, integrale geneeskunde &amp; systemisch werk<br>
-            Centrum Amsterdam — het adres ontvang je na het inplannen van de sessie.<br>
+            Centrum Amsterdam - het adres ontvang je na het inplannen van de sessie.<br>
             Sessies kunnen ook online.</p>
         </div>
         <div class="fact">
@@ -1736,7 +1737,7 @@ CONTACT = f"""<main>
 """
 
 page("contact.html",
-     "Contact | Backpack — Amsterdam, Voorschoten en online",
+     "Contact | Backpack - Amsterdam, Voorschoten en online",
      "Neem contact op met Backpack of plan direct een gratis kennismaking van twintig minuten. "
      "Praktijk in Amsterdam en Voorschoten.",
      CONTACT, active="contact")
@@ -1782,7 +1783,7 @@ page("bedankt.html", "Bericht verstuurd | Backpack",
      BEDANKT, extra='\n<meta name="robots" content="noindex">')
 
 # ============================================================
-#  INSPIRATIE — overzichtspagina
+#  INSPIRATIE - overzichtspagina
 # ============================================================
 INSPIRATIE = f"""<main>
 <section class="pagehead">
@@ -1821,7 +1822,7 @@ INSPIRATIE = f"""<main>
 """
 
 page(os.path.join("inspiratie", "index.html"),
-     "Inspiratie | Artikelen over leefstijl, bewustzijn en verwerking — Backpack",
+     "Inspiratie | Artikelen over leefstijl, bewustzijn en verwerking - Backpack",
      "Blogs, gedichten, films en interviews over leefstijl, gezondheid, familiesystemen en "
      "het verwerken van onverwerkte ervaringen.",
      INSPIRATIE, active="inspiratie", depth=1)

@@ -1,28 +1,15 @@
-WAT JE MOET UPLOADEN — feedbackronde 4
+WAT JE MOET UPLOADEN
 
-  build.py                     hero-tekst, ijsberg met topje, nieuwe iconen,
-                               check-up-teksten, kennismakingsknop
-  assets/style.css             logo gestapeld, terracotta, iconen 130px,
-                               bovenbalk compacter, quote zonder groen vlak
-  assets/site.js               meting van de kennismakingsknop
-  tools/fotos.py               nieuwe uitsnedes vastgelegd
-  images/portret-maaike.*      gezicht volledig in beeld
-  images/portret-clementine.*  bovenkant haar zichtbaar
+  build.py                  teksten, iconen, tarieven, Maaike-toelichting,
+                            silhouet in de voettekst, favicon-verwijzing
+  assets/style.css          bovenbalk compact, groen, silhouet onderaan
+  content/inspiratie/*.md   lange streepjes vervangen
+  images/favicon.svg        nieuw - het icoontje in het browsertabblad
+  images/favicon.png        nieuw - dezelfde, voor oudere browsers en telefoons
 
-De HTML wordt door Netlify zelf opnieuw gemaakt uit build.py.
+De HTML wordt door Netlify zelf opnieuw gemaakt.
 
-DE KENNISMAKINGSKNOP TERUGZETTEN NAAR HET EPD
-Over een paar maanden wil je "Plan gratis kennismaking" weer rechtstreeks
-naar het afspraaksysteem van Clementine laten wijzen. Open build.py, zoek
-bovenin op KENNISMAKING en zet:
-
-    KENNISMAKING = CLEM
-    EXTERN_KENNISMAKING = True
-
-Dat is alles. De knoppen "Direct sessie boeken" en "Boek direct bij
-Clementine of Maaike" wijzen nu al naar de afspraaksystemen; die blijven
-ongewijzigd.
-
-HOOGTE VAN HET LOGO
-Nu 70px, omdat de naam eronder staat en de balk anders erg hoog wordt.
-Bijstellen kan bovenin style.css bij --logo-h.
+NOG OPRUIMEN - overblijfsels van de oude voorbeeldartikelen
+  inspiratie/burn-out-en-leefstijl.html
+  inspiratie/onverklaarbare-lichamelijke-klachten.html
+  inspiratie/wat-is-regressietherapie.html
