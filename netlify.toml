@@ -109,3 +109,9 @@
   from = "/*"
   to = "/index.html"
   status = 404
+
+[[redirects]]
+  from = "https://backpackwebsite.netlify.app/*"
+  to = "https://www.mybackpack.nl/:splat"
+  status = 301
+  force = true
