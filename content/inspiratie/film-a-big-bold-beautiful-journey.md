@@ -2,7 +2,8 @@
 titel: A Big Bold Beautiful Journey
 categorie: Film
 datum: 2026-04-01
-samenvatting: Een film die de Backpack-metafoor mooi raakt.
+samenvatting: Een film die laat zien hoe het verleden onbewust doorwerkt in het
+  heden en hoe ernaar terugkijken je bevrijdt om er los van te komen.
 afbeelding: /images/blog/Abigboldbeautifuljourney-1.jpg
 leestijd: ""
 auteur: Backpack
