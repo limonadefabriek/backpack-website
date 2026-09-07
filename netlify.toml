@@ -15,6 +15,12 @@
 # ------------------------------------------------------------
 
 [[redirects]]
+  from = "https://backpackwebsite.netlify.app/*"
+  to = "https://www.mybackpack.nl/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/Zelf-aan-de-slag.html"
   to = "/zelf-aan-de-slag.html"
   status = 301
@@ -110,8 +116,3 @@
   to = "/index.html"
   status = 404
 
-[[redirects]]
-  from = "https://backpackwebsite.netlify.app/*"
-  to = "https://www.mybackpack.nl/:splat"
-  status = 301
-  force = true
