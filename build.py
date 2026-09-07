@@ -10,6 +10,21 @@ import os, re
 
 OUT = os.path.dirname(os.path.abspath(__file__))
 
+# ---------------------------------------------------------------------------
+# HET ADRES VAN DE SITE
+#
+# Dit is het adres dat de site aan Google doorgeeft: in de canonieke links,
+# in de sitemap en in de gegevens die WhatsApp en LinkedIn tonen. Het moet
+# exact overeenkomen met het adres waar de site echt staat, anders vertel je
+# zoekmachines twee verschillende verhalen over dezelfde pagina.
+#
+# Nu staat hier de www-versie, omdat het kale mybackpack.nl bij Strato blijft
+# en alleen doorstuurt. Verhuist het hoofddomein later alsnog naar Netlify
+# (dat kan pas als Strato het AAAA-record kan verwijderen), zet deze regel
+# dan terug op "https://mybackpack.nl" en draai build.py opnieuw.
+# ---------------------------------------------------------------------------
+SITE = "https://www.mybackpack.nl"
+
 CLEM = "https://backpack.clientomgeving.nl/afspraak-maken?t=gbFxFmGj"
 
 # ---------------------------------------------------------------------------
@@ -62,7 +77,7 @@ CHECK = ('<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="cu
 
 def head(title, desc, slug, depth=0, extra=""):
     r = "../" * depth
-    canon = "https://mybackpack.nl/" + ("" if slug == "index.html" else slug)
+    canon = SITE + "/" + ("" if slug == "index.html" else slug)
     return f"""<!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -77,7 +92,7 @@ def head(title, desc, slug, depth=0, extra=""):
 <meta property="og:url" content="{canon}">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="nl_NL">
-<meta property="og:image" content="https://mybackpack.nl/images/hero-duo.webp">
+<meta property="og:image" content="{SITE}/images/hero-duo.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -221,8 +236,8 @@ def breadcrumb_ld(label, slug, depth=0):
     top = "../" * depth + "index.html"
     return ('\n<script type="application/ld+json">\n'
             '{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":['
-            '{"@type":"ListItem","position":1,"name":"Home","item":"https://mybackpack.nl/"},'
-            '{"@type":"ListItem","position":2,"name":"%s","item":"https://mybackpack.nl/%s"}]}\n'
+            '{"@type":"ListItem","position":1,"name":"Home","item":"' + SITE + '/"},'
+            '{"@type":"ListItem","position":2,"name":"%s","item":"' + SITE + '/%s"}]}\n'
             '</script>' % (label.replace("&amp;", "en").replace('"', "'"), slug))
 
 
@@ -440,10 +455,10 @@ LD_JSON = """
   "@context":"https://schema.org",
   "@type":"MedicalBusiness",
   "name":"Backpack",
-  "url":"https://mybackpack.nl/",
+  "url":"__SITE__/",
   "description":"Leefstijlgeneeskunde, systemisch werk en regressietherapie in Amsterdam, Voorschoten en online.",
   "areaServed":["Amsterdam","Voorschoten","Nederland"],
-  "priceRange":"\\u20ac99 - \\u20ac299",
+  "priceRange":"\\u20ac149 - \\u20ac299",
   "location":[
     {"@type":"Place","name":"Backpack Amsterdam \\u2014 Clementine Mol","address":{"@type":"PostalAddress","addressLocality":"Amsterdam","addressCountry":"NL"}},
     {"@type":"Place","name":"Backpack Voorschoten \\u2014 Maaike Oosterveer","address":{"@type":"PostalAddress","streetAddress":"Veurseweg 182","postalCode":"2252 AG","addressLocality":"Voorschoten","addressCountry":"NL"}}
@@ -453,7 +468,7 @@ LD_JSON = """
     {"@type":"Person","name":"Maaike Oosterveer","jobTitle":"Regressie- en re\\u00efncarnatietherapeut"}
   ]
 }
-</script>"""
+</script>""".replace("__SITE__", SITE)
 
 HOME = f"""<main id="top">
 
@@ -1257,7 +1272,7 @@ def bouw_checkup():
     meta = ('<meta name="description" content="Doe de gratis check-up van Backpack. '
             'In een paar minuten zicht op wat je meedraagt: leefstijl, patronen en thema\'s. '
             'Geen account nodig.">\n'
-            '<link rel="canonical" href="https://mybackpack.nl/check-up.html">\n'
+            f'<link rel="canonical" href="{SITE}/check-up.html">\n'
             '<meta name="theme-color" content="#24433A">\n'
             '<meta property="og:title" content="Wat draag jij met je mee? - Backpack">\n'
             '<meta property="og:description" content="Een check-up van een paar minuten. '
@@ -1985,7 +2000,7 @@ IS_LIVE = LIVE_DOMEIN in _url
 
 if IS_LIVE:
     write("robots.txt", "User-agent: *\nAllow: /\n\n"
-                        f"Sitemap: https://{LIVE_DOMEIN}/sitemap.xml\n", raw=True)
+                        f"Sitemap: {SITE}/sitemap.xml\n", raw=True)
 else:
     write("robots.txt",
           "# Deze versie draait nog niet op het echte domein.\n"
@@ -1998,7 +2013,7 @@ _paginas = sorted(
     ["inspiratie/" + f for f in sorted(os.listdir(os.path.join(OUT, "inspiratie")))
      if f.endswith(".html")] if os.path.isdir(os.path.join(OUT, "inspiratie")) else [])
 _items = "".join(
-    f"  <url><loc>https://{LIVE_DOMEIN}/{'' if p == 'index.html' else p}</loc></url>\n"
+    f"  <url><loc>{SITE}/{'' if p == 'index.html' else p}</loc></url>\n"
     for p in _paginas)
 write("sitemap.xml",
       '<?xml version="1.0" encoding="UTF-8"?>\n'
