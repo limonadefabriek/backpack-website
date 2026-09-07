@@ -1,7 +1,7 @@
 ---
 titel: Dan Brown over wetenschap en spiritualiteit
 categorie: Interview
-datum: 2026-01-01
+datum: 2025-11-01
 samenvatting: 'Interview met Dan Brown over zijn boek Het ultieme geheim: "Hoe
   meer ik in de wetenschap duik, hoe meer spiritualiteit ik zie."'
 afbeelding: /images/blog/danbrownhetultiemegeheim.jpg
