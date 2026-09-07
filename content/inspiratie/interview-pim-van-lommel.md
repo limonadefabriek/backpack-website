@@ -1,7 +1,7 @@
 ---
 titel: Pim van Lommel over bewustzijn
 categorie: Interview
-datum: 2026-01-01
+datum: 2024-12-01
 samenvatting: Interview met cardioloog Pim van Lommel over zijn visie op de
   bijna-doodervaring en bewustzijn.
 afbeelding: /images/blog/Schermafbeelding2026-03-16110446.png
