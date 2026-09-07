@@ -350,12 +350,25 @@ def lees_front_matter(tekst, bestand=""):
         return {}, tekst
     eind = tekst.index("\n---", 3)
     kop, body = tekst[3:eind], tekst[eind + 4:]
-    data = {}
+    # Het CMS breekt lange waarden af over meerdere regels; de vervolgregels
+    # zijn ingesprongen en hebben geen dubbele punt. Die horen bij het veld
+    # erboven. Lazen we ze niet mee, dan verdween de helft van een
+    # samenvatting zonder dat er iets misging waar je het aan kon zien.
+    ruw, laatste = {}, None
     for regel in kop.strip().splitlines():
+        if not regel.strip():
+            continue
+        if regel[0] in " \t" and laatste is not None:
+            ruw[laatste] += " " + regel.strip()
+            continue
         if ":" not in regel:
             continue
         k, v = regel.split(":", 1)
-        v = v.strip()
+        laatste = k.strip()
+        ruw[laatste] = v.strip()
+
+    data = {}
+    for k, v in ruw.items():
         if len(v) > 1 and v[0] == v[-1] and v[0] in "\"'":
             # Aanhalingstekens binnen dezelfde soort aanhalingstekens maken het
             # bestand onleesbaar voor het CMS. Dit script leest het nog wel, dus

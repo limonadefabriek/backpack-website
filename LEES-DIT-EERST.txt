@@ -1,23 +1,18 @@
 WAT JE UPLOADT
 
-  build.py           het adres van de site is nu www.mybackpack.nl
-                     (canonieke links, sitemap, deelgegevens, schema)
-                     plus de teksten, iconen en tarieven van hiervoor
-  assets/style.css   kleine iconen op "Zelf aan de slag"
+  build.py   alleen dit bestand.
 
-De HTML maakt Netlify zelf opnieuw.
+WAT ER FOUT GING
+Het CMS breekt lange waarden af over twee regels, zo:
 
-LET OP - UPLOAD DIT PAS ALS JE DE DNS OMZET
-Zolang de site nog op backpackwebsite.netlify.app draait, wijzen de
-canonieke links al naar www.mybackpack.nl. Dat is geen ramp (robots.txt
-houdt Google nog buiten), maar netjes is het om dit samen te doen.
+  samenvatting: Aflevering van NPO De verwondering met schrijver Bas Steman over
+    zijn ervaring met regressie.
 
-TERUG NAAR HET KALE DOMEIN
-Kan Strato later het AAAA-record verwijderen? Zet dan bovenin build.py
-  SITE = "https://mybackpack.nl"
-en verzet bij Strato het A-record naar 75.2.60.5.
+Het script las alleen de eerste regel. Alles achter de afbreking
+verdween, zonder foutmelding - vandaar de halve zinnen onder de
+artikelen. Het leest nu ook de vervolgregels.
 
-NOG WEG TE GOOIEN uit inspiratie/
-  burn-out-en-leefstijl.html
-  onverklaarbare-lichamelijke-klachten.html
-  wat-is-regressietherapie.html
+Dit gold voor elk veld, niet alleen de samenvatting. Ook lange titels
+werden stilletjes ingekort.
+
+De HTML maakt Netlify zelf opnieuw. assets/ hoeft niet mee - die staat al goed.
