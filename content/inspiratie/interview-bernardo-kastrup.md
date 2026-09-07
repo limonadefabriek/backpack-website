@@ -1,7 +1,7 @@
 ---
 titel: Bernardo Kastrup over kwantumfysica en bewustzijn
 categorie: Interview
-datum: 2026-01-01
+datum: 2024-12-01
 samenvatting: Interview met natuurkundige en filosoof Bernardo Kastrup in NRC
   Future Affairs over hoe kwantumfysica ons wereldbeeld op zijn kop zet.
 afbeelding: /images/blog/NRCfutureaffairs.jpg
