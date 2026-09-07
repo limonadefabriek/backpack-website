@@ -1,9 +1,12 @@
 WAT JE UPLOADT
 
-  build.py           het blokje "Link naar de bron volgt" is eruit
-  assets/style.css   lange opleidingsregels op Clementine's pagina bleven
-                     op een smalle telefoon buiten het kader hangen;
-                     hamburgerknop nu 44px (goed raakbaar met een duim)
+  build.py           teksten kennismaking + lezingen, kop "Artikelen",
+                     drie nieuwe iconen, tarief van 45 minuten overal weg
+  assets/style.css   kleine iconen (54px) naast de grote van de homepage
 
-site.js zit er bewust niet in - die heb je al bijgewerkt.
 De HTML maakt Netlify zelf opnieuw.
+
+WEG TE GOOIEN uit inspiratie/ (nog steeds):
+  burn-out-en-leefstijl.html
+  onverklaarbare-lichamelijke-klachten.html
+  wat-is-regressietherapie.html

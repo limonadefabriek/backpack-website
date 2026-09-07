@@ -145,8 +145,8 @@ def cta(depth=0, direct=True):
   <div class="wrap">
     <div class="cta reveal">
       <h2>zullen we kennismaken?</h2>
-      <p>Twintig minuten, vrijblijvend en gratis, met Clementine (arts). Je ontdekt of onze aanpak
-      bij je past, en zij of we je verder kunnen helpen.</p>
+      <p>Twintig minuten, vrijblijvend en gratis met Clementine (arts). Je ontdekt of onze aanpak
+      bij je past en of we je verder kunnen helpen.</p>
       <a class="btn btn-light" {kennismaking_attrs(depth)}>
         Plan gratis kennismaking <span class="arw">&rarr;</span></a>
 {regel}
@@ -582,7 +582,7 @@ HOME = f"""<main id="top">
             <i><picture><source srcset="images/avatar-clementine.webp" type="image/webp"><img src="images/avatar-clementine.jpg" alt="" width="240" height="240" loading="lazy"></picture></i>
             <span><b>Met Clementine Mol (arts)</b>Amsterdam &amp; online</span>
           </div>
-          <p class="price">Intake 60 min <strong>&euro;149</strong> &middot; vervolg vanaf <strong>&euro;99</strong></p>
+          <p class="price">Intake 60 min <strong>&euro;149</strong> &middot; vervolg vanaf <strong>&euro;149</strong></p>
           <div class="card-links">
             <a class="tlink" href="leefstijl-en-systemisch-werk.html">Lees meer <span class="arw">&rarr;</span></a>
             <a class="btn btn-primary btn-sm" {boek_attrs()}>{BOEK_KORT}</a>
@@ -850,7 +850,6 @@ DISCOVER = f"""<main>
         <h4>Tarieven</h4>
         <table class="rate-table" style="margin-top:0">
           <tr><td>Intake (60 min)</td><td>&euro;149</td></tr>
-          <tr><td>Vervolgsessie (45 min)</td><td>&euro;99</td></tr>
           <tr><td>Vervolgsessie (60 min)</td><td>&euro;149</td></tr>
           <tr><td>Vervolgsessie (120 min)</td><td>&euro;249</td></tr>
           <tr><td>Zakelijk uurtarief</td><td>&euro;199</td></tr>
@@ -1310,21 +1309,21 @@ EXPLORE = f"""<main>
   <div class="wrap">
     <div class="offer-grid reveal" style="margin-top:0">
       <article class="card">
-        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--forest)" stroke-width="1.6"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="9"/></svg></div>
+        <div class="card-icon klein"><svg viewBox="0 0 24 24" fill="none" stroke="var(--sage)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.2"/><path d="M8 12.3l2.7 2.7L16.2 9.5"/></svg></div>
         <h3>digitale check-up</h3>
         <p>Vijf minuten, gratis en zonder account. Zicht op welke leefstijlfactoren en thema's bij
           jou spelen.</p>
         <div class="card-foot"><a class="tlink" href="check-up.html">Start de check-up <span class="arw">&rarr;</span></a></div>
       </article>
       <article class="card">
-        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--forest)" stroke-width="1.6"><path d="M4 19.5V5a2 2 0 012-2h13v18H6a2 2 0 01-2-1.5z"/><path d="M8 7h7M8 11h7"/></svg></div>
-        <h3>artikelen en gedichten</h3>
+        <div class="card-icon klein"><svg viewBox="0 0 24 24" fill="none" stroke="var(--sage)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.6C10.4 5.2 8.4 4.6 5.6 4.6a1 1 0 00-1 1v11.6a1 1 0 001 1c2.8 0 4.8.6 6.4 2 1.6-1.4 3.6-2 6.4-2a1 1 0 001-1V5.6a1 1 0 00-1-1c-2.8 0-4.8.6-6.4 2z"/><path d="M12 6.6v13"/></svg></div>
+        <h3>artikelen</h3>
         <p>Blogs, gedichten, films, boeken en interviews over o.a. leefstijl, bewustzijn,
           familiesysteem en transgenerationeel trauma.</p>
         <div class="card-foot"><a class="tlink" href="inspiratie/index.html">Naar de inspiratie <span class="arw">&rarr;</span></a></div>
       </article>
       <article class="card">
-        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--forest)" stroke-width="1.6"><path d="M17 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9.5" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.87"/></svg></div>
+        <div class="card-icon klein"><svg viewBox="0 0 24 24" fill="none" stroke="var(--sage)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8.4" r="3.1"/><path d="M3.4 19.4a5.6 5.6 0 0111.2 0"/><circle cx="17.4" cy="9.6" r="2.3"/><path d="M17 16.2a4.6 4.6 0 013.6 3.2"/></svg></div>
         <h3>lezingen en workshops</h3>
         <p>Voor teams, organisaties, congressen en events. Inspirerend, verbindend en aanzettend tot
           bewustwording.</p>
@@ -1406,8 +1405,9 @@ LEZINGEN = f"""<main>
         <p class="eyebrow">Ook mogelijk</p>
         <h2 style="font-size:clamp(1.5rem,2.7vw,2.1rem)">sessies voor medewerkers</h2>
         <p style="margin:1rem 0 0;color:var(--muted);font-size:.97rem">Naast lezingen verzorgen we
-          ook individuele sessies binnen organisaties, bijvoorbeeld bij verzuim, stress of
-          duurzame inzetbaarheid. Het zakelijk uurtarief is &euro;199, vrijgesteld van btw.</p>
+          ook individuele sessies binnen organisaties, bijvoorbeeld bij verzuim, stress,
+          persoonlijke ontwikkeling of duurzame inzetbaarheid. Het zakelijk uurtarief is
+          &euro;199, vrijgesteld van btw.</p>
         <div class="btn-row"><a class="btn btn-primary" href="contact.html">Vraag de mogelijkheden op <span class="arw">&rarr;</span></a></div>
       </div>
     </div>
@@ -1448,7 +1448,6 @@ TARIEVEN = f"""<main>
       <table class="rate-table">
         <tr><th>Sessie</th><th style="text-align:right">Tarief</th></tr>
         <tr><td>Intake (60 min)</td><td>&euro;149</td></tr>
-        <tr><td>Vervolgsessie (45 min)</td><td>&euro;99</td></tr>
         <tr><td>Vervolgsessie (60 min)</td><td>&euro;149</td></tr>
         <tr><td>Vervolgsessie (120 min)</td><td>&euro;249</td></tr>
         <tr><td>Zakelijk uurtarief</td><td>&euro;199</td></tr>
@@ -1514,7 +1513,7 @@ TARIEVEN = f"""<main>
 
 page("tarieven.html",
      "Tarieven | Wat kost een sessie bij Backpack?",
-     "Alle tarieven van Backpack op een rij. Leefstijlsessies vanaf &euro;99, regressietherapie "
+     "Alle tarieven van Backpack op een rij. Leefstijlsessies vanaf &euro;149, regressietherapie "
      "vanaf &euro;249. Inclusief informatie over vergoeding en annuleren.",
      TARIEVEN, active="tarieven")
 
@@ -1601,7 +1600,7 @@ FAQ_ITEMS = [
    volledig in rekening gebracht, tenzij er sprake is van overmacht.</p>"""),
  ("Wat kost een sessie?", """
    <h4>Bij Clementine</h4>
-   <p>Intake 60 min &euro;149 &middot; vervolg 45 min &euro;99 &middot; vervolg 60 min &euro;149
+   <p>Intake 60 min &euro;149 &middot; vervolg 60 min &euro;149
    &middot; vervolg 120 min &euro;249 &middot; zakelijk uurtarief &euro;199. Alles vrijgesteld van btw.</p>
    <h4>Bij Maaike</h4>
    <p>Intake 180 min &euro;299 &middot; vervolg 150 min &euro;249. Inclusief btw.</p>
