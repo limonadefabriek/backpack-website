@@ -4,7 +4,7 @@ categorie: Interview
 datum: 2026-01-01
 samenvatting: 'Interview met Dan Brown over zijn boek Het ultieme geheim: "Hoe
   meer ik in de wetenschap duik, hoe meer spiritualiteit ik zie."'
-afbeelding: https://mybackpack.nl/images/danbrownhetultiemegeheim.jpg
+afbeelding: /images/blog/danbrownhetultiemegeheim.jpg
 leestijd: ""
 auteur: Backpack
 bronlink: ""
