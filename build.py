@@ -1963,10 +1963,9 @@ for _a in ARTIKELEN:
     if _a.get("bronlink"):
         _bron = (f'\n    <div class="btn-row"><a class="btn btn-primary" href="{_a["bronlink"]}"'
                  f' target="_blank" rel="noopener">Bekijk de bron <span class="arw">&rarr;</span></a></div>')
-    elif _a.get("categorie", "").split(" ")[0] in ("Gelezen", "Gezien", "Film"):
-        _bron = ('\n    <div class="panel" style="margin-top:2rem"><p style="margin:0;font-size:.93rem">'
-                 '<strong>Link naar de bron volgt.</strong> Vul in het CMS het veld '
-                 '&lsquo;Link naar de bron&rsquo; in, dan verschijnt hier een knop.</p></div>')
+    # Het herinneringsblokje ("Link naar de bron volgt") is eruit. Clementine
+    # zet haar verwijzingen als gewone link in de tekst; dan hoort er geen
+    # lege plek op de pagina te staan die om een knop vraagt.
     article(_a["slug"], _a.get("categorie", ""), _a["titel"], _a.get("samenvatting", ""),
             _a.get("afbeelding", ""),
             (" &middot; " + _a["leestijd"]) if _a.get("leestijd") else "",
