@@ -1,7 +1,7 @@
 ---
 titel: Bas Steman over zijn ervaring met regressie
 categorie: Interview
-datum: 2026-01-01
+datum: 2026-01-03
 samenvatting: Aflevering van NPO De verwondering met schrijver Bas Steman over
   zijn ervaring met regressie.
 afbeelding: /images/blog/afbeeldingnpodeverwondering.jpg
