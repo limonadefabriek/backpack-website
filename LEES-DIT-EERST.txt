@@ -1,15 +1,26 @@
-WAT JE MOET UPLOADEN
+WAT JE UPLOADT
 
-  build.py                  teksten, iconen, tarieven, Maaike-toelichting,
-                            silhouet in de voettekst, favicon-verwijzing
-  assets/style.css          bovenbalk compact, groen, silhouet onderaan
-  content/inspiratie/*.md   lange streepjes vervangen
-  images/favicon.svg        nieuw - het icoontje in het browsertabblad
-  images/favicon.png        nieuw - dezelfde, voor oudere browsers en telefoons
+  build.py           boekingslinks naar het contactformulier,
+                     silhouet uit de voettekst
+  assets/style.css   knoppen beter aanraakbaar, kaarten passen nu ook
+                     op een scherm van 320px
+  assets/site.js     klikmeting volgt de nieuwe knoppen
 
-De HTML wordt door Netlify zelf opnieuw gemaakt.
+De HTML-bestanden hoef je niet te uploaden. Netlify draait build.py
+bij elke publicatie en maakt ze zelf opnieuw.
 
-NOG OPRUIMEN - overblijfsels van de oude voorbeeldartikelen
+NOG WEG TE GOOIEN uit de map inspiratie/ - overblijfsels van de oude
+voorbeeldartikelen. Hierin staat nog een link naar het afsprakensysteem.
+
   inspiratie/burn-out-en-leefstijl.html
   inspiratie/onverklaarbare-lichamelijke-klachten.html
   inspiratie/wat-is-regressietherapie.html
+
+TERUGZETTEN LATER
+Wil je over een paar maanden weer rechtstreeks naar het afsprakensysteem
+van Clementine? Open build.py, zoek bovenin de regels
+
+  KENNISMAKING = "contact.html"
+  BOEKEN_CLEM  = "contact.html"
+
+en maak daar CLEM van. De knopteksten passen zich vanzelf aan.

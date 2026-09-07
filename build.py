@@ -12,12 +12,31 @@ OUT = os.path.dirname(os.path.abspath(__file__))
 
 CLEM = "https://backpack.clientomgeving.nl/afspraak-maken?t=gbFxFmGj"
 
-# Waar de knop "Plan gratis kennismaking" naartoe gaat.
-# Nu tijdelijk het contactformulier. Wil je later weer rechtstreeks naar
-# het afspraaksysteem van Clementine? Zet dan KENNISMAKING = CLEM en
-# EXTERN_KENNISMAKING = True, en draai build.py opnieuw.
-KENNISMAKING = "contact.html"
-EXTERN_KENNISMAKING = False
+# ---------------------------------------------------------------------------
+# EEN KNOP OM ALLES TERUG TE ZETTEN
+#
+# Alle verwijzingen naar het afsprakensysteem van Clementine lopen nu via het
+# contactformulier. Dat geldt zowel voor de gratis kennismaking als voor het
+# boeken van een sessie.
+#
+# Wil je over een paar maanden weer rechtstreeks naar haar afsprakensysteem?
+# Zet dan allebei de regels hieronder op CLEM en draai build.py opnieuw.
+# Verder hoef je nergens iets aan te veranderen; de knopteksten passen zich
+# vanzelf aan.
+# ---------------------------------------------------------------------------
+KENNISMAKING = "contact.html"    # of: CLEM
+BOEKEN_CLEM = "contact.html"     # of: CLEM
+
+EXTERN_KENNISMAKING = KENNISMAKING.startswith("http")
+EXTERN_BOEKEN = BOEKEN_CLEM.startswith("http")
+
+# De knoptekst hoort te beloven wat er gebeurt. Verwijst de knop naar het
+# contactformulier, dan is "boeken" een loze belofte.
+BOEK_KORT = "Direct sessie boeken" if EXTERN_BOEKEN else "Sessie aanvragen"
+BOEK_CLEM = ("Boek een sessie met Clementine" if EXTERN_BOEKEN
+             else "Sessie aanvragen bij Clementine")
+BOEK_TARIEF = "Boek bij Clementine" if EXTERN_BOEKEN else "Sessie aanvragen"
+BOEK_WERKWOORD = "Boek direct een sessie bij" if EXTERN_BOEKEN else "Plan een sessie met"
 
 
 def kennismaking_attrs(depth=0):
@@ -25,6 +44,13 @@ def kennismaking_attrs(depth=0):
     if EXTERN_KENNISMAKING:
         return f'href="{KENNISMAKING}" target="_blank" rel="noopener" data-book="clementine"'
     return f'href="{"../" * depth}{KENNISMAKING}" data-cta="kennismaking"'
+
+
+def boek_attrs(depth=0):
+    """Idem voor de knoppen waarmee je een sessie bij Clementine boekt."""
+    if EXTERN_BOEKEN:
+        return f'href="{BOEKEN_CLEM}" target="_blank" rel="noopener" data-book="clementine"'
+    return f'href="{"../" * depth}{BOEKEN_CLEM}" data-cta="boeken-clementine"'
 
 MAAIKE = ("https://widget.onlineafspraken.nl/consumer/booking/book/key/bcah63qhqt55-zzaz41"
           "/l/31112/ln/nl/t/8080dc/f/110e0011/o/theme:gray,dp:modern/at/0/rs/0/pp/0/output/html")
@@ -110,9 +136,10 @@ def header(active="", depth=0):
 
 def cta(depth=0, direct=True):
     regel = ("""
-      <p class="cta-direct">Weet je al wat je zoekt? Boek direct een sessie bij
-        <a href="{CLEM}" target="_blank" rel="noopener" data-book="clementine">Clementine</a>
-        of <a href="{MAAIKE}" target="_blank" rel="noopener" data-book="maaike">Maaike</a>.</p>""".format(CLEM=CLEM, MAAIKE=MAAIKE)
+      <p class="cta-direct">Weet je al wat je zoekt? {ww}
+        <a {clem}>Clementine</a>
+        of <a href="{MAAIKE}" target="_blank" rel="noopener" data-book="maaike">Maaike</a>.</p>""".format(
+                 ww=BOEK_WERKWOORD, clem=boek_attrs(depth), MAAIKE=MAAIKE)
              if direct else "")
     return f"""<section style="padding-bottom:0">
   <div class="wrap">
@@ -167,9 +194,6 @@ def footer(depth=0):
           <li><a href="{r}privacyverklaring.html">Privacyverklaring</a></li>
         </ul>
       </div>
-    </div>
-    <div class="foot-silhouet" aria-hidden="true">
-      <img src="{r}images/logo-backpack.svg" alt="">
     </div>
     <div class="foot-bottom">
       <span>&copy; 2026 Backpack &middot; KvK 99312050</span>
@@ -561,7 +585,7 @@ HOME = f"""<main id="top">
           <p class="price">Intake 60 min <strong>&euro;149</strong> &middot; vervolg vanaf <strong>&euro;99</strong></p>
           <div class="card-links">
             <a class="tlink" href="leefstijl-en-systemisch-werk.html">Lees meer <span class="arw">&rarr;</span></a>
-            <a class="btn btn-primary btn-sm" href="https://backpack.clientomgeving.nl/afspraak-maken?t=gbFxFmGj" target="_blank" rel="noopener" data-book="clementine">Direct sessie boeken</a>
+            <a class="btn btn-primary btn-sm" {boek_attrs()}>{BOEK_KORT}</a>
           </div>
         </div>
       </article>
@@ -753,8 +777,8 @@ DISCOVER = f"""<main>
     <p class="lead">Ontdek wat er in jouw Backpack zit. In een 1-op-1 sessie staan jouw klacht,
       vraagstuk en wens centraal - met aandacht voor alle lagen van gezondheid.</p>
     <div class="btn-row">
-      <a class="btn btn-primary" href="{CLEM}" target="_blank" rel="noopener" data-book="clementine">
-        Boek een sessie met Clementine <span class="arw">&rarr;</span></a>
+      <a class="btn btn-primary" {boek_attrs()}>
+        {BOEK_CLEM} <span class="arw">&rarr;</span></a>
       <a class="btn btn-ghost" href="clementine.html">Over Clementine</a>
     </div>
   </div>
@@ -995,6 +1019,10 @@ def profile(slug, naam, rol, plaats, portret, intro_paras, opleidingen,
                   if extra_regel else "")
     lijst = "".join(f"<li>{o}</li>" for o in opleidingen)
     voornaam = naam.split()[0]
+    # Een link naar een eigen pagina mag geen nieuw tabblad openen; een link
+    # naar een afsprakensysteem elders wel.
+    book_attrs = ('target="_blank" rel="noopener" '
+                  if book_url.startswith("http") else "")
     body = f"""<main>
 <section class="pagehead">
   <div class="wrap">
@@ -1010,7 +1038,7 @@ def profile(slug, naam, rol, plaats, portret, intro_paras, opleidingen,
       {paras}
       {naam_regel}
       <div class="btn-row">
-        <a class="btn btn-primary" href="{book_url}" target="_blank" rel="noopener" data-book="{book_key}">
+        <a class="btn btn-primary" href="{book_url}" {book_attrs}data-book="{book_key}">
           {book_label} <span class="arw">&rarr;</span></a>
         <a class="btn btn-ghost" href="{werkwijze_link}">{werkwijze_label}</a>
       </div>
@@ -1062,7 +1090,7 @@ profile(
      "Geneeskunde, Universiteit van Amsterdam, bachelor en master (2013–2018)",
      "Bouwkunde, TU Delft, bachelor (2010–2013)"],
     "leefstijl-en-systemisch-werk.html", "Lees meer over mijn werkwijze",
-    CLEM, "Boek een sessie met Clementine", "clementine",
+    BOEKEN_CLEM, BOEK_CLEM, "clementine",
     extra_regel="BIG-registratie: 89924263801",
     title="Clementine Mol | Leefstijlarts en arts voor integrale geneeskunde - Amsterdam",
     desc="Clementine Mol is arts voor integrale geneeskunde en leefstijlgeneeskunde. "
@@ -1154,7 +1182,7 @@ CHECKUP = f"""<main>
         Wil je er samen dieper op ingaan, dan is de gratis kennismaking de logische volgende stap.
         Twintig minuten, vrijblijvend.</p>
       <div class="btn-row">
-        <a class="btn btn-primary" href="{CLEM}" target="_blank" rel="noopener" data-book="clementine">
+        <a class="btn btn-primary" {kennismaking_attrs()}>
           Plan gratis kennismaking <span class="arw">&rarr;</span></a>
         <a class="btn btn-ghost" href="index.html#aanbod">Bekijk het aanbod</a>
       </div>
@@ -1215,7 +1243,11 @@ def bouw_checkup():
     # 1c. de kennismakingsknop volgt de instelling van de site
     if not EXTERN_KENNISMAKING:
         s = s.replace('href="https://backpack.clientomgeving.nl/afspraak-maken?t=gbFxFmGj"',
-                      'href="contact.html"')
+                      f'href="{KENNISMAKING}"')
+        # De knop opende een nieuw tabblad omdat hij naar een ander systeem
+        # wees. Nu hij naar onze eigen pagina gaat, hoort dat niet meer.
+        s = s.replace(f'href="{KENNISMAKING}" class="btn-primary" target="_blank"',
+                      f'href="{KENNISMAKING}" class="btn-primary"')
 
     # 2. verouderde link herstellen
     s = s.replace("https://mybackpack.nl/Clementine.html", "clementine.html")
@@ -1424,8 +1456,8 @@ TARIEVEN = f"""<main>
       <p class="muted" style="font-size:.88rem;margin-top:1rem">Vrijgesteld van btw. Sessies vinden
         plaats in Amsterdam of online.</p>
       <div class="btn-row" style="margin-top:1.4rem">
-        <a class="btn btn-primary" href="{CLEM}" target="_blank" rel="noopener" data-book="clementine">
-          Boek bij Clementine <span class="arw">&rarr;</span></a>
+        <a class="btn btn-primary" {boek_attrs()}>
+          {BOEK_TARIEF} <span class="arw">&rarr;</span></a>
       </div>
     </div>
 
