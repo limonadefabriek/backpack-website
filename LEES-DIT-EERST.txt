@@ -1,18 +1,24 @@
 WAT JE UPLOADT
 
-  build.py   alleen dit bestand.
+  assets/style.css   alleen dit ene bestand.
 
 WAT ER FOUT GING
-Het CMS breekt lange waarden af over twee regels, zo:
+De lijstjes met vinkjes (opleidingen, onderwerpen, klachten) waren
+opgebouwd als flex-regels. Dat gaat goed zolang er alleen tekst in een
+regel staat. Maar zodra er een link in staat - zoals bij "Arts-onderzoeker
+'Ouderen langer zelfstandig thuis!'" op de pagina van Clementine - werden
+de tekst voor de link, de link zelf en de tekst erna elk een aparte kolom.
+Drie stroken naast elkaar.
 
-  samenvatting: Aflevering van NPO De verwondering met schrijver Bas Steman over
-    zijn ervaring met regressie.
+Op een breed scherm was er ruimte genoeg om het te verhullen. Op een
+telefoon niet. Vandaar dat de een het wel zag en de ander niet.
 
-Het script las alleen de eerste regel. Alles achter de afbreking
-verdween, zonder foutmelding - vandaar de halve zinnen onder de
-artikelen. Het leest nu ook de vervolgregels.
+Het vinkje staat nu los van de tekst geplaatst, waardoor alles in een
+regel gewoon achter elkaar doorloopt. Wat er ook in staat.
 
-Dit gold voor elk veld, niet alleen de samenvatting. Ook lange titels
-werden stilletjes ingekort.
+BONUS
+De lijst "ervaring en opleidingen" stond ingesteld op twee kolommen,
+maar die instelling werkte niet door de oude opzet. Nu wel - op een
+breed scherm staat die lijst voortaan netjes in twee kolommen.
 
-De HTML maakt Netlify zelf opnieuw. assets/ hoeft niet mee - die staat al goed.
+De HTML hoef je niet te uploaden; die verandert niet.

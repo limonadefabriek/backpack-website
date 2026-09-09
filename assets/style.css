@@ -147,12 +147,18 @@ li:hover > .submenu,li:focus-within > .submenu{opacity:1;visibility:visible;tran
 .prose ul{color:var(--muted);padding-left:1.1em;margin:0 0 1.3em}
 .prose li{margin-bottom:.4em}
 .prose strong{color:var(--ink)}
-.checks{list-style:none;padding:0;margin:1.5rem 0 0;display:grid;gap:11px}
-/* min-width:0 - zonder deze regel weigert een lang opleidingsitem te krimpen
-   en steekt het op een smalle telefoon buiten het kader uit. */
-.checks li{display:flex;gap:12px;align-items:flex-start;font-size:.97rem;color:var(--muted);min-width:0}
-.checks li > *{min-width:0}
-.checks svg{flex:0 0 18px;margin-top:5px;color:var(--sage)}
+/* Het vinkje staat absoluut geplaatst, en de tekst krijgt links ruimte.
+   Eerder was elk item een flex-container. Dat gaat goed zolang er alleen
+   tekst in staat, maar zodra er een link in een regel zit, wordt de tekst
+   vóór de link, de link zelf en de tekst erna elk een aparte kolom - drie
+   stroken naast elkaar. Op een breed scherm valt dat nauwelijks op, op een
+   telefoon is het onleesbaar. Zo kan dat niet meer gebeuren, ongeacht wat
+   er in een regel staat. */
+.checks{list-style:none;padding:0;margin:1.5rem 0 0}
+.checks li{position:relative;padding-left:30px;margin-bottom:11px;
+  font-size:.97rem;color:var(--muted);break-inside:avoid}
+.checks li:last-child{margin-bottom:0}
+.checks svg{position:absolute;left:0;top:5px;width:18px;height:18px;color:var(--sage)}
 .cols2{columns:2;column-gap:38px}
 @media (max-width:640px){.cols2{columns:1}}
 
