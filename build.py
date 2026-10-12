@@ -1720,6 +1720,13 @@ CONTACT = f"""<main>
           <input id="email" name="email" type="email" autocomplete="email" required>
         </div>
         <div class="field">
+          <!-- type="tel" laat op een telefoon het cijfertoetsenbord verschijnen.
+               Bewust geen patroon eromheen: +31, spaties en streepjes moeten
+               allemaal gewoon geaccepteerd worden. -->
+          <label for="telefoon">Telefoonnummer</label>
+          <input id="telefoon" name="telefoon" type="tel" autocomplete="tel" inputmode="tel" required>
+        </div>
+        <div class="field">
           <label for="onderwerp">Waar gaat je vraag over?</label>
           <select id="onderwerp" name="onderwerp">
             <option>Leefstijl, integrale geneeskunde en systemisch werk</option>

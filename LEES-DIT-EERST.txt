@@ -1,24 +1,12 @@
 WAT JE UPLOADT
 
-  assets/style.css   alleen dit ene bestand.
+  build.py   alleen dit bestand.
 
-WAT ER FOUT GING
-De lijstjes met vinkjes (opleidingen, onderwerpen, klachten) waren
-opgebouwd als flex-regels. Dat gaat goed zolang er alleen tekst in een
-regel staat. Maar zodra er een link in staat - zoals bij "Arts-onderzoeker
-'Ouderen langer zelfstandig thuis!'" op de pagina van Clementine - werden
-de tekst voor de link, de link zelf en de tekst erna elk een aparte kolom.
-Drie stroken naast elkaar.
+Het telefoonnummer is nu een verplicht veld. Verzenden lukt niet meer
+zonder, en de browser wijst zelf het lege veld aan.
 
-Op een breed scherm was er ruimte genoeg om het te verhullen. Op een
-telefoon niet. Vandaar dat de een het wel zag en de ander niet.
+Verplicht zijn nu: naam, e-mailadres, telefoonnummer en bericht.
+Het onderwerp heeft altijd een waarde, want dat is een keuzelijst.
 
-Het vinkje staat nu los van de tekst geplaatst, waardoor alles in een
-regel gewoon achter elkaar doorloopt. Wat er ook in staat.
-
-BONUS
-De lijst "ervaring en opleidingen" stond ingesteld op twee kolommen,
-maar die instelling werkte niet door de oude opzet. Nu wel - op een
-breed scherm staat die lijst voortaan netjes in twee kolommen.
-
-De HTML hoef je niet te uploaden; die verandert niet.
+style.css hoeft niet opnieuw - die heb je bij de vorige zip al meegenomen
+en er is niets aan veranderd.
