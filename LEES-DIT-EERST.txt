@@ -3,34 +3,14 @@ WAT JE UPLOADT
   build.py   alleen dit bestand.
 
 WAT ER VERANDERT
-Alle knoppen van Clementine gaan weer rechtstreeks naar haar
-afsprakensysteem, in een nieuw tabblad:
+Op de contactpagina stond in het blok "Direct een afspraak" een knop
+"Naar het formulier" die naar het formulier erboven sprong. Die knop
+heet nu "Plan gratis kennismaking" en gaat naar het afsprakensysteem
+van Clementine, in een nieuw tabblad.
 
-  - "Plan gratis kennismaking"  (op bijna elke pagina en in de voettekst)
-  - "Direct sessie boeken"      (homepage)
-  - "Boek een sessie met Clementine"  (leefstijlpagina en haar eigen pagina)
-  - "Boek bij Clementine"       (tarieven)
-  - "Boek direct een sessie bij Clementine of Maaike" (onderaan de pagina's)
-  - de knop onderaan de digitale check-up
+Het contactformulier zelf blijft gewoon op de pagina staan, met het
+verplichte telefoonveld. Alleen wordt er niet meer naartoe gesprongen.
 
-De knopteksten zijn automatisch meeveranderd: "Sessie aanvragen" is weer
-"Direct sessie boeken" geworden, want die belofte kan nu wel waargemaakt
-worden.
-
-Maaike's link is niet aangeraakt; die ging al rechtstreeks naar haar
-eigen systeem.
-
-OOK GELIJKGETROKKEN
-In de check-up stond het afspraakadres nog met een token erachter
-(?t=gbFxFmGj). Dat werkt wel, maar dan staan er twee verschillende
-adressen in de site. Nu staat overal hetzelfde adres.
-
-TERUG NAAR HET FORMULIER
-Bovenin build.py staan twee regels:
-  KENNISMAKING = CLEM
-  BOEKEN_CLEM  = CLEM
-Maak daar "contact.html" van en alles springt terug, knopteksten incluis.
-
-HET CONTACTFORMULIER BLIJFT BESTAAN
-Bereikbaar via Contact in het menu en in de voettekst. Het telefoonveld
-dat je verplicht maakte blijft gewoon staan.
+De knop volgt de schakelaar bovenin build.py. Zet je KENNISMAKING ooit
+terug op "contact.html", dan wijst deze knop vanzelf weer naar het
+formulier - dan wel als gewone link zonder nieuw tabblad.

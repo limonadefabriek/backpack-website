@@ -1756,8 +1756,11 @@ CONTACT = f"""<main>
         <p style="margin:.9rem 0 0;color:var(--muted);font-size:.95rem">Twintig minuten,
           vrijblijvend en gratis.</p>
         <div class="btn-row" style="margin-top:1.4rem">
-          <a class="btn btn-primary" href="#contactformulier">
-            Naar het formulier <span class="arw">&rarr;</span></a>
+          <!-- Volgt de instelling bovenin: nu het afsprakensysteem van
+               Clementine, en weer het formulier eronder zodra die
+               schakelaar terug gaat. -->
+          <a class="btn btn-primary" {kennismaking_attrs()}>
+            Plan gratis kennismaking <span class="arw">&rarr;</span></a>
         </div>
       </div>
 
