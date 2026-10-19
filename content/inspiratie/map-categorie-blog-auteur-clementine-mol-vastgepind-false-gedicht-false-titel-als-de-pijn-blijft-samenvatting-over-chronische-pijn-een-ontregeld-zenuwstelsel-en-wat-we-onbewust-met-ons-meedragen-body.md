@@ -17,7 +17,7 @@ Dat er niets aantoonbaars is gevonden, betekent niet dat er niets speelt. Een on
 
 De pijn is dus echt, maar de oorzaak ligt niet altijd op de plek waar het pijn doet.
 
-### Wat je lichaam met zich meedraagt
+### Wat je met je meedraagt
 
 In de westerse gezondheidszorg ligt de focus vaak op een aantoonbaar lichamelijk defect. Dat is waardevol, maar niet altijd genoeg. Wat ik regelmatig zie, is dat het zenuwstelsel nog beïnvloed wordt door onverwerkte ervaringen uit het verleden. Een onveilige jeugd, een verlies, emoties die niet gevoeld mochten worden.
 
