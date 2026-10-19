@@ -46,4 +46,5 @@ collections:
       - { name: "gedicht", label: "Weergeven als gedicht", widget: "boolean",
           default: false, required: false,
           hint: "Aanzetten houdt de regelafbrekingen intact." }
-      - { name: "body", label: "Tekst", widget: "markdown" }
+      - { name: "body", label: "Tekst", widget: "markdown",
+          hint: "Opsommingen en genummerde lijsten mogen met de knoppen hierboven. Tussenkoppen: gebruik Heading 2." }

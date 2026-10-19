@@ -1,16 +1,34 @@
 WAT JE UPLOADT
 
-  build.py   alleen dit bestand.
+  build.py            opsommingen worden nu herkend, in alle vormen
+  assets/style.css    opmaak voor opsommingen en genummerde lijsten
+  admin/config.yml    korte uitleg onder het tekstveld in het CMS
 
-WAT ER VERANDERT
-Op de contactpagina stond in het blok "Direct een afspraak" een knop
-"Naar het formulier" die naar het formulier erboven sprong. Die knop
-heet nu "Plan gratis kennismaking" en gaat naar het afsprakensysteem
-van Clementine, in een nieuw tabblad.
+De HTML maakt Netlify zelf opnieuw.
 
-Het contactformulier zelf blijft gewoon op de pagina staan, met het
-verplichte telefoonveld. Alleen wordt er niet meer naartoe gesprongen.
+WAT ER FOUT GING
+De voorbeeldweergave in het CMS gebruikt een volwaardige markdown-
+vertaler. De site gebruikte een vereenvoudigde versie die alleen een
+opsomming met streepjes herkende, aan het begin van een alinea.
 
-De knop volgt de schakelaar bovenin build.py. Zet je KENNISMAKING ooit
-terug op "contact.html", dan wijst deze knop vanzelf weer naar het
-formulier - dan wel als gewone link zonder nieuw tabblad.
+Alles daarbuiten ging mis. Het ergst was de knop voor opsommingen in
+het CMS zelf: die schrijft sterretjes weg, en sterretjes betekenen in
+markdown ook cursief. Een opsomming van drie punten werd daardoor een
+zin met schuine tekst erin.
+
+WAT NU WEL WERKT
+  - streepje, sterretje en plus
+  - genummerde lijsten (1. en 1) )
+  - een lijst die direct onder een zin begint, zonder witregel
+  - een witregel tussen twee punten
+  - ingesprongen punten
+  - een lang punt dat over twee regels doorloopt
+  - overgaan van opsomming naar nummers en andersom
+
+Bestaande artikelen zijn nagelopen: er is geen tekst verdwenen of
+veranderd.
+
+NA DE DEPLOY
+Vraag Clementine een artikel te openen, met de knoppen een opsomming
+te maken en te publiceren. Wat ze in de voorbeeldweergave ziet, hoort
+nu ook op de site te staan.

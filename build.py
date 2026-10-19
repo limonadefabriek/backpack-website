@@ -400,27 +400,61 @@ def naar_html(body, gedicht=False):
         return "\n".join(
             '    <p class="vers">%s</p>' % "<br>\n      ".join(inline(r) for r in st.splitlines())
             for st in strofen)
-    uit, lijst = [], []
+    # Regel voor regel in plaats van per blok. Dat is nodig omdat het CMS
+    # opsommingen op allerlei manieren wegschrijft: met een streepje, een
+    # sterretje of een plus, genummerd, met of zonder lege regel ertussen,
+    # ingesprongen, en lange punten afgebroken over twee regels. Eerder werd
+    # alleen "- " aan het begin van een blok herkend; al het andere belandde
+    # als gewone tekst op de pagina - en een sterretjeslijst werd zelfs
+    # cursieve tekst, omdat sterretjes in markdown ook cursief betekenen.
+    BULLET = re.compile(r"^\s*[-*+]\s+(.*)$")
+    GENUMMERD = re.compile(r"^\s*\d+[.)]\s+(.*)$")
+
+    uit = []
+    alinea = []          # regels van de alinea waar we nu in zitten
+    items = []           # punten van de lijst waar we nu in zitten
+    soort = None         # "ul" of "ol"
+
+    def sluit_alinea():
+        if alinea:
+            uit.append("    <p>%s</p>" % inline(" ".join(alinea)))
+            alinea.clear()
+
     def sluit_lijst():
-        if lijst:
-            uit.append("    <ul>" + "".join(f"<li>{inline(x)}</li>" for x in lijst) + "</ul>")
-            lijst.clear()
-    for blok in body.split("\n\n"):
-        blok = blok.strip()
-        if not blok:
-            continue
-        if blok.startswith("- "):
-            for r in blok.splitlines():
-                lijst.append(r[2:].strip())
-            sluit_lijst()
-        elif blok.startswith("### "):
-            sluit_lijst(); uit.append(f"    <h3>{inline(blok[4:])}</h3>")
-        elif blok.startswith("## "):
-            sluit_lijst(); uit.append(f"    <h2>{inline(blok[3:])}</h2>")
+        nonlocal soort
+        if items:
+            punten = "".join(f"<li>{inline(x)}</li>" for x in items)
+            uit.append(f"    <{soort}>{punten}</{soort}>")
+            items.clear()
+        soort = None
+
+    for regel in body.splitlines():
+        kaal = regel.strip()
+        mb, mg = BULLET.match(regel), GENUMMERD.match(regel)
+
+        if mb or mg:
+            nieuw = "ul" if mb else "ol"
+            sluit_alinea()
+            if soort and soort != nieuw:
+                sluit_lijst()       # van opsomming naar nummers, of andersom
+            soort = nieuw
+            items.append((mb or mg).group(1).strip())
+        elif not kaal:
+            # Een lege regel sluit een alinea af, maar niet meteen een lijst:
+            # het CMS zet vaak een witregel tussen twee punten.
+            sluit_alinea()
+        elif kaal.startswith("### "):
+            sluit_alinea(); sluit_lijst(); uit.append(f"    <h3>{inline(kaal[4:])}</h3>")
+        elif kaal.startswith("## "):
+            sluit_alinea(); sluit_lijst(); uit.append(f"    <h2>{inline(kaal[3:])}</h2>")
+        elif items and regel[:1] in " \t":
+            # Ingesprongen vervolgregel: hoort bij het punt erboven.
+            items[-1] += " " + kaal
         else:
             sluit_lijst()
-            uit.append("    <p>%s</p>" % inline(" ".join(blok.splitlines())))
-    sluit_lijst()
+            alinea.append(kaal)
+
+    sluit_alinea(); sluit_lijst()
     return "\n".join(uit)
 
 
