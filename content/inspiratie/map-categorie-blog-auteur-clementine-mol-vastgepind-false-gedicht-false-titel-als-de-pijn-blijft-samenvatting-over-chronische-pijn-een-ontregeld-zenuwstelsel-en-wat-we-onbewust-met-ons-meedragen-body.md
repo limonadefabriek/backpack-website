@@ -1,5 +1,5 @@
 ---
-titel: Als de pijn blijft
+titel: "In de Libelle: Als de pijn blijft"
 categorie: Blog
 datum: 2026-10-03
 samenvatting: Over chronische pijn, een ontregeld zenuwstelsel en wat we
