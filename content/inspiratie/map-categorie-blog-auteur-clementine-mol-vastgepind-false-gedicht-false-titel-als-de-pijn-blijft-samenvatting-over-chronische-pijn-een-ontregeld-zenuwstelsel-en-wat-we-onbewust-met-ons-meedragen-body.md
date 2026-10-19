@@ -25,11 +25,9 @@ Soms gaat het niet eens om je eigen ervaringen. Onverwerkt verdriet van ouders o
 
 Misschien herken je dat:
 
-\- je lichaam nooit echt lijkt te ontspannen
-
-\- je gewend bent om door te gaan, ook als het eigenlijk niet meer gaat
-
-\- de pijn erger wordt in periodes van spanning
+* je lichaam nooit echt lijkt te ontspannen
+* je gewend bent om door te gaan, ook als het eigenlijk niet meer gaat
+* de pijn erger wordt in periodes van spanning
 
 In het artikel vertelt Kim hoe ze via regressietherapie ging zien dat haar lichaam altijd “aan” stond. Door oude patronen te doorbreken; haar grenzen beter te voelen, meer rust te nemen en naar haar lichaam te luisteren werd de pijn minder.
 
