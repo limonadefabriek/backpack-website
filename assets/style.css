@@ -389,7 +389,14 @@ picture{display:contents}
 /* ---------- Responsive ---------- */
 @media (max-width:1000px){
   .method{grid-template-columns:1fr}.method-sticky{position:static}
-  .split{grid-template-columns:1fr}.split-img{order:-1;aspect-ratio:16/10}
+  /* Alleen de brede beelden worden liggend. Hier stond eerder 16/10 voor
+     elk beeld in dit blok, ook voor de staande portretten (0,80). Zo'n
+     portret werd dan vanuit het midden tot een liggende strook gesneden,
+     waardoor de bovenkant van het hoofd wegviel. Op een breed scherm viel
+     dat niet op, want daar geldt deze regel niet. */
+  .split{grid-template-columns:1fr}
+  .split-img{order:-1}
+  .split-img.wide{aspect-ratio:16/10}
   .foot-grid{grid-template-columns:1fr 1fr}
 }
 /* Het menu heeft zeven items plus een knop. Onder deze breedte botsten de

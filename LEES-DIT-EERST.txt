@@ -1,34 +1,29 @@
 WAT JE UPLOADT
 
-  build.py            opsommingen worden nu herkend, in alle vormen
-  assets/style.css    opmaak voor opsommingen en genummerde lijsten
-  admin/config.yml    korte uitleg onder het tekstveld in het CMS
-
-De HTML maakt Netlify zelf opnieuw.
+  assets/style.css   alleen dit bestand.
 
 WAT ER FOUT GING
-De voorbeeldweergave in het CMS gebruikt een volwaardige markdown-
-vertaler. De site gebruikte een vereenvoudigde versie die alleen een
-opsomming met streepjes herkende, aan het begin van een alinea.
+Onder 1000 pixels kreeg elk beeld in een tekst-met-beeld-blok een
+liggend kader van 16:10. Ook de staande portretten, die 0,80 zijn.
 
-Alles daarbuiten ging mis. Het ergst was de knop voor opsommingen in
-het CMS zelf: die schrijft sterretjes weg, en sterretjes betekenen in
-markdown ook cursief. Een opsomming van drie punten werd daardoor een
-zin met schuine tekst erin.
+Een staande foto in een liggend kader wordt vanuit het midden
+bijgesneden. Bij Clementine's portret verdween daardoor 50 procent
+van de hoogte - de helft van de foto, bovenaan en onderaan weg. Daar
+zat haar kruin bij in.
 
-WAT NU WEL WERKT
-  - streepje, sterretje en plus
-  - genummerde lijsten (1. en 1) )
-  - een lijst die direct onder een zin begint, zonder witregel
-  - een witregel tussen twee punten
-  - ingesprongen punten
-  - een lang punt dat over twee regels doorloopt
-  - overgaan van opsomming naar nummers en andersom
+Op een breed scherm geldt die regel niet, en daar stond het portret
+gewoon rechtop. Vandaar dat jij het niet zag en zij wel.
 
-Bestaande artikelen zijn nagelopen: er is geen tekst verdwenen of
-veranderd.
+NU
+Alleen de brede beelden worden nog liggend. De portretten houden hun
+eigen staande verhouding. Verlies in hoogte: van 50 procent naar 4
+procent, en dat is gelijk verdeeld over boven en onder.
 
-NA DE DEPLOY
-Vraag Clementine een artikel te openen, met de knoppen een opsomming
-te maken en te publiceren. Wat ze in de voorbeeldweergave ziet, hoort
-nu ook op de site te staan.
+NAGEKEKEN
+Alle paginas op 375 pixels doorgemeten. Geen enkele foto met een
+gezicht verliest nog noemenswaardig hoogte. Twee liggende foto's
+worden nog bijgesneden - de foto op de homepage en die van de praktijk
+in Voorschoten - maar dat is bedoeld en ik heb met eigen ogen
+gecontroleerd dat er geen hoofden sneuvelen.
+
+De HTML hoeft niet opnieuw; die verandert niet.
