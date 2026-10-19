@@ -4,13 +4,12 @@ categorie: Blog
 datum: 2026-10-03
 samenvatting: Over chronische pijn, een ontregeld zenuwstelsel en wat we
   onbewust met ons meedragen.
+afbeelding: /images/blog/20261019_165002.jpg
 auteur: Clementine Mol
 vastgepind: false
 gedicht: false
 ---
-In Libelle verscheen het artikel *Als de pijn blijft* van Romy Veul, waaraan ik mocht meewerken. Het gaat over iets wat ik in mijn praktijk vaak hoor: mensen met jarenlange pijnklachten die steeds te horen krijgen dat er niets te vinden is.
-
-Dat kan eenzaam voelen. Alsof je niet serieus wordt genomen.
+In Libelle verscheen het artikel *Als de pijn blijft* van Romy Veul, waaraan ik mocht meewerken. Het gaat over iets wat ik in mijn praktijk vaak hoor: mensen met jarenlange pijnklachten die steeds te horen krijgen dat er niets te vinden is. Dat kan eenzaam voelen. Alsof je niet serieus wordt genomen.
 
 ### De pijn is echt
 
