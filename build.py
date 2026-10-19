@@ -25,22 +25,21 @@ OUT = os.path.dirname(os.path.abspath(__file__))
 # ---------------------------------------------------------------------------
 SITE = "https://www.mybackpack.nl"
 
-CLEM = "https://backpack.clientomgeving.nl/afspraak-maken?t=gbFxFmGj"
+CLEM = "https://backpack.clientomgeving.nl/afspraak-maken"
 
 # ---------------------------------------------------------------------------
-# EEN KNOP OM ALLES TERUG TE ZETTEN
+# EEN KNOP OM ALLES OM TE ZETTEN
 #
-# Alle verwijzingen naar het afsprakensysteem van Clementine lopen nu via het
-# contactformulier. Dat geldt zowel voor de gratis kennismaking als voor het
-# boeken van een sessie.
+# Alle verwijzingen naar het afsprakensysteem van Clementine gaan er nu
+# rechtstreeks naartoe. Dat geldt zowel voor de gratis kennismaking als voor
+# het boeken van een sessie.
 #
-# Wil je over een paar maanden weer rechtstreeks naar haar afsprakensysteem?
-# Zet dan allebei de regels hieronder op CLEM en draai build.py opnieuw.
-# Verder hoef je nergens iets aan te veranderen; de knopteksten passen zich
-# vanzelf aan.
+# Wil je ze weer via het contactformulier laten lopen? Zet dan allebei de
+# regels hieronder op "contact.html" en draai build.py opnieuw. Verder hoef
+# je nergens iets aan te veranderen; de knopteksten passen zich vanzelf aan.
 # ---------------------------------------------------------------------------
-KENNISMAKING = "contact.html"    # of: CLEM
-BOEKEN_CLEM = "contact.html"     # of: CLEM
+KENNISMAKING = CLEM              # of: "contact.html"
+BOEKEN_CLEM = CLEM               # of: "contact.html"
 
 EXTERN_KENNISMAKING = KENNISMAKING.startswith("http")
 EXTERN_BOEKEN = BOEKEN_CLEM.startswith("http")
@@ -1268,11 +1267,14 @@ def bouw_checkup():
     s = s.replace(" \u2014 ", " - ").replace("\u2014", "-")
 
     # 1c. de kennismakingsknop volgt de instelling van de site
+    # In de check-up staat het afspraakadres met een token erachter. Dat werkt
+    # nog wel - het stuurt door naar hetzelfde formulier - maar dan zou er twee
+    # verschillende adressen in de site staan. Hier wordt het gelijkgetrokken
+    # met de rest, wat de instelling bovenin ook is.
+    s = s.replace('href="https://backpack.clientomgeving.nl/afspraak-maken?t=gbFxFmGj"',
+                  f'href="{KENNISMAKING}"')
     if not EXTERN_KENNISMAKING:
-        s = s.replace('href="https://backpack.clientomgeving.nl/afspraak-maken?t=gbFxFmGj"',
-                      f'href="{KENNISMAKING}"')
-        # De knop opende een nieuw tabblad omdat hij naar een ander systeem
-        # wees. Nu hij naar onze eigen pagina gaat, hoort dat niet meer.
+        # Een link naar onze eigen pagina hoort geen nieuw tabblad te openen.
         s = s.replace(f'href="{KENNISMAKING}" class="btn-primary" target="_blank"',
                       f'href="{KENNISMAKING}" class="btn-primary"')
 

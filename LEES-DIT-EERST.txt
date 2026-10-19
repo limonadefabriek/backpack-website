@@ -2,11 +2,35 @@ WAT JE UPLOADT
 
   build.py   alleen dit bestand.
 
-Het telefoonnummer is nu een verplicht veld. Verzenden lukt niet meer
-zonder, en de browser wijst zelf het lege veld aan.
+WAT ER VERANDERT
+Alle knoppen van Clementine gaan weer rechtstreeks naar haar
+afsprakensysteem, in een nieuw tabblad:
 
-Verplicht zijn nu: naam, e-mailadres, telefoonnummer en bericht.
-Het onderwerp heeft altijd een waarde, want dat is een keuzelijst.
+  - "Plan gratis kennismaking"  (op bijna elke pagina en in de voettekst)
+  - "Direct sessie boeken"      (homepage)
+  - "Boek een sessie met Clementine"  (leefstijlpagina en haar eigen pagina)
+  - "Boek bij Clementine"       (tarieven)
+  - "Boek direct een sessie bij Clementine of Maaike" (onderaan de pagina's)
+  - de knop onderaan de digitale check-up
 
-style.css hoeft niet opnieuw - die heb je bij de vorige zip al meegenomen
-en er is niets aan veranderd.
+De knopteksten zijn automatisch meeveranderd: "Sessie aanvragen" is weer
+"Direct sessie boeken" geworden, want die belofte kan nu wel waargemaakt
+worden.
+
+Maaike's link is niet aangeraakt; die ging al rechtstreeks naar haar
+eigen systeem.
+
+OOK GELIJKGETROKKEN
+In de check-up stond het afspraakadres nog met een token erachter
+(?t=gbFxFmGj). Dat werkt wel, maar dan staan er twee verschillende
+adressen in de site. Nu staat overal hetzelfde adres.
+
+TERUG NAAR HET FORMULIER
+Bovenin build.py staan twee regels:
+  KENNISMAKING = CLEM
+  BOEKEN_CLEM  = CLEM
+Maak daar "contact.html" van en alles springt terug, knopteksten incluis.
+
+HET CONTACTFORMULIER BLIJFT BESTAAN
+Bereikbaar via Contact in het menu en in de voettekst. Het telefoonveld
+dat je verplicht maakte blijft gewoon staan.
