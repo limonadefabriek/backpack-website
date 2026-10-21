@@ -4,14 +4,14 @@ categorie: Blog
 datum: 2026-10-21
 samenvatting: Over de ijsbergmetafoor en de drie lagen waarop je met een klacht
   of thema aan de slag kunt.
-afbeelding: /images/blog/vecteezy_majestic-iceberg-floating-in-calm-arctic-waters-during-early_74777467.jpeg
+afbeelding: /images/blog/ijsberg-metafoor-blog.jpg
 auteur: Clementine Mol
 vastgepind: false
 gedicht: false
 ---
 Een klacht die maar niet overgaat. Slecht slapen, aanhoudende vermoeidheid, pijn of onrust in je hoofd. Of een thema waar je steeds weer tegenaan loopt, in je werk of in je relaties. Dat is vaak het eerste wat je merkt, en logisch dat je daar iets aan wilt doen.
 
-<img src="/images/blog/ijsberg-metafoor.jpg" alt="De ijsbergmetafoor: het topje en de drie lagen eronder">
+<img src="/images/blog/ijsberg-metafoor-blog.jpg" alt="De ijsbergmetafoor: het topje en de drie lagen eronder">
 
 Bij Backpack gebruiken we daarvoor graag het beeld van een ijsberg. Je klacht, of het thema waar je mee zit, is het topje: het deel dat zichtbaar is. Maar onder dat topje zit meer. En op elk van die lagen kun je werken.
 
@@ -31,14 +31,14 @@ Daaronder ligt de laag van zelfzorg en leefstijl. Net als de eerste laag ligt di
 
 Daarbij kun je denken aan:
 
-- Gezonde, gevarieerde voeding, zo onbewerkt mogelijk
-- Voldoende beweging, het liefst elke dag een beetje
-- Voldoende en goede slaap
-- Dagelijkse momenten van ontspanning, waarin je even "UIT" staat: een wandeling (het liefst in de natuur), lezen, een spelletje doen, tuinieren of een creatieve hobby. Minder schermtijd helpt daarbij
-- Verbinding met de mensen om je heen, bij wie je je thuis voelt
-- Zingeving: waar sta jij voor, en waar kom je je bed voor uit?
-- Zo min mogelijk alcohol, roken en drugs, omdat dat toxische stoffen zijn voor je lichaam
-- Zo min mogelijk toxische stoffen in je omgeving, door te letten op o.a. gezonde lucht, biologische voeding en minder straling
+* Gezonde, gevarieerde voeding, zo onbewerkt mogelijk
+* Voldoende beweging, het liefst elke dag een beetje
+* Voldoende en goede slaap
+* Dagelijkse momenten van ontspanning, waarin je even "UIT" staat: een wandeling (het liefst in de natuur), lezen, een spelletje doen, tuinieren of een creatieve hobby. Minder schermtijd helpt daarbij
+* Verbinding met de mensen om je heen, bij wie je je thuis voelt
+* Zingeving: waar sta jij voor, en waar kom je je bed voor uit?
+* Zo min mogelijk alcohol, roken en drugs, omdat dat toxische stoffen zijn voor je lichaam
+* Zo min mogelijk toxische stoffen in je omgeving, door te letten op o.a. gezonde lucht, biologische voeding en minder straling
 
 Het zijn geen grote geheimen, maar aandacht voor deze basis kan veel in beweging brengen. Je lichaam wordt beter gevoed, krijgt meer ruimte om te herstellen, je zenuwstelsel kan meer tot rust komen en je merkt eerder wat je nodig hebt.
 
@@ -50,9 +50,9 @@ Wat onverwerkt is, vraagt om aandacht. De ziel wil niets liever dan dat die erva
 
 Misschien herken je dat:
 
-- je steeds weer tegen hetzelfde aanloopt, in je werk of in je relaties
-- een klacht terugkomt of maar niet weggaat, wat je ook probeert
-- je soms heftiger reageert dan de situatie lijkt te vragen
+* je steeds weer tegen hetzelfde aanloopt, in je werk of in je relaties
+* een klacht terugkomt of maar niet weggaat, wat je ook probeert
+* je soms heftiger reageert dan de situatie lijkt te vragen
 
 Op deze laag werken we met systemisch werk en regressietherapie. Met systemisch werk krijg je inzicht in je familiesysteem en in de patronen en dynamieken die daarin doorwerken. In regressietherapie krijgen onverwerkte ervaringen de ruimte om alsnog doorvoeld en verwerkt te worden.
 
