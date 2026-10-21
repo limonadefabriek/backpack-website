@@ -4,7 +4,7 @@ categorie: Blog
 datum: 2026-10-21
 samenvatting: Over de ijsbergmetafoor en de drie lagen waarop je met een klacht
   of thema aan de slag kunt.
-afbeelding: /images/blog/ijsberg-metafoor-blog.jpg
+afbeelding: /images/blog/vecteezy_majestic-iceberg-floating-in-calm-arctic-waters-during-early_74777467.jpeg
 auteur: Clementine Mol
 vastgepind: false
 gedicht: false
