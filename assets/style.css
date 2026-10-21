@@ -72,11 +72,22 @@ strong,b{font-weight:500}
 .btn-light:hover{transform:translateY(-2px);box-shadow:0 10px 26px -12px rgba(0,0,0,.4)}
 .btn .arw{transition:transform .25s}
 .btn:hover .arw{transform:translateX(3px)}
+/* De streep onder "Lees meer" en dergelijke stond op --line: 14 procent
+   dekking, in de praktijk nauwelijks te zien. Nu saliegroen, net als bij
+   links in lopende tekst, zodat overal dezelfde streep "hier kun je
+   klikken" betekent. */
 .tlink{display:inline-flex;align-items:center;gap:.5em;font-size:.9rem;font-weight:500;
-  color:var(--forest);border-bottom:1px solid var(--line);padding-bottom:.35em;transition:.25s}
+  color:var(--forest);border-bottom:1px solid var(--sage);padding-bottom:.35em;transition:.25s}
 .tlink:hover{border-color:var(--forest);gap:.85em}
-.sublink{font-size:.85rem;color:var(--muted);border-bottom:1px solid transparent;transition:.2s}
-.sublink:hover{color:var(--forest);border-color:var(--sage)}
+/* Links in lopende tekst. Eerder stonden ze op .85rem met een doorzichtige
+   onderstreping: kleiner dan de tekst eromheen en pas zichtbaar als je er
+   met de muis overheen ging. Op een telefoon, waar geen muisaanwijzer is,
+   was dus helemaal niet te zien dat je erop kon klikken. Nu even groot als
+   de omringende tekst, in het donkergroen van het merk, met een streep
+   eronder die er altijd staat. */
+.sublink{font-size:inherit;color:var(--forest);border-bottom:1px solid var(--sage);
+  padding-bottom:1px;transition:.2s}
+.sublink:hover{color:var(--forest-deep);border-color:var(--forest)}
 .btn-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:2rem}
 
 /* ---------- Header ---------- */

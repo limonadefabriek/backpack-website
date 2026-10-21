@@ -2,28 +2,25 @@ WAT JE UPLOADT
 
   assets/style.css   alleen dit bestand.
 
-WAT ER FOUT GING
-Onder 1000 pixels kreeg elk beeld in een tekst-met-beeld-blok een
-liggend kader van 16:10. Ook de staande portretten, die 0,80 zijn.
+TWEE DINGEN AANGEPAST
 
-Een staande foto in een liggend kader wordt vanuit het midden
-bijgesneden. Bij Clementine's portret verdween daardoor 50 procent
-van de hoogte - de helft van de foto, bovenaan en onderaan weg. Daar
-zat haar kruin bij in.
+1. Links in lopende tekst (ook die uit het CMS)
+   Stonden op 13,6 px terwijl de tekst eromheen 15,5 is, met een
+   doorzichtige onderstreping die pas bij muisaanwijzing verscheen.
+   Op een telefoon dus onzichtbaar als link.
+   Nu: zelfde grootte, donkergroen, met een vaste streep eronder.
 
-Op een breed scherm geldt die regel niet, en daar stond het portret
-gewoon rechtop. Vandaar dat jij het niet zag en zij wel.
+2. "Lees meer", "Alles bekijken" en dergelijke
+   Hadden wel een streep, maar op 14 procent dekking - in de praktijk
+   niet te zien. Nu saliegroen, net als bij 1.
 
-NU
-Alleen de brede beelden worden nog liggend. De portretten houden hun
-eigen staande verhouding. Verlies in hoogte: van 50 procent naar 4
-procent, en dat is gelijk verdeeld over boven en onder.
+Overal op de site betekent een saliegroene streep nu: hier kun je
+klikken.
 
-NAGEKEKEN
-Alle paginas op 375 pixels doorgemeten. Geen enkele foto met een
-gezicht verliest nog noemenswaardig hoogte. Twee liggende foto's
-worden nog bijgesneden - de foto op de homepage en die van de praktijk
-in Voorschoten - maar dat is bedoeld en ik heb met eigen ogen
-gecontroleerd dat er geen hoofden sneuvelen.
+BEWUST NIET AANGERAAKT
+  - menu bovenaan en de lijstjes in de voettekst: dat is navigatie,
+    daar verwacht niemand strepen onder
+  - de blokken met een afbeelding die als geheel aanklikbaar zijn
+  - knoppen, die spreken voor zich
 
 De HTML hoeft niet opnieuw; die verandert niet.
