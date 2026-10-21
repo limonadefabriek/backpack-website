@@ -11,9 +11,10 @@ gedicht: false
 ---
 Een klacht die maar niet overgaat. Slecht slapen, aanhoudende vermoeidheid, pijn of onrust in je hoofd. Of een thema waar je steeds weer tegenaan loopt, in je werk of in je relaties. Dat is vaak het eerste wat je merkt, en logisch dat je daar iets aan wilt doen.
 
-<img src="/images/blog/ijsberg-metafoor-blog.jpg" alt="De ijsbergmetafoor: het topje en de drie lagen eronder">
-
 Bij Backpack gebruiken we daarvoor graag het beeld van een ijsberg. Je klacht, of het thema waar je mee zit, is het topje: het deel dat zichtbaar is. Maar onder dat topje zit meer. En op elk van die lagen kun je werken.
+
+
+<img src="/images/blog/ijsberg-metafoor-blog.jpg" alt="De ijsbergmetafoor: het topje en de drie lagen eronder">
 
 ## Laag 1: symptomen verminderen en behandelen
 
