@@ -1813,8 +1813,8 @@ CONTACT = f"""<main>
         <div class="fact">
           <h4>Mail ons rechtstreeks</h4>
           <ul>
-            <li><a class="sublink" href="mailto:clementine@mybackpack.me">clementine@mybackpack.me</a></li>
-            <li><a class="sublink" href="mailto:maaike@mybackpack.me">maaike@mybackpack.me</a></li>
+            <li><a class="sublink" href="mailto:clementine@mybackpack.nl">clementine@mybackpack.nl</a></li>
+            <li><a class="sublink" href="mailto:maaike@mybackpack.nl">maaike@mybackpack.nl</a></li>
           </ul>
         </div>
         <div class="fact">

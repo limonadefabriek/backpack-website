@@ -1,26 +1,28 @@
 WAT JE UPLOADT
 
-  assets/style.css   alleen dit bestand.
+  build.py   alleen dit bestand.
 
-TWEE DINGEN AANGEPAST
+WAT ER VERANDERT
+De twee mailadressen op de contactpagina, onder "Mail ons rechtstreeks":
 
-1. Links in lopende tekst (ook die uit het CMS)
-   Stonden op 13,6 px terwijl de tekst eromheen 15,5 is, met een
-   doorzichtige onderstreping die pas bij muisaanwijzing verscheen.
-   Op een telefoon dus onzichtbaar als link.
-   Nu: zelfde grootte, donkergroen, met een vaste streep eronder.
+  clementine@mybackpack.me  ->  clementine@mybackpack.nl
+  maaike@mybackpack.me      ->  maaike@mybackpack.nl
 
-2. "Lees meer", "Alles bekijken" en dergelijke
-   Hadden wel een streep, maar op 14 procent dekking - in de praktijk
-   niet te zien. Nu saliegroen, net als bij 1.
+Zowel de zichtbare tekst als de link erachter.
 
-Overal op de site betekent een saliegroene streep nu: hier kun je
-klikken.
+GECONTROLEERD NA DE BUILD
+  - mybackpack.me komt nergens meer voor in de site
+  - beide adressen kloppen in tekst en in de mailto-link
+  - alle 23 paginas gebouwd, geen kapotte interne links
+  - geen ontbrekende afbeeldingen
+  - boekingsknoppen wijzen nog naar MijnDiAd
+  - contactformulier intact, telefoonveld nog verplicht
+  - geen prijs van 99 euro meer
+  - sitemap op www.mybackpack.nl
+  - elke pagina netjes afgesloten
 
-BEWUST NIET AANGERAAKT
-  - menu bovenaan en de lijstjes in de voettekst: dat is navigatie,
-    daar verwacht niemand strepen onder
-  - de blokken met een afbeelding die als geheel aanklikbaar zijn
-  - knoppen, die spreken voor zich
-
-De HTML hoeft niet opnieuw; die verandert niet.
+NOG NAKIJKEN - BUITEN DE SITE
+De vier pdf's in de map files/ (algemene voorwaarden en privacy-
+verklaringen van beide praktijken) staan vermoedelijk vol met het oude
+adres. Die kan ik niet aanpassen; dat zijn documenten van Clementine
+en Maaike zelf. Open ze even en kijk.
