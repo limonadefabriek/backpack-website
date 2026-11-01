@@ -1047,7 +1047,7 @@ UNPACK = f"""<main>
     <div class="cta reveal">
       <h2>een sessie boeken bij Maaike</h2>
       <p>Maaike werkt uitsluitend op afspraak en doet geen kennismakingsgesprekken. Je boekt
-      rechtstreeks een intake; daarin is ruim tijd om te kijken wat er speelt.</p>
+      rechtstreeks een intake + eerste sessie; daarin is ruim tijd om te kijken wat er speelt.</p>
       <a class="btn btn-light" href="{MAAIKE}" target="_blank" rel="noopener" data-book="maaike">
         Boek een sessie met Maaike <span class="arw">&rarr;</span></a>
       <p class="cta-direct">Liever eerst vrijblijvend overleggen of dit bij je past?
@@ -1062,7 +1062,7 @@ UNPACK = f"""<main>
 page("regressietherapie.html",
      "Regressietherapie Voorschoten | Verwerkingstherapie &amp; voorouderlijk werk - Backpack",
      "Regressie- en reïncarnatietherapie bij Maaike Oosterveer in Voorschoten. Geen hypnose, "
-     "wel diepgaand werk naar de kern. Intake 180 minuten voor &euro;299.",
+     "wel diepgaand werk naar de kern. Intake + eerste sessie 180 minuten voor &euro;299.",
      UNPACK)
 
 
@@ -1648,8 +1648,8 @@ FAQ_ITEMS = [
    je is.</p>
    <p>Maaike werkt uitsluitend op afspraak en doet zelf geen kennismakingsgesprekken. Haar praktijk
    is vol en zij besteedt haar tijd aan sessies. Wil je bij haar terecht, dan boek je rechtstreeks
-   een intake. Die duurt 180 minuten en begint met een uitgebreid gesprek, dus er is ruim tijd om
-   te kijken wat er speelt.</p>"""),
+   een intake + eerste sessie. Die duurt 180 minuten en begint met een uitgebreid gesprek en volgt
+   direct daarna met de eerste sessie, dus er is ruim tijd om te kijken wat er speelt.</p>"""),
  ("Waarom moet ik vooraf betalen?", """
    <p>Om een efficiënte planning en administratie mogelijk te maken hebben wij er bewust voor gekozen
    de betaling vooraf te laten plaatsvinden. Zo kunnen wij onze tijd volledig besteden aan het geven
@@ -1667,7 +1667,7 @@ FAQ_ITEMS = [
    <p>Intake 60 min &euro;149 &middot; vervolg 60 min &euro;149
    &middot; vervolg 120 min &euro;249 &middot; zakelijk uurtarief &euro;199. Alles vrijgesteld van btw.</p>
    <h4>Bij Maaike</h4>
-   <p>Intake 180 min &euro;299 &middot; vervolg 150 min &euro;249. Inclusief btw.</p>
+   <p>Intake + eerste sessie 180 min &euro;299 &middot; vervolg 150 min &euro;249. Inclusief btw.</p>
    <p><a class="tlink" href="tarieven.html">Naar de tarievenpagina <span class="arw">&rarr;</span></a></p>"""),
  ("Worden de sessies vergoed door een verzekeraar?", """
    <p>Nee. Wij werken niet samen met verzekeraars, en dat is een bewuste keuze: de mogelijke

@@ -1,28 +1,12 @@
 WAT JE UPLOADT
 
-  build.py   alleen dit bestand.
+  build.py   alleen dit bestand. Vervangt de vorige zip.
 
-WAT ER VERANDERT
-De twee mailadressen op de contactpagina, onder "Mail ons rechtstreeks":
+De afspraak van 180 minuten heet nu overal op de site hetzelfde:
+"Intake + eerste sessie". In de FAQ, op de regressiepagina, in de
+omschrijving die Google toont, en in de tarieventabellen.
 
-  clementine@mybackpack.me  ->  clementine@mybackpack.nl
-  maaike@mybackpack.me      ->  maaike@mybackpack.nl
-
-Zowel de zichtbare tekst als de link erachter.
-
-GECONTROLEERD NA DE BUILD
-  - mybackpack.me komt nergens meer voor in de site
-  - beide adressen kloppen in tekst en in de mailto-link
-  - alle 23 paginas gebouwd, geen kapotte interne links
-  - geen ontbrekende afbeeldingen
-  - boekingsknoppen wijzen nog naar MijnDiAd
-  - contactformulier intact, telefoonveld nog verplicht
-  - geen prijs van 99 euro meer
-  - sitemap op www.mybackpack.nl
-  - elke pagina netjes afgesloten
-
-NOG NAKIJKEN - BUITEN DE SITE
-De vier pdf's in de map files/ (algemene voorwaarden en privacy-
-verklaringen van beide praktijken) staan vermoedelijk vol met het oude
-adres. Die kan ik niet aanpassen; dat zijn documenten van Clementine
-en Maaike zelf. Open ze even en kijk.
+EEN KLEINE AANPASSING AAN JOUW TEKST
+In de FAQ liep de zin anders dubbel: "een intake + eerste sessie ...
+volgt direct daarna met een sessie". Dat laatste is nu "met de eerste
+sessie" geworden, zodat het over hetzelfde gaat.
