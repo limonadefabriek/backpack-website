@@ -25,6 +25,29 @@ OUT = os.path.dirname(os.path.abspath(__file__))
 # ---------------------------------------------------------------------------
 SITE = "https://www.mybackpack.nl"
 
+# ---------------------------------------------------------------------------
+# PRE-ORDER WERKBOEK
+#
+# Alles van de pre-order staat hier bij elkaar, zodat je prijzen, data en
+# betaallinks kunt aanpassen zonder de pagina zelf in te hoeven.
+#
+# Loopt de actie af? Zet WERKBOEK_ACTIEF op False en draai build.py opnieuw.
+# Dan verdwijnen het blok op de homepage en de regel in de voettekst; de
+# pagina zelf blijft bestaan voor wie de link nog heeft.
+# ---------------------------------------------------------------------------
+WERKBOEK_ACTIEF = True
+
+PRIJS_FYSIEK = "49,95"        # werkboek + digitale tool, zonder verzending
+PRIJS_VERZENDING = "5,95"
+PRIJS_TOTAAL = "55,90"        # wat er daadwerkelijk betaald wordt
+PRIJS_DIGITAAL = "29,95"
+
+BETAALLINK_TOTAAL = "https://betaalverzoek.rabobank.nl/betaalverzoek/?id=ShFKNHx0TIKG5JgAiBXkug"
+BETAALLINK_DIGITAAL = "https://betaalverzoek.rabobank.nl/betaalverzoek/?id=0lHuZBpkQxWUTjDLX5deOA"
+
+PREORDER_TOT = "30 november"
+LEVERING = "voor de kerst"
+
 CLEM = "https://backpack.clientomgeving.nl/afspraak-maken"
 
 # ---------------------------------------------------------------------------
@@ -202,6 +225,7 @@ def footer(depth=0):
         <h4>praktisch</h4>
         <ul>
           <li><a href="{r}contact.html">Contact</a></li>
+          {'<li><a href="' + r + 'werkboek.html">Werkboek (pre-order)</a></li>' if WERKBOEK_ACTIEF else ''}
           <li><a {kennismaking_attrs(depth)}>Plan kennismaking</a></li>
           <li><a href="{r}tarieven.html">Tarieven</a></li>
           <li><a href="{r}algemene-voorwaarden.html">Algemene voorwaarden</a></li>
@@ -516,6 +540,26 @@ LD_JSON = """
 }
 </script>""".replace("__SITE__", SITE)
 
+# Aankondiging van de pre-order op de homepage. Staat los van HOME zodat
+# WERKBOEK_ACTIEF hem in één keer kan laten verdwijnen.
+WERKBOEK_BANNER = f"""
+<section class="section" style="padding-block:clamp(26px,3.2vw,40px)">
+  <div class="wrap">
+    <div class="panel-split reveal" style="background:var(--sand);border-radius:var(--radius-lg);
+         padding:clamp(28px,3.6vw,42px) clamp(24px,4vw,48px)">
+      <div>
+        <p class="eyebrow" style="color:var(--forest);opacity:.6">Nieuw &middot; pre-order tot en met {PREORDER_TOT}</p>
+        <h3 style="font-size:clamp(1.3rem,2.2vw,1.7rem);margin-bottom:.5rem">Werkboek: Unpack your story</h3>
+        <p class="muted" style="margin:0;font-size:.97rem;max-width:56ch">92 pagina's om je eigen
+          familieverhaal uit te pakken. Geschreven door Clementine en Maaike. Bestel nu en je hebt
+          het {LEVERING} in huis.</p>
+      </div>
+      <a class="btn btn-primary" href="werkboek.html">Bekijk het werkboek <span class="arw">&rarr;</span></a>
+    </div>
+  </div>
+</section>
+""" if WERKBOEK_ACTIEF else ""
+
 HOME = f"""<main id="top">
 
 <section class="hero">
@@ -540,7 +584,7 @@ HOME = f"""<main id="top">
     </div>
   </div>
 </section>
-
+{WERKBOEK_BANNER}
 <section class="section" id="verhaal" style="padding-top:clamp(32px,4vw,56px)">
   <div class="wrap split">
     <div class="reveal">
@@ -1888,6 +1932,254 @@ page("bedankt.html", "Bericht verstuurd | Backpack",
      BEDANKT, extra='\n<meta name="robots" content="noindex">')
 
 # ============================================================
+#  WERKBOEK - pre-orderpagina
+# ============================================================
+WERKBOEK = f"""<main>
+<section class="pagehead">
+  <div class="wrap-narrow">
+    <p class="eyebrow">Pre-order &middot; tot en met {PREORDER_TOT}</p>
+    <h1>Unpack your story</h1>
+    <p class="lead">Een werkboek van 92 pagina's waarin je je eigen familieverhaal uitpakt.
+      Geschreven door Clementine Mol en Maaike Oosterveer. We drukken op basis van het aantal
+      bestellingen, dus wie nu bestelt heeft het {LEVERING} in huis.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:clamp(18px,2.4vw,30px)">
+  <div class="wrap">
+    <div class="split-img wide reveal" style="aspect-ratio:3/2">
+      <picture><source srcset="images/werkboek-sfeer.webp" type="image/webp"><img
+        src="images/werkboek-sfeer.jpg" width="1400" height="933"
+        alt="Het werkboek Unpack your story op een houten tafel" fetchpriority="high"></picture>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="wrap-narrow prose reveal">
+    <h2>waarom dit werkboek</h2>
+    <p>Je bent gebouwd uit de verhalen van je voorouders. Sommige daarvan ken je. Andere zijn nooit
+      verteld &mdash; en juist die werken vaak door: in hoe je reageert, waar je steeds tegenaan
+      loopt, wat je lichaam je laat voelen.</p>
+    <p>Dit werkboek helpt je die verhalen op te halen. Niet door erover te lezen, maar door vragen
+      te beantwoorden. Over jezelf, je ouders, en de families waar zij uit komen. Door je aandacht
+      op je familie te richten komt er vaak al van alles in beweging.</p>
+    <p>Je kunt het alleen doen, in je eigen tempo. Het werkt ook als voorbereiding op een sessie bij
+      Clementine of Maaike: je komt dan binnen met je verhaal al op papier.</p>
+
+    <h2>wat erin zit</h2>
+    <ul>
+      <li><strong>Welkom</strong> &mdash; hoe je het werkboek gebruikt, en hoe je goed voor jezelf zorgt onderweg</li>
+      <li><strong>Jij nu</strong> &mdash; je eigen levensloop, gezondheid, relaties en verlies</li>
+      <li><strong>Je ouders</strong> &mdash; wie ze zijn, wat ze meedroegen, hoe het tussen jullie was</li>
+      <li><strong>De familie van je vader</strong> en <strong>van je moeder</strong> &mdash; grootouders, patronen, wat er niet besproken werd</li>
+      <li><strong>Het gesprek</strong> &mdash; hoe je er met familie over begint</li>
+      <li><strong>Even uitzoomen</strong> en <strong>Mijn Backpack</strong> &mdash; wat je hebt gevonden, en wat je ermee wilt</li>
+    </ul>
+    <p class="muted" style="font-size:.93rem">92 pagina's, A4, hardcover. Met ruimte om in te
+      schrijven &mdash; het is een werkboek, geen leesboek.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <p class="eyebrow" style="text-align:center">Een kijkje binnenin</p>
+    <div class="blog-grid reveal" style="margin-top:1.6rem">
+      <div class="split-img reveal" style="aspect-ratio:1/1.41">
+        <picture><source srcset="images/werkboek-binnen-1.webp" type="image/webp"><img
+          src="images/werkboek-binnen-1.jpg" width="760" height="1075" alt="Pagina uit hoofdstuk Welkom" loading="lazy"></picture>
+      </div>
+      <div class="split-img reveal" style="aspect-ratio:1/1.41">
+        <picture><source srcset="images/werkboek-binnen-2.webp" type="image/webp"><img
+          src="images/werkboek-binnen-2.jpg" width="760" height="1075" alt="Pagina met de vraag wat er in de Backpack van je ouders zat" loading="lazy"></picture>
+      </div>
+      <div class="split-img reveal" style="aspect-ratio:1/1.41">
+        <picture><source srcset="images/werkboek-binnen-3.webp" type="image/webp"><img
+          src="images/werkboek-binnen-3.jpg" width="760" height="1075" alt="Pagina Mijn Backpack met een tekening van een rugzak" loading="lazy"></picture>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:clamp(28px,3.6vw,48px)" id="bestellen">
+  <div class="wrap-narrow">
+    <p class="eyebrow">Bestellen</p>
+    <h2>twee manieren</h2>
+    <div class="offer-grid" style="margin-top:clamp(26px,3.4vw,38px)">
+
+      <article class="card">
+        <div class="card-head">
+          <p class="card-name">Compleet</p>
+          <h3>Werkboek + digitale tool</h3>
+        </div>
+        <p>Het gedrukte werkboek thuisbezorgd, plus toegang tot de digitale tool waarmee je je
+          familieverhaal online kunt uitwerken en bewaren.</p>
+        <p class="price" style="margin-top:1.2rem">&euro;&nbsp;{PRIJS_FYSIEK}
+          <span class="muted" style="font-weight:300">+ &euro;&nbsp;{PRIJS_VERZENDING} verzending</span><br>
+          <strong>Totaal &euro;&nbsp;{PRIJS_TOTAAL}</strong></p>
+        <div class="card-foot">
+          <a class="btn btn-primary btn-sm" href="#bestelformulier">Bestel dit &rarr;</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <p class="card-name">Digitaal</p>
+          <h3>Alleen de digitale tool</h3>
+        </div>
+        <p>Dezelfde vragen, online in te vullen en te bewaren. Zonder gedrukt boek, dus ook zonder
+          verzendkosten. Je krijgt een persoonlijke toegangscode.</p>
+        <p class="price" style="margin-top:1.2rem"><strong>&euro;&nbsp;{PRIJS_DIGITAAL}</strong></p>
+        <div class="card-foot">
+          <a class="btn btn-ghost btn-sm" href="#bestelformulier">Bestel dit &rarr;</a>
+        </div>
+      </article>
+
+    </div>
+    <p class="muted" style="font-size:.9rem;margin-top:1.4rem">Alle prijzen zijn inclusief btw.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="wrap-narrow">
+    <div class="panel">
+      <p class="eyebrow" style="color:var(--forest);opacity:.6">Goed om te weten</p>
+      <h3 style="margin-bottom:1.2rem">Vier vragen die je vast hebt</h3>
+      <div class="prose">
+        <h4>Wanneer krijg ik het?</h4>
+        <p>De pre-order loopt tot en met {PREORDER_TOT}. Daarna gaat de opdracht naar de drukker.
+          Bestel je nu, dan heb je het werkboek {LEVERING} in huis. Heb je het eerder nodig, zet
+          dat dan in het formulier &mdash; dan kijken we wat mogelijk is.</p>
+        <h4>Waarom een pre-order?</h4>
+        <p>We laten drukken op basis van het aantal bestellingen. Zo hoeven we geen stapels te laten
+          liggen en blijft de prijs wat hij is.</p>
+        <h4>Hoe betaal ik?</h4>
+        <p>Je vult eerst het formulier hieronder in. Daarna kom je op een pagina met de betaallink,
+          en reken je af via iDEAL. Je bestelling is definitief zodra de betaling binnen is.</p>
+        <h4>Kan ik het terugsturen?</h4>
+        <p>Ja. Je hebt veertien dagen bedenktijd vanaf het moment dat je het werkboek ontvangt. Stuur
+          het ongebruikt terug en je krijgt het aankoopbedrag terug; de retourkosten zijn voor jou.
+          Voor de digitale tool vervalt dat recht zodra je de toegangscode hebt gebruikt.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:clamp(28px,3.6vw,48px)">
+  <div class="wrap-narrow">
+    <p class="eyebrow">Bestelformulier</p>
+    <h2>je bestelling</h2>
+    <p class="lead" style="margin-top:1rem">Na het versturen kom je op de betaalpagina. Je bestelling
+      is rond zodra de betaling binnen is.</p>
+
+    <form class="form" id="bestelformulier" name="werkboek" method="POST"
+          action="/bestelling-ontvangen.html" data-netlify="true"
+          data-netlify-honeypot="bot-field" style="margin-top:1.8rem">
+      <input type="hidden" name="form-name" value="werkboek">
+      <p hidden><label>Niet invullen: <input name="bot-field"></label></p>
+
+      <div class="field">
+        <label for="wb-keuze">Wat wil je bestellen?</label>
+        <select id="wb-keuze" name="bestelling" required>
+          <option value="Werkboek + digitale tool (&euro;{PRIJS_TOTAAL} incl. verzending)">Werkboek + digitale tool &mdash; &euro;&nbsp;{PRIJS_TOTAAL} incl. verzending</option>
+          <option value="Alleen digitale tool (&euro;{PRIJS_DIGITAAL})">Alleen de digitale tool &mdash; &euro;&nbsp;{PRIJS_DIGITAAL}</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="wb-aantal">Aantal</label>
+        <input id="wb-aantal" name="aantal" type="number" min="1" max="10" value="1" required>
+      </div>
+      <div class="field">
+        <label for="wb-naam">Naam</label>
+        <input id="wb-naam" name="naam" type="text" autocomplete="name" required>
+      </div>
+      <div class="field">
+        <label for="wb-email">E-mailadres</label>
+        <input id="wb-email" name="email" type="email" autocomplete="email" required>
+      </div>
+      <div class="field">
+        <label for="wb-adres">Adres <span class="optioneel">alleen bij een gedrukt werkboek</span></label>
+        <textarea id="wb-adres" name="adres" rows="3"
+          placeholder="Straat en huisnummer&#10;Postcode en plaats"></textarea>
+      </div>
+      <div class="field">
+        <label for="wb-wanneer">Heb je het op een bepaald moment nodig?</label>
+        <select id="wb-wanneer" name="wanneer">
+          <option>Geen haast</option>
+          <option>Graag voor de kerst</option>
+          <option>Zo snel mogelijk</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="wb-opmerking">Opmerking <span class="optioneel">optioneel</span></label>
+        <textarea id="wb-opmerking" name="opmerking" rows="3"></textarea>
+      </div>
+      <p class="muted" style="font-size:.88rem">We gebruiken je gegevens alleen om je bestelling te
+        versturen en te administreren. Zie onze
+        <a class="sublink" href="privacyverklaring.html">privacyverklaring</a> en
+        <a class="sublink" href="algemene-voorwaarden.html">algemene voorwaarden</a>.</p>
+      <div style="margin-top:1.4rem"><button class="btn btn-primary" type="submit">Naar betalen <span class="arw">&rarr;</span></button></div>
+    </form>
+  </div>
+</section>
+
+<section class="section" style="padding-top:clamp(30px,4vw,54px)">
+  <div class="wrap-narrow">
+    <p class="muted" style="font-size:.86rem">Verkoper: Backpack &middot; KvK 99312050 &middot;
+      <a class="sublink" href="contact.html">contact</a>. Prijzen inclusief btw.</p>
+  </div>
+</section>
+</main>
+"""
+
+page("werkboek.html",
+     "Werkboek Unpack your story | Pre-order - Backpack",
+     f"Pre-order het werkboek Unpack your story van Clementine Mol en Maaike Oosterveer. "
+     f"92 pagina's, hardcover, &euro;{PRIJS_FYSIEK}. Bestel tot en met {PREORDER_TOT}, "
+     f"{LEVERING} in huis.",
+     WERKBOEK)
+
+# ---- bedankpagina met de betaalstap ----
+WERKBOEK_BEDANKT = f"""<main>
+<section class="section">
+  <div class="wrap-narrow">
+    <p class="eyebrow">Bijna klaar</p>
+    <h1 style="font-size:clamp(2rem,4vw,3rem)">nog één stap: betalen</h1>
+    <p class="lead" style="margin-top:1.2rem">Je bestelling staat genoteerd. Hij is definitief zodra
+      de betaling binnen is. Kies hieronder het bedrag dat bij je bestelling hoort.</p>
+
+    <div class="btn-row" style="margin-top:2rem;flex-direction:column;align-items:flex-start;gap:1rem">
+      <a class="btn btn-primary" href="{BETAALLINK_TOTAAL}" target="_blank" rel="noopener"
+         data-cta="werkboek-betalen-totaal">
+        Werkboek + digitale tool &mdash; betaal &euro;&nbsp;{PRIJS_TOTAAL} <span class="arw">&rarr;</span></a>
+      <a class="btn btn-ghost" href="{BETAALLINK_DIGITAAL}" target="_blank" rel="noopener"
+         data-cta="werkboek-betalen-digitaal">
+        Alleen de digitale tool &mdash; betaal &euro;&nbsp;{PRIJS_DIGITAAL} <span class="arw">&rarr;</span></a>
+    </div>
+
+    <div class="panel" style="margin-top:clamp(36px,4.5vw,56px)">
+      <div class="prose">
+        <h3 style="margin-top:0">Wat er nu gebeurt</h3>
+        <p>Bestel je meer dan één exemplaar? Betaal dan het bedrag maal het aantal &mdash; dat kun je
+          in het betaalscherm aanpassen.</p>
+        <p>Na je betaling krijg je binnen een paar dagen persoonlijk bericht van ons. Daarin staat de
+          bevestiging, en bij de digitale tool ook je toegangscode.</p>
+        <p>Het gedrukte werkboek gaat na {PREORDER_TOT} naar de drukker en ligt {LEVERING} bij je op
+          de mat.</p>
+        <p>Klopt er iets niet, of lukt het betalen niet? Mail ons gerust via de
+          <a class="sublink" href="contact.html">contactpagina</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+"""
+
+page("bestelling-ontvangen.html", "Bestelling ontvangen | Backpack",
+     "Je bestelling is genoteerd. Nog één stap: de betaling.",
+     WERKBOEK_BEDANKT, extra='\n<meta name="robots" content="noindex">')
+
+# ============================================================
 #  INSPIRATIE - overzichtspagina
 # ============================================================
 INSPIRATIE = f"""<main>
@@ -2071,6 +2363,11 @@ _paginas = sorted(
     [f for f in os.listdir(OUT) if f.endswith(".html")] +
     ["inspiratie/" + f for f in sorted(os.listdir(os.path.join(OUT, "inspiratie")))
      if f.endswith(".html")] if os.path.isdir(os.path.join(OUT, "inspiratie")) else [])
+# Pagina's met noindex horen niet in de sitemap: dan vraag je Google aan de
+# ene kant om ze te bezoeken en zeg je er in de pagina zelf nee tegen.
+_paginas = [p for p in _paginas
+            if 'name="robots" content="noindex"' not in
+            open(os.path.join(OUT, p), encoding="utf-8").read()]
 _items = "".join(
     f"  <url><loc>{SITE}/{'' if p == 'index.html' else p}</loc></url>\n"
     for p in _paginas)
