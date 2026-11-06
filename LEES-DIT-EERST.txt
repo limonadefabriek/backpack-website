@@ -3,40 +3,29 @@ WAT JE UPLOADT
   build.py       de pre-orderpagina, de bedankpagina, het blok op de
                  homepage en de regel in de voettekst
   netlify.toml   kort adres /werkboek
-  images/        tien bestanden: sfeerbeeld, cover en drie pagina's
-                 uit het binnenwerk, elk als jpg en webp
+  images/        tien bestanden (twee daarvan vervangen de vorige versie)
 
-De HTML maakt Netlify zelf opnieuw.
+Dit vervangt de vorige zip volledig.
 
-DIRECT NA DE DEPLOY - NIET VERGETEN
-Er staat nu een TWEEDE formulier op de site, met de naam "werkboek".
-Netlify herkent dat vanzelf, maar de meldingsmail moet je apart
-aanzetten - die van het contactformulier geldt er niet voor.
+VERWERKT
+  - meerdere exemplaren: nu staat er dat je de betaling zo vaak
+    doorloopt als je boeken wilt
+  - bezorgadres opgesplitst in straat, postcode en plaats, en
+    verplicht zodra iemand het gedrukte werkboek kiest
+  - bezorgvraag verplicht, met Sint, Kerst en geen haast
+  - "daarna gaat de opdracht naar de drukker" eruit
+  - "voor de kerst in huis" is "binnen twee weken in huis"
+  - "via iDEAL" is "via een veilige betaallink"
+  - geen enkele em-dash meer, op de hele site
+  - derde binnenwerkpagina is nu p.19 (Je vader) in plaats van de
+    rugzaktekening, en staat nu op de tweede plek
 
-  Netlify -> Forms -> Submission notifications -> Add notification
-  Kies het formulier "werkboek" (of zet hem op alle formulieren)
+DE ADRESVELDEN
+Een klein stukje JavaScript in de pagina zelf verbergt het bezorgadres
+bij de digitale tool en zet de verplichting dan uit. Werkt JavaScript
+niet, dan blijven de velden staan en is het adres altijd verplicht.
+Nooit stuk, hooguit onhandig. Je hoeft site.js niet te uploaden.
 
-Zonder die melding stapelen bestellingen zich stil op in Netlify.
-
-DAARNA TESTEN
-  1. Ga naar mybackpack.nl/werkboek
-  2. Vul een testbestelling in en verstuur
-  3. Je komt op de bedankpagina met twee betaalknoppen
-  4. Kijk of de inzending in Netlify onder Forms staat
-  5. Kijk of de meldingsmail aankomt (eerste keer mogelijk in de spam)
-  6. Klik een betaalknop aan en controleer of het juiste bedrag
-     en de juiste ontvanger in beeld komen - NIET afrekenen
-
-ALLE PRIJZEN EN DATA OP EEN PLEK
-Bovenin build.py staat een blok PRE-ORDER WERKBOEK met de prijzen,
-de betaallinks, de sluitingsdatum en de levertekst. Daar pas je alles
-aan, niet in de pagina zelf.
-
-ACTIE AFGELOPEN?
-Zet WERKBOEK_ACTIEF op False en draai opnieuw. Het blok op de homepage
-en de regel in de voettekst verdwijnen dan; de pagina zelf blijft
-bestaan voor wie de link nog heeft.
-
-BONUS
-Pagina's met noindex (bedankt.html en bestelling-ontvangen.html)
-stonden ten onrechte in de sitemap. Die worden er nu uit gelaten.
+NIET VERGETEN NA DE DEPLOY
+Netlify -> Forms -> Submission notifications -> Add notification
+voor het formulier "werkboek".
