@@ -550,9 +550,9 @@ WERKBOEK_BANNER = f"""
       <div>
         <p class="eyebrow" style="color:var(--forest);opacity:.6">Nieuw &middot; pre-order tot en met {PREORDER_TOT}</p>
         <h3 style="font-size:clamp(1.3rem,2.2vw,1.7rem);margin-bottom:.5rem">Werkboek: Unpack your story</h3>
-        <p class="muted" style="margin:0;font-size:.97rem;max-width:56ch">92 pagina's om je eigen
-          familieverhaal uit te pakken. Geschreven door Clementine en Maaike. Bestel nu, dan heb je
-          het {LEVERING} in huis.</p>
+        <p class="muted" style="margin:0;font-size:.97rem;max-width:56ch">92 pagina's om jouw
+          familiesysteem in kaart te brengen en te ontdekken wat je meedraagt in jouw Backpack.
+          Geschreven door Clementine en Maaike. Bestel nu en je hebt het {LEVERING} in huis.</p>
       </div>
       <a class="btn btn-primary" href="werkboek.html">Bekijk het werkboek <span class="arw">&rarr;</span></a>
     </div>

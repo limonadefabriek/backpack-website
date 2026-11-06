@@ -1,31 +1,22 @@
 WAT JE UPLOADT
 
-  build.py       de pre-orderpagina, de bedankpagina, het blok op de
-                 homepage en de regel in de voettekst
+  build.py       nieuwe tekst in het blok op de homepage
   netlify.toml   kort adres /werkboek
-  images/        tien bestanden (twee daarvan vervangen de vorige versie)
+  images/        de tien beeldbestanden
 
-Dit vervangt de vorige zip volledig.
+Dit vervangt de vorige zip volledig. Heb je die al geupload, dan is
+alleen build.py nieuw.
 
-VERWERKT
-  - meerdere exemplaren: nu staat er dat je de betaling zo vaak
-    doorloopt als je boeken wilt
-  - bezorgadres opgesplitst in straat, postcode en plaats, en
-    verplicht zodra iemand het gedrukte werkboek kiest
-  - bezorgvraag verplicht, met Sint, Kerst en geen haast
-  - "daarna gaat de opdracht naar de drukker" eruit
-  - "voor de kerst in huis" is "binnen twee weken in huis"
-  - "via iDEAL" is "via een veilige betaallink"
-  - geen enkele em-dash meer, op de hele site
-  - derde binnenwerkpagina is nu p.19 (Je vader) in plaats van de
-    rugzaktekening, en staat nu op de tweede plek
+TWEE KLEINE INGREPEN IN DE TEKST
+  1. "om jouw familiesysteem in kaart brengen" is "in kaart te
+     brengen" geworden.
+  2. "voor de kerst in huis" is "binnen twee weken in huis".
+     Reden: op de werkboekpagina staat overal "binnen twee weken",
+     en iemand die vanaf de banner doorklikt zag anders binnen een
+     seconde twee verschillende beloftes.
 
-DE ADRESVELDEN
-Een klein stukje JavaScript in de pagina zelf verbergt het bezorgadres
-bij de digitale tool en zet de verplichting dan uit. Werkt JavaScript
-niet, dan blijven de velden staan en is het adres altijd verplicht.
-Nooit stuk, hooguit onhandig. Je hoeft site.js niet te uploaden.
-
-NIET VERGETEN NA DE DEPLOY
-Netlify -> Forms -> Submission notifications -> Add notification
-voor het formulier "werkboek".
+WIL JE TOCH OVERAL "VOOR DE KERST"?
+Bovenin build.py staat:
+      LEVERING = "binnen twee weken"
+Maak daar "voor de kerst" van en draai opnieuw. Dan verandert het op
+alle vijf de plekken tegelijk, inclusief de banner.
