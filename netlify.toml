@@ -15,6 +15,12 @@
 # ------------------------------------------------------------
 
 [[redirects]]
+  from = "https://tool.mybackpack.nl/*"
+  to = "https://backpack-werkboek.clementine-6c0.workers.dev/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
   from = "/Zelf-aan-de-slag.html"
   to = "/zelf-aan-de-slag.html"
   status = 301
