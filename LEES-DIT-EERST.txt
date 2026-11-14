@@ -1,48 +1,47 @@
-WAT JE UPLOADT
+TEASERVIDEO EN NIEUWE CHECK-UP
+14 november 2026
 
-  build.py            alle vier de pagina's, het formulier, de
-                      herroepingspagina en de schakelaar voor 10 december
-  assets/style.css    productnamen in saliegroen, hoofdstukkenlijst
-  docs/               het overdrachtsdocument en de vier referentiebeelden
+Wat er in deze map zit en waar het heen moet in de repository
+backpack-website. De mappenstructuur hieronder is gelijk aan die
+van de repository, dus je kunt de mappen rechtstreeks slepen.
 
-De HTML maakt Netlify zelf opnieuw.
+  build.py                         overschrijven
+  assets/style.css                 overschrijven
+  bron/backpack-checkup.html       overschrijven (nieuwe versie van Clementine)
+  bron/backpack-checkup-origineel-aug2026.html.bak   nieuw, alleen ter referentie
+  images/teaser-poster.jpg         nieuw
+  images/teaser-poster.webp        nieuw
+  images/tool-genogram.jpg         nieuw
+  images/tool-genogram.webp        nieuw
+  video/my-backpack-teaser.mp4     nieuw, nieuwe map "video"
 
-TWEE NIEUWE PAGINA'S
-  /herroepen            het herroepingsformulier (W7)
-  /herroepen-ontvangen  de bevestiging daarna
+Je hoeft check-up.html NIET te uploaden. Die wordt door build.py
+gemaakt uit bron/backpack-checkup.html, zoals altijd.
 
-DE SCHAKELAAR VOOR 10 DECEMBER
-Bovenin build.py staat:
+WAT ER VERANDERT
 
-    INTRO = True
+1. De teaser staat op de werkboekpagina, onder "zo werkt de
+   digitale tool". Met posterbeeld en afspeelknop. Er wordt niets
+   gedownload tot iemand op afspelen drukt, dus bezoekers op hun
+   telefoon betalen niet ongevraagd 5 MB aan data.
 
-Zet die op False en draai opnieuw. Dan gebeurt alles tegelijk:
-  - 49,95 wordt 59,95 op homepage, werkboekpagina, formulier en
-    Zelf aan de slag
-  - "introductieprijs", "tot en met 9 december" en de kerstzinnen
-    verdwijnen
-  - het cadeaublok en de vraag "Waarom een introductieprijs?" vallen weg
-  - de levertekst wordt "op voorraad, direct verzonden"
-  - de vier betaalbedragen worden 65,90 / 127,85 / 187,80 / 247,75
+2. Op "zelf aan de slag" staat in de kaart Digitaal nu een beeld
+   uit de teaser: een volledig genogram.
 
-LET OP: VIER NIEUWE BETAALLINKS NODIG
-Die bedragen staan klaar, maar de links nog niet. Zoek in build.py op
+3. De check-up is vervangen door de nieuwe versie van Clementine.
+   Die kwam al in huisstijl binnen, met ingebakken lettertype, een
+   knop om de reflectie als PDF te bewaren en een verwijzing naar
+   het werkboek. Het bouwscript bewerkt hem daarom bijna niet meer.
+   Twee dingen doet het nog wel: de kennismakingsknop volgt de
+   instelling bovenin build.py, en de link naar het werkboek is
+   relatief gemaakt zodat hij in hetzelfde tabblad blijft.
 
-    VUL_HIER_DE_NIEUWE_LINK_IN
+4. Op de kennismakingspagina komt geen filmpje; daar blijft de foto
+   van Clementine en Maaike staan. In de code stond nog een notitie
+   dat er ooit een video zou komen, en die notitie werd meegestuurd
+   naar de browser. Hij is weg, net als de bijbehorende opmaak in
+   assets/style.css die nergens meer gebruikt werd.
 
-Maak voor 10 december vier nieuwe Rabo-betaalverzoeken aan en zet ze
-daar neer. Doe je dat niet, dan wijzen de knoppen na het omzetten
-nergens heen.
-
-DERDE NIEUWE FORMULIER IN NETLIFY
-Na de deploy staat er een formulier "herroepen" in Netlify.
-Zet daar een meldingsmail op, net als bij "werkboek":
-Forms -> Submission notifications -> Add notification.
-Zonder die melding ziet niemand dat iemand zijn bestelling intrekt,
-en dat is nu net het formulier waar een termijn aan hangt.
-
-NOG OPEN - WACHT OP CLEMENTINE
-  - het teaserfilmpje van My Backpack (blok op /werkboek)
-  - een still daaruit (kaart 2 op /zelf-aan-de-slag)
-Op allebei de plekken staat nu een gemarkeerd kader. Zodra de beelden
-er zijn, is het tien minuten werk.
+   De twee bestanden heten nog images/video-still.jpg en .webp. Dat
+   is nu een misleidende naam voor een gewone foto, maar hernoemen
+   levert meer gedoe op dan het waard is. Laat staan.

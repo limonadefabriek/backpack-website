@@ -943,13 +943,6 @@ HOME = f"""<main id="top">
 
 <section class="section" style="padding-top:0">
   <div class="wrap split">
-    <!-- Voorlopig alleen de foto. Zodra er een introductievideo is, wordt dit blok:
-         een link met class "video reveal" naar de video, met daarin:
-           ...dezelfde afbeelding...
-           <span class="play"></span>
-           <span class="video-cap">Maak kennis met Clementine en Maaike</span>
-         </a>
-         De opmaak daarvoor staat al klaar in assets/style.css onder "Video". -->
     <div class="split-img wide reveal">
       <picture><source srcset="images/video-still.webp" type="image/webp"><img src="images/video-still.jpg" width="1600" height="1000" alt="Clementine Mol en Maaike Oosterveer" loading="lazy"></picture>
     </div>
@@ -1495,10 +1488,16 @@ def bouw_checkup():
     bewust. Een vragenlijst werkt beter zonder menu en voettekst eromheen: minder
     afleiding, meer mensen die hem afmaken.
 
-    Aan de inhoud is niets veranderd. Er zijn drie dingen toegevoegd of hersteld:
-      1. een terug-link, zodat je halverwege niet vastzit
-      2. de link naar Clementine wees nog naar de oude URL (Clementine.html)
-      3. titel, omschrijving en canonical voor de vindbaarheid
+    Sinds november 2026 levert Clementine het bestand al in huisstijl aan. De
+    kleuren, Work Sans, de metagegevens, de terug-link en de printweergave zitten
+    er dan in. Daarom wordt het bestand hier vrijwel letterlijk overgenomen; de
+    lange lijst met vervangingen die hier eerst stond is weg, want die deed niets
+    meer. Wil je weten wat er destijds gebeurde: zie backpack-checkup-origineel-
+    aug2026.html.bak in dezelfde map, dat is de versie van voor de bewerking.
+
+    Er blijven twee dingen over die het bouwscript wel doet:
+      1. de kennismakingsknop volgt de instelling bovenin dit bestand
+      2. een link naar onze eigen werkboekpagina blijft in hetzelfde tabblad
     """
     bron = os.path.join(OUT, "bron", "backpack-checkup.html")
     if not os.path.exists(bron):
@@ -1506,81 +1505,33 @@ def bouw_checkup():
         return
     s = open(bron, encoding="utf-8").read()
 
-    # 0. huisstijl: kleuren en lettertype gelijktrekken met de rest van de site.
-    #    De rustige opzet van één vraag per scherm blijft ongemoeid - die werkt.
-    kleuren = {
-        "#FDFBF5": "#FAF7F2",   # wit/room
-        "#EDE9DC": "#EDE4D6",   # zand
-        "#31423C": "#24433A",   # donkergroen
-        "#5B6863": "#5F6D66",   # gedempt groen
-        "#8FA09A": "#7C9A8B",   # salie
-        "#D4DDD9": "#DCE5DE",   # licht salie
-        "#d4967d": "#B5794F",   # terracotta -> klei
-        "49,66,60": "36,67,58",  # rgba-randen
-    }
-    for oud_k, nieuw_k in kleuren.items():
-        s = re.sub(re.escape(oud_k), nieuw_k, s, flags=re.I)
-    s = s.replace(
-        "family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600",
-        "family=Work+Sans:wght@300;400;500")
-    s = s.replace("'Cormorant Garamond', serif", "'Work Sans', sans-serif")
-    s = s.replace("'Cormorant Garamond',serif", "'Work Sans',sans-serif")
-    s = s.replace('"Cormorant Garamond", serif', "'Work Sans', sans-serif")
-    s = s.replace("'Inter', sans-serif", "'Work Sans', sans-serif")
-    s = s.replace("'Inter',sans-serif", "'Work Sans',sans-serif")
-
-    # 1b. tekstwijzigingen van Clementine
-    s = s.replace("Bij Backpack geloven we dat klachten zelden op zichzelf staan.",
-                  "Bij Backpack geloven we dat chronische klachten zelden op zichzelf staan.")
-    s = s.replace("De drie lagen waarop je kunt werken", "Drie lagen waarop je kunt werken")
-    s = s.replace(" \u2014 ", " - ").replace("\u2014", "-")
-
-    # 1c. de kennismakingsknop volgt de instelling van de site
-    # In de check-up staat het afspraakadres met een token erachter. Dat werkt
-    # nog wel - het stuurt door naar hetzelfde formulier - maar dan zou er twee
-    # verschillende adressen in de site staan. Hier wordt het gelijkgetrokken
-    # met de rest, wat de instelling bovenin ook is.
+    # 1. de kennismakingsknop volgt de instelling van de site. Staat KENNISMAKING
+    #    op het contactformulier, dan gaat de knop in de check-up mee.
     s = s.replace('href="https://backpack.clientomgeving.nl/afspraak-maken?t=gbFxFmGj"',
+                  f'href="{KENNISMAKING}"')
+    s = s.replace('href="https://backpack.clientomgeving.nl/afspraak-maken"',
                   f'href="{KENNISMAKING}"')
     if not EXTERN_KENNISMAKING:
         # Een link naar onze eigen pagina hoort geen nieuw tabblad te openen.
         s = s.replace(f'href="{KENNISMAKING}" class="btn-primary" target="_blank"',
                       f'href="{KENNISMAKING}" class="btn-primary"')
 
-    # 2. verouderde link herstellen
-    s = s.replace("https://mybackpack.nl/Clementine.html", "clementine.html")
-    s = s.replace('<a href="clementine.html" class="btn-secondary" target="_blank">',
-                  '<a href="clementine.html" class="btn-secondary">')
+    # 2. de verwijzing naar het werkboek is een link binnen onze eigen site.
+    #    Die hoort relatief te zijn (werkt ook op een testversie van Netlify)
+    #    en niet in een nieuw tabblad te openen.
+    s = s.replace('href="https://www.mybackpack.nl/werkboek" target="_blank" rel="noopener"',
+                  'href="werkboek.html"')
 
-    # 3. metagegevens voor Google en sociale media
-    meta = ('<meta name="description" content="Doe de gratis check-up van Backpack. '
-            'In een paar minuten zicht op wat je meedraagt: leefstijl, patronen en thema\'s. '
-            'Geen account nodig.">\n'
-            f'<link rel="canonical" href="{SITE}/check-up.html">\n'
-            '<meta name="theme-color" content="#24433A">\n'
-            '<meta property="og:title" content="Wat draag jij met je mee? - Backpack">\n'
-            '<meta property="og:description" content="Een check-up van een paar minuten. '
-            'Gratis, geen account nodig.">\n'
-            '<meta property="og:type" content="website">\n'
-            '<meta property="og:locale" content="nl_NL">\n')
-    s = s.replace("<link rel=\"preconnect\"", meta + "<link rel=\"preconnect\"", 1)
-
-    # 1. terug-link, in de stijl van de check-up zelf
-    terug_css = """
-  .site-terug {
-    width: 100%; max-width: 480px; padding: 16px 26px 12px;
-    font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 400;
-    color: #5F6D66; text-decoration: none; display: flex; align-items: center; gap: 8px;
-    transition: color .2s;
-  }
-  .site-terug:hover { color: #24433A; }
-"""
-    s = s.replace("</style>", terug_css + "</style>", 1)
-    s = s.replace("<body>", '<body>\n<a class="site-terug" href="index.html">'
-                            '<span aria-hidden="true">&larr;</span> Terug naar Backpack</a>', 1)
+    # 3. vangnet: meldt het als er toch nog een los ontwerp of oude kleur in zit.
+    for spoor, uitleg in (
+            ("fonts.googleapis.com", "verwijst nog naar Google Fonts"),
+            ("Cormorant", "gebruikt nog het oude lettertype Cormorant"),
+            ("#FDFBF5", "bevat nog de oude roomkleur"),
+            ("mybackpack.me", "bevat nog een oud e-mailadres op .me")):
+        if spoor in s:
+            WAARSCHUWINGEN.append(f"check-up: {uitleg} ({spoor})")
 
     write("check-up.html", s, raw=True)
-
 
 bouw_checkup()
 
@@ -1664,9 +1615,10 @@ EXPLORE = f"""<main>
       </article>
 
       <article class="card">
-        <div class="split-img reveal" style="aspect-ratio:16/11;margin-bottom:1.4rem;background:var(--sand);display:grid;place-items:center">
-          <p class="muted" style="text-align:center;padding:1.4rem;font-size:.9rem">Hier komt een
-            beeld uit de teaser van My Backpack.<br><span style="font-size:.84rem">Volgt van Clementine.</span></p>
+        <div class="split-img reveal" style="aspect-ratio:16/11;margin-bottom:1.4rem">
+          <picture><source srcset="images/tool-genogram.webp" type="image/webp"><img
+            src="images/tool-genogram.jpg" width="1280" height="880"
+            alt="Een genogram in My Backpack: vier generaties in beeld" loading="lazy"></picture>
         </div>
         <div class="card-head" style="text-align:left">
           <p class="card-name">Digitaal</p>
@@ -2298,9 +2250,20 @@ WERKBOEK = f"""<main>
         <span>Je gegevens blijven van jou. Net als bij de check-up bewaren wij niets van wat je
           invult. Sla tussendoor op, zodat je niets kwijtraakt.</span></p>
     </div>
-    <div class="split-img reveal" style="aspect-ratio:16/11;background:var(--sand);display:grid;place-items:center">
-      <p class="muted" style="text-align:center;padding:2rem;font-size:.93rem">Hier komt het
-        teaserfilmpje van My Backpack.<br><span style="font-size:.85rem">Volgt van Clementine.</span></p>
+    <div class="reveal">
+      <!-- De teaser is een stille animatie van 48 seconden. preload="none" zorgt dat er
+           niets gedownload wordt tot iemand op afspelen drukt; tot die tijd staat het
+           posterbeeld er. Scheelt bezoekers op hun telefoon 5 MB aan dataverbruik. -->
+      <video class="teaser" controls preload="none" playsinline
+             poster="images/teaser-poster.jpg"
+             width="1920" height="1080"
+             aria-label="Teaser van My Backpack, de digitale tool">
+        <source src="video/my-backpack-teaser.mp4" type="video/mp4">
+        <p class="muted">Je browser kan deze video niet afspelen.
+          <a class="sublink" href="video/my-backpack-teaser.mp4">Download hem hier</a>.</p>
+      </video>
+      <p class="muted" style="margin-top:.85rem;font-size:.88rem;text-align:center">Een korte
+        rondleiding door My Backpack. Zonder geluid, dus je kunt hem overal bekijken.</p>
     </div>
   </div>
 </section>
