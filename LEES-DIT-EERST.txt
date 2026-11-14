@@ -45,3 +45,48 @@ WAT ER VERANDERT
    De twee bestanden heten nog images/video-still.jpg en .webp. Dat
    is nu een misleidende naam voor een gewone foto, maar hernoemen
    levert meer gedoe op dan het waard is. Laat staan.
+
+----------------------------------------------------------
+TOEGEVOEGD: OPMAAKFOUTEN OP TELEFOON EN LAPTOP
+
+Alle 20 pagina's zijn in een echte browser nagemeten op zeven
+schermbreedtes (320, 360, 375, 414, 768, 1024 en 1440 pixels).
+Er is gezocht naar tekst en kaders die buiten hun vak vallen.
+
+Gevonden en opgelost, allemaal in assets/style.css:
+
+a. De homepage kon je op een telefoon zijwaarts slepen. Het
+   cremekleurige werkboekblok en de knop "Bekijk het werkboek en
+   de digitale tool" staken rechts buiten beeld. Oorzaak: knoppen
+   stonden op white-space:nowrap, dus de tekst kon niet afbreken
+   en de knop niet krimpen. Knoppen mogen nu afbreken op schermen
+   tot 760 pixels.
+
+b. In het groene kader onderaan werd de zin "Boek direct een
+   sessie bij Clementine of Maaike." op een laptop afgeknipt. Daar
+   stond ook een nowrap-regel, terwijl het tekstblok maar 52
+   tekens breed is. Die regel is weg.
+
+c. Op de werkboekpagina viel de prijstabel buiten het witte vlak
+   op smalle telefoons. De toelichtingsregel over de
+   introductieprijs loopt over twee kolommen en werd door een
+   regel voor bedragen meegepakt, inclusief nowrap. Zulke cellen
+   mogen nu afbreken, en zien er weer uit als een toelichting in
+   plaats van een bedrag.
+
+d. "Regressietherapie" paste op 320 pixels niet op een regel.
+   Koppen breken daar nu met een afbreekstreepje.
+
+e. Het pijltje achter een knoptekst belandde soms alleen op een
+   tweede regel. Het staat nu achter het laatste woord, en op
+   schermen onder 420 pixels laten we het bij knoppenrijen weg.
+
+Na afloop opnieuw gemeten: geen enkele pagina scrolt nog
+zijwaarts en geen element valt nog buiten zijn kader. Op een
+laptop is er niets veranderd.
+
+Drie dingen die als melding terugkwamen maar geen fout zijn, voor
+het geval je ze zelf ooit meet: de decoratieve cirkels achter de
+koppen en in het groene blok steken bewust buiten hun vak en
+worden afgeknipt, het uitklapmenu is verborgen maar heeft wel
+breedte, en de recensiecarrousel hoort zijwaarts te scrollen.

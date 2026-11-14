@@ -339,6 +339,12 @@ li:hover > .submenu,li:focus-within > .submenu{opacity:1;visibility:visible;tran
   text-transform:uppercase;color:var(--sage);padding:0 0 .8em;border-bottom:1px solid var(--line)}
 .rate-table td{padding:.95em 0;border-bottom:1px solid var(--line);color:var(--muted)}
 .rate-table td:last-child{text-align:right;color:var(--ink);font-weight:500;white-space:nowrap}
+/* Een cel over de volle breedte is geen bedrag maar een toelichting, en moet
+   dus wel kunnen afbreken. Zonder deze regel pakte de regel hierboven hem ook,
+   en duwde "Introductieprijs, na 9 december" de tabel uit het kader op een
+   telefoon. */
+.rate-table td[colspan]{white-space:normal;text-align:left;
+  color:var(--muted);font-weight:400}
 /* De hoofdstukkenlijst op de werkboekpagina. Twee kolommen op een breed
    scherm, onder elkaar op een telefoon. Geen tabel, want twee kolommen
    lopende tekst passen daar niet in. */
@@ -494,7 +500,11 @@ picture{display:contents}
 .social svg{width:20px;height:20px}
 .cta-direct{margin-top:1.6rem;font-size:.9rem;color:rgba(250,247,242,.7);
   max-width:none;text-wrap:balance}
-@media (min-width:820px){.cta-direct{white-space:nowrap}}
+/* Hier stond white-space:nowrap vanaf 820px. Dat hield de zin op een regel,
+   maar de zin is langer dan het tekstblok eromheen (.cta p is 52ch breed) en
+   het groene kader knipt alles af wat erbuiten valt. Op een laptop verdween
+   zo het laatste stuk van "Boek direct een sessie bij Clementine of Maaike."
+   text-wrap:balance hierboven verdeelt de regels nu netjes. */
 .cta-direct a{border-bottom:1px solid rgba(250,247,242,.35);padding-bottom:1px;transition:.2s}
 .cta-direct a:hover{color:var(--cream);border-color:var(--cream)}
 .vers{font-size:1.05rem;line-height:2;color:var(--ink);margin-bottom:1.8em}
@@ -504,17 +514,45 @@ picture{display:contents}
    telefoon werd platgedrukt. Nu stapelen ze netjes onder elkaar. */
 .panel-split{display:grid;grid-template-columns:1fr auto;gap:clamp(24px,3.5vw,36px);align-items:center}
 @media (max-width:760px){
-  .panel-split{grid-template-columns:1fr;gap:22px}
+  .panel-split{grid-template-columns:minmax(0,1fr);gap:22px}
+  .panel-split > *{min-width:0}
   .panel-split .btn{width:100%;justify-content:center}
-  .btn-row .btn{flex:1 1 auto;justify-content:center}
+  .btn-row .btn{flex:1 1 auto;justify-content:center;min-width:0}
+
+  /* Knoppen mogen op een telefoon over twee regels. Hierboven staat bij .btn
+     white-space:nowrap, en dat is op een breed scherm precies goed: de tekst
+     blijft netjes op een regel. Op een smal scherm werkt het averechts. Een
+     knop als "Bekijk het werkboek en de digitale tool" kan dan niet krimpen
+     en niet afbreken, en duwt zijn hele kader buiten beeld. Daardoor kon je
+     de homepage op een telefoon zijwaarts slepen. */
+  .btn{white-space:normal;text-align:center}
+
+  /* Een knop is normaal een flexrij: tekst, dan pijl ernaast. Breekt de tekst
+     over twee regels, dan blijft die pijl los rechts hangen, midden tussen de
+     regels in. Op een telefoon laten we de knop daarom gewoon regels zetten,
+     met de pijl achter het laatste woord. */
+  .panel-split .btn,.btn-row .btn{display:block;line-height:1.45}
+  .panel-split .btn .arw,.btn-row .btn .arw{display:inline;margin-left:.45em}
+
   .rev{flex-basis:min(320px,86vw)}
   .head-row{align-items:flex-start}
   .quote blockquote{max-width:none}
+}
+@media (max-width:360px){
+  /* Lange samenstellingen als "Regressietherapie" passen op de allersmalste
+     schermen niet op een regel. De pagina staat op lang="nl", dus de browser
+     breekt hem op de juiste plek af. */
+  h1,h2,h3{hyphens:auto;overflow-wrap:break-word}
 }
 @media (max-width:420px){
   /* min-height 44px: dat is de maat waarop een knop met een duim goed te
      raken is. Zonder die regel werd hij hier net iets te laag. */
   .btn{padding:.9em 1.35em;font-size:.88rem;min-height:44px}
+
+  /* Op deze breedte past het pijltje vaak net niet meer achter het laatste
+     woord en belandt het alleen op een tweede regel. Het is versiering, geen
+     informatie, dus hier laten we het weg. */
+  .btn-row .btn .arw{display:none}
 }
 
 /* Logohoogte staat als --logo-h bovenaan dit bestand (nu 34px). Op die maat
