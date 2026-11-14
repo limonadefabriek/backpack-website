@@ -1,22 +1,48 @@
 WAT JE UPLOADT
 
-  build.py       nieuwe tekst in het blok op de homepage
-  netlify.toml   kort adres /werkboek
-  images/        de tien beeldbestanden
+  build.py            alle vier de pagina's, het formulier, de
+                      herroepingspagina en de schakelaar voor 10 december
+  assets/style.css    productnamen in saliegroen, hoofdstukkenlijst
+  docs/               het overdrachtsdocument en de vier referentiebeelden
 
-Dit vervangt de vorige zip volledig. Heb je die al geupload, dan is
-alleen build.py nieuw.
+De HTML maakt Netlify zelf opnieuw.
 
-TWEE KLEINE INGREPEN IN DE TEKST
-  1. "om jouw familiesysteem in kaart brengen" is "in kaart te
-     brengen" geworden.
-  2. "voor de kerst in huis" is "binnen twee weken in huis".
-     Reden: op de werkboekpagina staat overal "binnen twee weken",
-     en iemand die vanaf de banner doorklikt zag anders binnen een
-     seconde twee verschillende beloftes.
+TWEE NIEUWE PAGINA'S
+  /herroepen            het herroepingsformulier (W7)
+  /herroepen-ontvangen  de bevestiging daarna
 
-WIL JE TOCH OVERAL "VOOR DE KERST"?
+DE SCHAKELAAR VOOR 10 DECEMBER
 Bovenin build.py staat:
-      LEVERING = "binnen twee weken"
-Maak daar "voor de kerst" van en draai opnieuw. Dan verandert het op
-alle vijf de plekken tegelijk, inclusief de banner.
+
+    INTRO = True
+
+Zet die op False en draai opnieuw. Dan gebeurt alles tegelijk:
+  - 49,95 wordt 59,95 op homepage, werkboekpagina, formulier en
+    Zelf aan de slag
+  - "introductieprijs", "tot en met 9 december" en de kerstzinnen
+    verdwijnen
+  - het cadeaublok en de vraag "Waarom een introductieprijs?" vallen weg
+  - de levertekst wordt "op voorraad, direct verzonden"
+  - de vier betaalbedragen worden 65,90 / 127,85 / 187,80 / 247,75
+
+LET OP: VIER NIEUWE BETAALLINKS NODIG
+Die bedragen staan klaar, maar de links nog niet. Zoek in build.py op
+
+    VUL_HIER_DE_NIEUWE_LINK_IN
+
+Maak voor 10 december vier nieuwe Rabo-betaalverzoeken aan en zet ze
+daar neer. Doe je dat niet, dan wijzen de knoppen na het omzetten
+nergens heen.
+
+DERDE NIEUWE FORMULIER IN NETLIFY
+Na de deploy staat er een formulier "herroepen" in Netlify.
+Zet daar een meldingsmail op, net als bij "werkboek":
+Forms -> Submission notifications -> Add notification.
+Zonder die melding ziet niemand dat iemand zijn bestelling intrekt,
+en dat is nu net het formulier waar een termijn aan hangt.
+
+NOG OPEN - WACHT OP CLEMENTINE
+  - het teaserfilmpje van My Backpack (blok op /werkboek)
+  - een still daaruit (kaart 2 op /zelf-aan-de-slag)
+Op allebei de plekken staat nu een gemarkeerd kader. Zodra de beelden
+er zijn, is het tien minuten werk.

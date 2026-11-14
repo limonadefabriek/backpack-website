@@ -132,6 +132,9 @@ li:hover > .submenu,li:focus-within > .submenu{opacity:1;visibility:visible;tran
   background:radial-gradient(circle,rgba(124,154,139,.28),rgba(124,154,139,0) 68%)}
 .hero-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(36px,5vw,64px);align-items:center;position:relative}
 .hero h1 em{font-style:normal;color:var(--sage)}
+/* Productnamen in een kop krijgen dezelfde saliegroene kleur als "verhaal"
+   in de hero. Niet cursief, alleen een andere kleur. */
+.pnaam,h2 em,h3 em{font-style:normal;color:var(--sage)}
 .hero .lead{margin-top:1.5rem}
 .hero-meta{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:2.1rem;font-size:.85rem;color:var(--muted)}
 .hero-meta span{display:flex;align-items:center;gap:.5em}
@@ -337,6 +340,17 @@ li:hover > .submenu,li:focus-within > .submenu{opacity:1;visibility:visible;tran
   text-transform:uppercase;color:var(--sage);padding:0 0 .8em;border-bottom:1px solid var(--line)}
 .rate-table td{padding:.95em 0;border-bottom:1px solid var(--line);color:var(--muted)}
 .rate-table td:last-child{text-align:right;color:var(--ink);font-weight:500;white-space:nowrap}
+/* De hoofdstukkenlijst op de werkboekpagina. Twee kolommen op een breed
+   scherm, onder elkaar op een telefoon. Geen tabel, want twee kolommen
+   lopende tekst passen daar niet in. */
+.hoofdstukken{margin:1.6rem 0 0}
+.hoofdstukken > div{display:grid;grid-template-columns:minmax(0,34%) minmax(0,1fr);
+  gap:1.4rem;padding:.95em 0;border-bottom:1px solid var(--line)}
+.hoofdstukken dt{font-weight:500;color:var(--forest);font-size:.97rem}
+.hoofdstukken dd{margin:0;color:var(--muted);font-size:.95rem;line-height:1.6}
+@media (max-width:620px){
+  .hoofdstukken > div{grid-template-columns:1fr;gap:.3rem}
+}
 
 /* ---------- Praktisch blok ---------- */
 .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:clamp(24px,3vw,40px)}
